@@ -1,6 +1,7 @@
 import React from 'react';
+import { Button } from '@/utils/Types';
 
-const Button = ({ children, variant }) => {
+const Button = ({ children, variant }: Button) => {
 	if (variant === 'pink')
 		return (
 			<button className='transition ease-in delay-80 bg-variant-one border-solid border-2 border-variant-one px-8 py-2 rounded-lg text-white hover:bg-white hover:border-black hover:text-black'>

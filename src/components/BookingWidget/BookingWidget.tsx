@@ -10,8 +10,7 @@ const BookingWidget = () => {
 					</label>
 					<select
 						id='treatmentName'
-						className='bg-light-gray rounded-lg placeholder:text-black outline-1 focus:outline-1 active:outline-0 focus:outline-variant-one py-2 px-2'
-						placeholder='What treatment are you looking for?'>
+						className='bg-light-gray rounded-lg placeholder:text-black outline-1 focus:outline-1 active:outline-0 focus:outline-variant-one py-2 px-2'>
 						<option className='outline-1 outline-variant-one'>
 							Extensions
 						</option>
@@ -34,8 +33,7 @@ const BookingWidget = () => {
 					</label>
 					<select
 						id='duration'
-						className='bg-light-gray rounded-lg placeholder:text-black focus:outline-1 active:outline-0 focus:outline-variant-one py-2 px-2'
-						placeholder='Select duration'>
+						className='bg-light-gray rounded-lg placeholder:text-black focus:outline-1 active:outline-0 focus:outline-variant-one py-2 px-2'>
 						<option className='outline-1 outline-variant-one'>1 Hour</option>
 					</select>
 				</div>

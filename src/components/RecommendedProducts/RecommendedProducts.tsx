@@ -1,8 +1,10 @@
 import React from 'react';
 import RecProductCard from './components/RecProductCard';
 import Section from '../Section';
+import { Products } from '@/utils/Types';
 
-const RecommendedProducts = ({ products }) => {
+const RecommendedProducts = ({ products }: Products) => {
+	// console.log(products);
 	return (
 		<Section>
 			<div className='container mx-auto py-4 px-5 tablet:px-0'>

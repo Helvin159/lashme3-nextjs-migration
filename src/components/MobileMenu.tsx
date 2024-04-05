@@ -1,21 +1,23 @@
 'use client';
-
 import React, { useContext } from 'react';
+import { MenuCtxProps } from '@/utils/Types';
 import { MenuContext } from '../context/MenuContext';
 import Link from 'next/link';
 
-const MobileMenu = () => {
-	const { isOpen, setIsOpen } = useContext(MenuContext);
-
+export const MobileMenu = () => {
+	const { isOpen, setIsOpen }: MenuCtxProps =
+		useContext<MenuCtxProps>(MenuContext);
+	// console.log(setIsOpen, 'setisopen');
 	const handleClose = () => {
 		setIsOpen(!isOpen);
+
 		document.body.style.overflow = 'auto';
 	};
 
 	return (
 		<div
 			className={`absolute top-0 left-0 right-0 bottom-0 block bg-white-light backdrop-blur ${
-				!isOpen ? 'block' : 'hidden'
+				isOpen ? 'block' : 'hidden'
 			} z-10`}>
 			<div className='absolute right-10 top-8'>
 				<button onClick={handleClose}>
@@ -44,5 +46,3 @@ const MobileMenu = () => {
 		</div>
 	);
 };
-
-export default MobileMenu;

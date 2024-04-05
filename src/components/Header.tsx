@@ -1,19 +1,21 @@
 'use client';
-
 import React, { useContext } from 'react';
+import { MenuContext } from '../context/MenuContext';
+import { MenuCtxProps } from '@/utils/Types';
 
 import Button from './Button';
-import { MenuContext } from '../context/MenuContext';
 
 import menuBtn from '../assets/svg/icon-menu.svg';
 import Link from 'next/link';
 import Image from 'next/image';
 
-const Header = () => {
-	const { isOpen, setIsOpen } = useContext(MenuContext);
+export const Header = () => {
+	const { isOpen, setIsOpen }: MenuCtxProps =
+		useContext<MenuCtxProps>(MenuContext);
 
 	const handleMobileNav = () => {
 		setIsOpen(!isOpen);
+		// console.log(isOpen, 'ISOPEN IN FUNC');
 		document.body.style.overflow = 'hidden';
 	};
 
@@ -42,12 +44,10 @@ const Header = () => {
 				</div>
 			</div>
 			<div className='absolute right-6 top-6 tablet:hidden'>
-				<button onClick={handleMobileNav}>
-					<Image src={menuBtn} width={'40px'} alt='Menu button' />
+				<button aria-label='Menu Button' onClick={handleMobileNav}>
+					<Image src={menuBtn} width={40} alt='Menu button' />
 				</button>
 			</div>
 		</header>
 	);
 };
-
-export default Header;
