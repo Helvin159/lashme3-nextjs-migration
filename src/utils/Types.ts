@@ -17,7 +17,7 @@ export interface Children {
 	children?: React.ReactNode;
 }
 
-export interface Button {
+export interface ButtonType {
 	children?: React.ReactNode;
 	variant: string;
 }

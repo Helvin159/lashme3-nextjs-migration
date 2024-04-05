@@ -1,7 +1,8 @@
+import { Product } from '@/utils/Types';
 import Image from 'next/image';
 import React from 'react';
 
-const RecProductCard = ({ image, name, purpose, price }) => {
+const RecProductCard = ({ image, name, purpose, price }: Product) => {
 	return (
 		<div className='container px-2 mb-6 tablet:mb-0'>
 			<div className='container rounded-xl p-3 bg-light-gray'>
