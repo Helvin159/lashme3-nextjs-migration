@@ -10,6 +10,7 @@ export interface Params {
 	params: {
 		slug: string;
 		service?: string;
+		product?: string;
 	};
 }
 

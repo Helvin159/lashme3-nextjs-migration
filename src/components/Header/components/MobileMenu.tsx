@@ -39,6 +39,16 @@ const MobileMenu = ({ isOpen, setIsOpen }: MenuType) => {
 							Calendar
 						</Link>
 					</li>
+					<li className='block py-5'>
+						<Link className='poppins-semibold text-5xl' href='/services'>
+							Services
+						</Link>
+					</li>
+					<li className='block py-5'>
+						<Link className='poppins-semibold text-5xl' href='/products'>
+							Products
+						</Link>
+					</li>
 				</ul>
 			</nav>
 		</nav>
