@@ -1,3 +1,4 @@
+'use client';
 import { Params } from '@/utils/Types';
 import { tempPopTreats } from '@/utils/mockData';
 import Container from '@/components/Container';
