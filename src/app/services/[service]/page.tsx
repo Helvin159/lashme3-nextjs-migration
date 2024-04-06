@@ -15,7 +15,8 @@ const Service = ({ params }: Params) => {
 	return (
 		<Section>
 			<Container className='text-center'>
-				<h1 className='text-xl tablet:text-3xl'>{data?.name} Service Page</h1>;
+				<h1 className='text-xl tablet:text-3xl'>{data?.name} </h1>
+				<p>Service Page</p>
 			</Container>
 		</Section>
 	);

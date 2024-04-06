@@ -42,6 +42,7 @@ export interface Products {
 	products: {
 		id: string;
 		name: string;
+		slug: string;
 		purpose: string;
 		price: string;
 		image: string | StaticImageData;
@@ -51,6 +52,7 @@ export interface Products {
 export interface Product {
 	id: string;
 	name: string;
+	slug: string;
 	purpose: string;
 	price: string;
 	image: string | StaticImageData;

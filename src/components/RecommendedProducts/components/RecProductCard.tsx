@@ -3,12 +3,12 @@ import { Product } from '@/utils/Types';
 import Image from 'next/image';
 import Link from 'next/link';
 
-const RecProductCard = ({ id, image, name, purpose, price }: Product) => {
+const RecProductCard = ({ id, image, name, slug, purpose, price }: Product) => {
 	return (
 		<div className='container px-2 mb-6 tablet:mb-0'>
 			<div className='container rounded-xl p-3 bg-light-gray'>
 				<div className='relative'>
-					<Link href={`/products/${id}`}>
+					<Link href={`/products/${slug}`}>
 						<Image
 							src={image}
 							alt={name}

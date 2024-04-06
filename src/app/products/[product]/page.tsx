@@ -9,7 +9,7 @@ import Container from '@/components/Container';
 const Product = ({ params }: Params) => {
 	console.log(params.product);
 	const data = mockData.find((i) => {
-		if (i.id === params.product) {
+		if (i.slug === params.product) {
 			let data = i;
 			return data;
 		}
@@ -18,7 +18,8 @@ const Product = ({ params }: Params) => {
 	return (
 		<Section>
 			<Container className='text-center'>
-				<h1 className='text-xl tablet:text-3xl'>{data?.name} Product Page</h1>;
+				<h1 className='text-xl tablet:text-3xl'>{data?.name} </h1>
+				<p>Product Page</p>
 			</Container>
 		</Section>
 	);

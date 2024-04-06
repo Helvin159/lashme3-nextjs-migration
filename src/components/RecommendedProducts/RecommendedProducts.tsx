@@ -14,6 +14,7 @@ const RecommendedProducts = ({ products }: Products) => {
 				{products.slice(0, 5).map((i, k) => (
 					<RecProductCard
 						id={i.id}
+						slug={i.slug}
 						image={i.image}
 						name={i.name}
 						purpose={i.purpose}

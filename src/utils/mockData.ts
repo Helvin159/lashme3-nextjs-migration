@@ -15,6 +15,7 @@ export const mockData = [
 	{
 		id: '214mn2lk34nk21n43lk1jn3k4nj1kn4l1n4321',
 		name: 'Brow Oil',
+		slug: 'brow-oil',
 		purpose: 'Promote Lash Growth',
 		price: '20.99',
 		image: prod1,
@@ -22,6 +23,7 @@ export const mockData = [
 	{
 		id: 'asvckalejldiw12o3043423k4nkl2134jk1b41kj4jbj52',
 		name: 'Lash Serum +',
+		slug: 'lash-serum-+',
 		purpose: 'Promote Lash Growth',
 		price: '90.99',
 		image: prod2,
@@ -29,6 +31,7 @@ export const mockData = [
 	{
 		id: '2310934nknklnouasd89023134',
 		name: 'Lash Oil +',
+		slug: 'lash-oil-+',
 		purpose: 'Promote Lash Growth',
 		price: '69.99',
 		image: prod3,
@@ -36,6 +39,7 @@ export const mockData = [
 	{
 		id: 'asdlkanvce998uu23341kjkad',
 		name: 'Brow Serum',
+		slug: 'brow-serum',
 		purpose: 'Promote Lash Growth',
 		price: '35.99',
 		image: prod4,
@@ -43,6 +47,7 @@ export const mockData = [
 	{
 		id: 'akdlfjvnd092321lkne',
 		name: 'Lash Sparkle',
+		slug: 'lash-sparkle',
 		purpose: 'Promote Lash Growth',
 		price: '40.99',
 		image: prod5,
@@ -50,6 +55,7 @@ export const mockData = [
 	{
 		id: 'adfakfe23dsad',
 		name: 'Brow Serum +',
+		slug: 'brow-serum-plus',
 		purpose: 'Promote Lash Growth',
 		price: '25.99',
 		image: prod5,
