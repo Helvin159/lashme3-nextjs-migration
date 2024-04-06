@@ -1,8 +1,7 @@
-'use client';
-import Container from '@/components/Container';
-import Section from '@/components/Section';
 import { Params } from '@/utils/Types';
 import { tempPopTreats } from '@/utils/mockData';
+import Container from '@/components/Container';
+import Section from '@/components/Section';
 
 const Service = ({ params }: Params) => {
 	const data = tempPopTreats.find((i) => {

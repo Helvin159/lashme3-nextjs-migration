@@ -40,6 +40,7 @@ export interface MenuStateType {
 // *************
 export interface Products {
 	products: {
+		id: string;
 		name: string;
 		purpose: string;
 		price: string;
@@ -48,6 +49,7 @@ export interface Products {
 }
 
 export interface Product {
+	id: string;
 	name: string;
 	purpose: string;
 	price: string;
