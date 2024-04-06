@@ -4,10 +4,10 @@ import MenuHandling from '@/utils/MenuHandling';
 import Image from 'next/image';
 import Link from 'next/link';
 import Button from '../Button';
+import MobileMenu from './components/MobileMenu';
 
 // Hamburger image
 import menuBtn from '../../assets/svg/icon-menu.svg';
-import MobileMenu from './components/MobileMenu';
 
 const Header = () => {
 	// *************

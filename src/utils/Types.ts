@@ -1,11 +1,7 @@
 import { StaticImageData } from 'next/image';
 import React, { Dispatch, SetStateAction } from 'react';
 
-export interface MenuType {
-	isOpen: boolean;
-	setIsOpen: Dispatch<SetStateAction<boolean>>;
-}
-
+// ************
 export interface Params {
 	params: {
 		slug: string;
@@ -18,16 +14,9 @@ export interface Children {
 	children?: React.ReactNode;
 }
 
-export interface ButtonType {
-	children?: React.ReactNode;
-	variant: string;
-}
-
-export interface MenuCtxProps {
-	isOpen: boolean;
-	setIsOpen: Dispatch<SetStateAction<boolean>>;
-}
-
+// ***************
+// Wrapper Types
+// ***************
 export interface ContainerType {
 	children?: React.ReactNode;
 	className?: string;
@@ -38,7 +27,17 @@ export interface SectionType {
 	className?: string;
 }
 
+// **********************
+// State Management Types
+// **********************
+export interface MenuStateType {
+	isOpen: boolean;
+	setIsOpen: Dispatch<SetStateAction<boolean>>;
+}
+
+// *************
 // Product types
+// *************
 export interface Products {
 	products: {
 		name: string;
@@ -73,4 +72,17 @@ export interface Treatment {
 		two: StaticImageData | string;
 		three: StaticImageData | string;
 	};
+}
+
+// ************
+// Button Types
+// ************
+export interface ButtonType {
+	children?: React.ReactNode;
+	variant: string;
+}
+
+export interface ButtonVariants {
+	pink: string;
+	light: string;
 }

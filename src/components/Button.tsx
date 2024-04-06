@@ -1,17 +1,12 @@
 import React from 'react';
-import { ButtonType } from '@/utils/Types';
-
-interface ButtonVariants {
-	pink: string;
-	light: string;
-}
+import { ButtonType, ButtonVariants } from '@/utils/Types';
 
 const Button = ({ children, variant }: ButtonType) => {
 	// ************************************
-	// Button variant object
+	// Button variant object.
 	// Containts all necessary classes
 	// for each button variant, then called
-	// with bracket notation at the return
+	// with bracket notation at the return.
 	// ************************************
 	const variants: ButtonVariants = {
 		pink: 'transition ease-in delay-80 bg-variant-one border-solid border-2 border-variant-one px-8 py-2 rounded-lg text-white hover:bg-white hover:border-black hover:text-black',
