@@ -23,7 +23,7 @@ export const mockData = [
 	{
 		id: 'asvckalejldiw12o3043423k4nkl2134jk1b41kj4jbj52',
 		name: 'Lash Serum +',
-		slug: 'lash-serum-+',
+		slug: 'lash-serum',
 		purpose: 'Promote Lash Growth',
 		price: '90.99',
 		image: prod2,
@@ -31,7 +31,7 @@ export const mockData = [
 	{
 		id: '2310934nknklnouasd89023134',
 		name: 'Lash Oil +',
-		slug: 'lash-oil-+',
+		slug: 'lash-oil',
 		purpose: 'Promote Lash Growth',
 		price: '69.99',
 		image: prod3,
