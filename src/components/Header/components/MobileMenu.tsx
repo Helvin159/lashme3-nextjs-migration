@@ -1,26 +1,24 @@
 'use client';
-import React, { useContext } from 'react';
-import { MenuCtxProps } from '@/utils/Types';
-import { MenuContext } from '../context/MenuContext';
+import MenuHandling from '@/utils/MenuHandling';
 import Link from 'next/link';
+import { MenuType } from '@/utils/Types';
 
-export const MobileMenu = () => {
-	const { isOpen, setIsOpen }: MenuCtxProps =
-		useContext<MenuCtxProps>(MenuContext);
-	// console.log(setIsOpen, 'setisopen');
-	const handleClose = () => {
-		setIsOpen(!isOpen);
-
-		document.body.style.overflow = 'auto';
-	};
+const MobileMenu = ({ isOpen, setIsOpen }: MenuType) => {
+	// *************
+	// Use Menu Hadnling Class to
+	// access handleMobileClose function
+	const menuHandling = new MenuHandling(isOpen, setIsOpen);
 
 	return (
-		<div
+		<nav
 			className={`absolute top-0 left-0 right-0 bottom-0 block bg-white-light backdrop-blur ${
 				isOpen ? 'block' : 'hidden'
 			} z-10`}>
 			<div className='absolute right-10 top-8'>
-				<button onClick={handleClose}>
+				<button
+					onClick={() => {
+						menuHandling.handleMobileClose(isOpen, setIsOpen);
+					}}>
 					<span className='text-6xl'>&#x2715;</span>
 				</button>
 			</div>
@@ -32,8 +30,8 @@ export const MobileMenu = () => {
 						</Link>
 					</li>
 					<li className='block py-5'>
-						<Link className='poppins-semibold text-5xl' href='/'>
-							Book
+						<Link className='poppins-semibold text-5xl' href='/booking'>
+							Booking
 						</Link>
 					</li>
 					<li className='block py-5'>
@@ -43,6 +41,8 @@ export const MobileMenu = () => {
 					</li>
 				</ul>
 			</nav>
-		</div>
+		</nav>
 	);
 };
+
+export default MobileMenu;

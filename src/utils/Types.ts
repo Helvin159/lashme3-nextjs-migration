@@ -1,11 +1,9 @@
 import { StaticImageData } from 'next/image';
 import React, { Dispatch, SetStateAction } from 'react';
 
-export interface MenuProviderProps {
-	children?: React.ReactNode;
+export interface MenuType {
 	isOpen: boolean;
 	setIsOpen: Dispatch<SetStateAction<boolean>>;
-	value: { isOpen: boolean; setIsOpen: Function };
 }
 
 export interface StateProps {

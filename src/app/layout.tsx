@@ -1,14 +1,12 @@
 import type { Metadata } from 'next';
 import { Inter } from 'next/font/google';
-
-import { Header } from '../components/Header';
-import { MobileMenu } from '../components/MobileMenu';
+import Header from '../components/Header/Header';
+import MobileMenu from '../components/Header/components/MobileMenu';
 import Footer from '../components/Footer';
 
 // Styles
 import '../css/output.css';
 import '../css/style.css';
-import { MenuProvider } from '@/context/MenuContext';
 
 const inter = Inter({ subsets: ['latin'] });
 
@@ -72,12 +70,9 @@ export default function RootLayout({
 }>) {
 	return (
 		<html lang='en'>
-			<body className={inter.className}>
+			<body className={inter.className} suppressHydrationWarning={true}>
 				<Header />
-				<MobileMenu />
-				<main>
-					<MenuProvider>{children}</MenuProvider>
-				</main>
+				<main>{children}</main>
 				<Footer />
 			</body>
 		</html>

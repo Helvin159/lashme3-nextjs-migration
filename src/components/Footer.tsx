@@ -22,7 +22,7 @@ const Footer = () => {
 					</div>
 					<ul className='px-0 py-1.5 list-none'>
 						<li>
-							<Link href={'/book'} className='whitespace-nowrap'>
+							<Link href={'/booking'} className='whitespace-nowrap'>
 								Book a Session
 							</Link>
 						</li>

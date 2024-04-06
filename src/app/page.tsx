@@ -5,8 +5,9 @@ import BookingWidget from '../components/BookingWidget/BookingWidget';
 import StopSignUpCTA from '../components/StopSignUpCTA';
 
 import { tempPopTreats, mockData } from '@/utils/mockData';
+import { NextPage } from 'next';
 
-const Home = () => {
+const Home: NextPage = () => {
 	return (
 		<>
 			<HomeHero />
