@@ -1,14 +1,16 @@
 'use client';
-import React from 'react';
-
+import React, { useContext } from 'react';
 import { Params } from '@/utils/Types';
-import { mockData } from '@/utils/mockData';
 import Section from '@/components/Section';
 import Container from '@/components/Container';
+import { GContext } from '@/context/GlobalContext';
 
 const Product = ({ params }: Params) => {
-	console.log(params.product);
-	const data = mockData.find((i) => {
+	const {
+		products: { products },
+	} = useContext(GContext);
+
+	const data = products.find((i) => {
 		if (i.slug === params.product) {
 			let data = i;
 			return data;

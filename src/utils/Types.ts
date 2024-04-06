@@ -62,6 +62,7 @@ export interface Treatments {
 	treatments: {
 		id: string;
 		name: string;
+		slug: string;
 		one: StaticImageData | string;
 		two: StaticImageData | string;
 		three: StaticImageData | string;

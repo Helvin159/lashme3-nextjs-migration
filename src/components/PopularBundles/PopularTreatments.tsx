@@ -10,7 +10,7 @@ const PopularTreatments = ({ treatments }: Treatments) => {
 				<h2 className='text-xl'>Popular Treatments</h2>
 			</div>
 			<div className='container flex flex-col tablet:flex-row items-center justify-evenly mx-auto'>
-				{treatments.map((treatment) => {
+				{treatments?.slice(0, 2).map((treatment) => {
 					return (
 						<PopularTreatmentsCard treatment={treatment} key={Math.random()} />
 					);

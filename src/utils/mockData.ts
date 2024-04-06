@@ -66,6 +66,7 @@ export const tempPopTreats = [
 	{
 		id: '123hskajdh',
 		name: 'Extensions',
+		slug: 'extensions',
 		one: imgOne,
 		two: imgTwo,
 		three: imgThree,
@@ -73,6 +74,15 @@ export const tempPopTreats = [
 	{
 		id: '123hskasdafdkjnsalkdf',
 		name: 'Lash',
+		slug: 'lash',
+		one: imgFour,
+		two: imgFive,
+		three: imgSix,
+	},
+	{
+		id: '123hskasdafdkjnsalkdf',
+		name: 'Brow',
+		slug: 'brow-service',
 		one: imgFour,
 		two: imgFive,
 		three: imgSix,

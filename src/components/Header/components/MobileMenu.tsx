@@ -35,7 +35,7 @@ const MobileMenu = ({ isOpen, setIsOpen }: MenuStateType) => {
 						</Link>
 					</li>
 					<li className='block py-5'>
-						<Link className='poppins-semibold text-5xl' href='/'>
+						<Link className='poppins-semibold text-5xl' href='/calendar'>
 							Calendar
 						</Link>
 					</li>
