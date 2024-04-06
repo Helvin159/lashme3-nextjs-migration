@@ -6,6 +6,13 @@ export interface MenuType {
 	setIsOpen: Dispatch<SetStateAction<boolean>>;
 }
 
+export interface Params {
+	params: {
+		slug: string;
+		service?: string;
+	};
+}
+
 export interface StateProps {
 	state: any;
 	setState: Dispatch<SetStateAction<boolean>>;

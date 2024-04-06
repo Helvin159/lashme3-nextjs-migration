@@ -1,7 +1,7 @@
-import React from 'react';
+import { Params } from '@/utils/Types';
 
-const Service = () => {
-	return <h1>Service Page</h1>;
+const Service = ({ params }: Params) => {
+	return <h1>{params.service} Service Page</h1>;
 };
 
 export default Service;
