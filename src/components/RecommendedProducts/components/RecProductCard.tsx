@@ -22,13 +22,13 @@ const RecProductCard = ({ id, image, name, slug, purpose, price }: Product) => {
 					</div>
 				</div>
 				<div className='mt-2 '>
-					<Link href={`/products/${id}`}>
+					<Link href={`/products/${slug}`}>
 						<h3>{name}</h3>
 					</Link>
-					<Link href={`/products/${id}`}>
+					<Link href={`/products/${slug}`}>
 						<p>{purpose}</p>
 					</Link>
-					<Link href={`/products/${id}`}>
+					<Link href={`/products/${slug}`}>
 						<p>{price}</p>
 					</Link>
 				</div>
