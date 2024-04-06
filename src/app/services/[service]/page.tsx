@@ -1,7 +1,24 @@
+'use client';
+import Container from '@/components/Container';
+import Section from '@/components/Section';
 import { Params } from '@/utils/Types';
+import { tempPopTreats } from '@/utils/mockData';
 
 const Service = ({ params }: Params) => {
-	return <h1>{params.service} Service Page</h1>;
+	const data = tempPopTreats.find((i) => {
+		if (i.id === params.service) {
+			let data = i;
+			return data;
+		}
+	});
+
+	return (
+		<Section>
+			<Container className='text-center'>
+				<h1 className='text-xl tablet:text-3xl'>{data?.name} Service Page</h1>;
+			</Container>
+		</Section>
+	);
 };
 
 export default Service;

@@ -13,11 +13,6 @@ export interface Params {
 	};
 }
 
-export interface StateProps {
-	state: any;
-	setState: Dispatch<SetStateAction<boolean>>;
-}
-
 export interface Children {
 	children?: React.ReactNode;
 }
@@ -30,6 +25,16 @@ export interface ButtonType {
 export interface MenuCtxProps {
 	isOpen: boolean;
 	setIsOpen: Dispatch<SetStateAction<boolean>>;
+}
+
+export interface ContainerType {
+	children?: React.ReactNode;
+	className?: string;
+}
+
+export interface SectionType {
+	children?: React.ReactNode;
+	className?: string;
 }
 
 // Product types
@@ -52,6 +57,7 @@ export interface Product {
 export interface Treatments {
 	treatments: {
 		id: string;
+		name: string;
 		one: StaticImageData | string;
 		two: StaticImageData | string;
 		three: StaticImageData | string;
@@ -61,6 +67,7 @@ export interface Treatments {
 export interface Treatment {
 	treatment: {
 		id: string;
+		name: string;
 		one: StaticImageData | string;
 		two: StaticImageData | string;
 		three: StaticImageData | string;

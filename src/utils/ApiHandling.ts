@@ -12,7 +12,8 @@ class ApiHandling {
 
 	async getDates() {
 		try {
-			await axios.get(this.args.url);
+			// await axios.get(this.args.url);
+			// fetch('./mockData.ts')
 		} catch (e) {
 			console.log(e);
 		}

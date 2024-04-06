@@ -51,6 +51,18 @@ export const mockData = [
 ];
 
 export const tempPopTreats = [
-	{ id: '123hskajdh', one: imgOne, two: imgTwo, three: imgThree },
-	{ id: '123hskasdafdkjnsalkdf', one: imgFour, two: imgFive, three: imgSix },
+	{
+		id: '123hskajdh',
+		name: 'Extensions',
+		one: imgOne,
+		two: imgTwo,
+		three: imgThree,
+	},
+	{
+		id: '123hskasdafdkjnsalkdf',
+		name: 'Lash',
+		one: imgFour,
+		two: imgFive,
+		three: imgSix,
+	},
 ];
