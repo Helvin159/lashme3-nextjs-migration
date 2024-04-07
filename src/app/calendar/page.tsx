@@ -7,8 +7,8 @@ import CalendarComponent from '@/components/Calendar/Calendar';
 const Calendar = () => {
 	return (
 		<Section>
-			<Container className='text-center'>
-				<h1 className='text-3xl'>Calendar</h1>
+			<Container className='text-center p-10'>
+				<h1 className='text-4xl'>Calendar</h1>
 			</Container>
 			<Container>
 				<CalendarComponent />

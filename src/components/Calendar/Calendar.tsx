@@ -21,6 +21,7 @@ const CalendarComponent = () => {
 		'Nov',
 		'Dec',
 	];
+
 	const daysOfWeek = [
 		{
 			day: 'Mon',
@@ -86,6 +87,7 @@ const CalendarComponent = () => {
 			],
 		},
 	];
+
 	const unavailableDates = [
 		{ day: 12, month: 3 },
 		{ day: 25, month: 3 },
