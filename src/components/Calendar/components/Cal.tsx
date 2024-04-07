@@ -1,25 +1,21 @@
 'use client';
-import React, { Dispatch, SetStateAction } from 'react';
+import React from 'react';
 import Container from '@/components/Container';
 import Calendar from 'react-calendar';
 
-type ValuePiece = Date | null;
-
-type Value = ValuePiece | [ValuePiece, ValuePiece];
-
-const Cal = ({ state, setter }: any) => {
+const Cal = ({ value, onChange }: any) => {
 	const settings = {
-		defaultActiveStartDate: state,
+		defaultActiveStartDate: value,
 		minDate: new Date(2024, 3, 8),
 		maxDate: new Date(2025, 0, 1),
 		selectRange: false,
 	};
 
 	return (
-		<Container className='text-center'>
+		<Container className='text-center mx-auto'>
 			<Calendar
-				onChange={setter}
-				value={state}
+				onChange={onChange}
+				value={value}
 				{...settings}
 				className={'mx-auto rounded-xl w-3/5'}
 			/>
