@@ -11,7 +11,7 @@ export interface Params {
 }
 
 export interface Children {
-	children?: React.ReactNode;
+	children: React.ReactNode;
 }
 
 // ***************

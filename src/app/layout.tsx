@@ -1,13 +1,12 @@
 import type { Metadata } from 'next';
 import { Inter } from 'next/font/google';
 import Header from '../components/Header/Header';
-import MobileMenu from '../components/Header/components/MobileMenu';
 import Footer from '../components/Footer';
 
 // Styles
+import 'react-calendar/dist/Calendar.css';
 import '../css/output.css';
 import '../css/style.css';
-import { GProvider } from '@/context/GlobalContext';
 
 const inter = Inter({ subsets: ['latin'] });
 
@@ -70,14 +69,12 @@ export default function RootLayout({
 	children: React.ReactNode;
 }>) {
 	return (
-		<GProvider>
-			<html lang='en'>
-				<body className={inter.className} suppressHydrationWarning={true}>
-					<Header />
-					<main>{children}</main>
-					<Footer />
-				</body>
-			</html>
-		</GProvider>
+		<html lang='en'>
+			<body className={inter.className} suppressHydrationWarning={true}>
+				<Header />
+				<main>{children}</main>
+				<Footer />
+			</body>
+		</html>
 	);
 }

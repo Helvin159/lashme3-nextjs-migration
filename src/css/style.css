@@ -1,18 +1,16 @@
-@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
-
+@import url("https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap");
 :root {
-	--variant-one: #ea2178;
-	--variant-one-light: #f2cddd;
-	--variant-two: #121212;
-	--variant-two-light: rgba(224, 224, 224, 0.58);
-}
+  --variant-one: #ea2178;
+  --variant-one-light: #f2cddd;
+  --variant-two: #121212;
+  --variant-two-light: rgba(224, 224, 224, 0.58);
+  --variant-two-med: rgba(150, 150, 150, 0.58); }
 
 * {
-	box-sizing: border-box;
-	font-family: 'Poppins', sans-serif;
-	font-weight: 400;
-	font-style: normal;
-}
+  box-sizing: border-box;
+  font-family: 'Poppins', sans-serif;
+  font-weight: 400;
+  font-style: normal; }
 
 h1,
 h2,
@@ -20,7 +18,22 @@ h3,
 h4,
 h5,
 h6 {
-	font-family: 'Poppins', sans-serif;
-	font-weight: 600;
-	font-style: normal;
-}
+  font-family: 'Poppins', sans-serif;
+  font-weight: 600;
+  font-style: normal; }
+
+.react-calendar__navigation__arrow,
+.react-calendar__navigation__next2-button {
+  background-color: transparent !important;
+  background: transparent !important; }
+
+.react-calendar__month-view__days__day--weekend {
+  color: var(--variant-one) !important; }
+
+.react-calendar__month-view__days__day--weekend,
+:disabled {
+  color: var(--variant-one) !important; }
+
+.react-calendar__month-view__days__day--weekend:disabled,
+.react-calendar__tile:disabled {
+  color: var(--variant-two-med) !important; }

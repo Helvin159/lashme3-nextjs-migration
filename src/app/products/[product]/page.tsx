@@ -1,16 +1,12 @@
 'use client';
-import React, { useContext } from 'react';
+import React from 'react';
 import { Params } from '@/utils/Types';
 import Section from '@/components/Section';
 import Container from '@/components/Container';
-import { GContext } from '@/context/GlobalContext';
+import { tempPopTreats } from '@/utils/mockData';
 
 const Product = ({ params }: Params) => {
-	const {
-		products: { products },
-	} = useContext(GContext);
-
-	const data = products.find((i) => {
+	const data = tempPopTreats.find((i) => {
 		if (i.slug === params.product) {
 			let data = i;
 			return data;
