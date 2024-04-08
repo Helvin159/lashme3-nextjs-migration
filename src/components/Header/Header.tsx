@@ -8,6 +8,7 @@ import MobileMenu from './components/MobileMenu';
 
 // Hamburger image
 import menuBtn from '../../assets/svg/icon-menu.svg';
+import NavLink from '../NavLink';
 
 const Header = () => {
 	// *************
@@ -42,8 +43,12 @@ const Header = () => {
 						</div>
 					</div>
 					<div className='hidden tablet:flex'>
-						<Button variant={'light'}>Book Now</Button>
-						<Button variant={'pink'}>Login</Button>
+						<NavLink variant={'light'} url='/booking'>
+							Book Now
+						</NavLink>
+						<NavLink variant={'pink'} url='/booking'>
+							Login
+						</NavLink>
 					</div>
 				</div>
 				<div className='absolute right-6 top-6 tablet:hidden'>

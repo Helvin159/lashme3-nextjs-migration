@@ -29,11 +29,15 @@ h6 {
 
 .react-calendar__month-view__days__day--weekend {
   color: var(--variant-one) !important; }
+  .react-calendar__month-view__days__day--weekend:disabled {
+    color: var(--variant-one) !important; }
+  .react-calendar__month-view__days__day--weekend:active {
+    color: white !important; }
 
-.react-calendar__month-view__days__day--weekend,
-:disabled {
-  color: var(--variant-one) !important; }
+.react-calendar__tile--now {
+  background: var(--variant-one-light) !important;
+  border-radius: 4px; }
 
-.react-calendar__month-view__days__day--weekend:disabled,
-.react-calendar__tile:disabled {
-  color: var(--variant-two-med) !important; }
+.react-calendar__tile--active {
+  background-color: var(--variant-one) !important;
+  border-radius: 4px; }

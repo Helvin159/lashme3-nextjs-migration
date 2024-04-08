@@ -1,5 +1,5 @@
 import { StaticImageData } from 'next/image';
-import React, { Dispatch, SetStateAction } from 'react';
+import React, { Dispatch, MouseEvent, SetStateAction } from 'react';
 
 // ************
 export interface Params {
@@ -99,6 +99,12 @@ export interface TreatmentType {
 export interface ButtonType {
 	children?: React.ReactNode;
 	variant: string;
+}
+
+export interface LinkButtonType {
+	children?: React.ReactNode;
+	variant: string;
+	url: string;
 }
 
 export interface ButtonVariants {
