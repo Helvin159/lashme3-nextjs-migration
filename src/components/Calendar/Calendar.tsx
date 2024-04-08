@@ -1,16 +1,11 @@
 'use client';
 import { useEffect, useState } from 'react';
 import { tempPopTreats } from '@/utils/mockData';
-import { TreatmentType } from '@/utils/Types';
+import { CalType, TreatmentType } from '@/utils/Types';
 import { daysOfWeek, months } from '@/utils/utils';
 import Section from '../Section';
 import Container from '../Container';
 import Cal from './components/Cal';
-
-interface CalType {
-	selectedService: string | null;
-	selectedDate: string | Date | null;
-}
 
 const CalendarComponent = ({ selectedService, selectedDate }: CalType) => {
 	const [value, onChange] = useState<Date>(new Date());

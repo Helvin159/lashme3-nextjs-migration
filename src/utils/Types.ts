@@ -15,6 +15,11 @@ export interface Children {
 	children: React.ReactNode;
 }
 
+export interface CalType {
+	selectedService: string | null;
+	selectedDate: string | Date | null | undefined;
+}
+
 // ***************
 // Wrapper Types
 // ***************
@@ -50,7 +55,7 @@ export interface Products {
 	}[];
 }
 
-export interface Product {
+export interface ProductType {
 	id: string;
 	name: string;
 	slug: string;

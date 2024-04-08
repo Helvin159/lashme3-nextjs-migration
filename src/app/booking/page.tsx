@@ -1,8 +1,7 @@
+import React from 'react';
 import CalendarComponent from '@/components/Calendar/Calendar';
 import Container from '@/components/Container';
 import { NextPage } from 'next';
-
-import React from 'react';
 
 const Book: NextPage = () => {
 	return (

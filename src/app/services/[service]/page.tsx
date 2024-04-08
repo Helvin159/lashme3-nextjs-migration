@@ -1,16 +1,28 @@
-'use client';
-import { Params } from '@/utils/Types';
-import { GContext } from '@/context/GlobalContext';
+'use server';
+import { Params, TreatmentType } from '@/utils/Types';
 import Container from '@/components/Container';
 import Section from '@/components/Section';
-import { useContext } from 'react';
 
-const Service = ({ params }: Params) => {
-	const {
-		treatments: { treatments },
-	} = useContext(GContext);
+export const generateStaticParams = async () => {
+	const data = await fetch(
+		`https://firebasestorage.googleapis.com/v0/b/portfolio-db-b6a63.appspot.com/o/data.json?alt=media&token=838f7644-ad32-4734-ab1f-510f495ff115`
+	)
+		.then((res) => res.json())
+		.then((data) => data.services);
 
-	const data = treatments.find((i) => {
+	return data.map((i: TreatmentType) => ({
+		slug: i.slug,
+	}));
+};
+
+export default async function Service({ params }: Params) {
+	const treatments = await fetch(
+		`https://firebasestorage.googleapis.com/v0/b/portfolio-db-b6a63.appspot.com/o/data.json?alt=media&token=838f7644-ad32-4734-ab1f-510f495ff115`
+	)
+		.then((res) => res.json())
+		.then((data) => data.services);
+
+	const data = treatments.find((i: TreatmentType) => {
 		if (i.id === params.service) {
 			let data = i;
 			return data;
@@ -25,6 +37,4 @@ const Service = ({ params }: Params) => {
 			</Container>
 		</Section>
 	);
-};
-
-export default Service;
+}
