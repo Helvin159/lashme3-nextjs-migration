@@ -7,6 +7,7 @@ export interface Params {
 		slug: string;
 		service?: string;
 		product?: string;
+		date?: string;
 	};
 }
 
@@ -77,6 +78,14 @@ export interface Treatment {
 		two: StaticImageData | string;
 		three: StaticImageData | string;
 	};
+}
+export interface TreatmentType {
+	id: string;
+	name: string;
+	slug: string;
+	one: StaticImageData | string;
+	two: StaticImageData | string;
+	three: StaticImageData | string;
 }
 
 // ************

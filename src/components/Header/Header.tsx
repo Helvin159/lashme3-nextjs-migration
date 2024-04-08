@@ -36,9 +36,6 @@ const Header = () => {
 									<Link href='/booking'>Booking</Link>
 								</li>
 								<li className='inline-block mr-8'>
-									<Link href='/calendar'>Calendar</Link>
-								</li>
-								<li className='inline-block mr-8'>
 									<Link href='/services'>Services</Link>
 								</li>
 								<li className='inline-block mr-8'>

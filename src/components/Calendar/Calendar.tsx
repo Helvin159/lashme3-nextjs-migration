@@ -1,92 +1,20 @@
 'use client';
-import { useState } from 'react';
-import Container from '../Container';
+import { useEffect, useState } from 'react';
+import { tempPopTreats } from '@/utils/mockData';
+import { TreatmentType } from '@/utils/Types';
+import { daysOfWeek, months } from '@/utils/utils';
 import Section from '../Section';
+import Container from '../Container';
 import Cal from './components/Cal';
 
-const CalendarComponent = () => {
-	const [value, onChange] = useState(new Date());
+interface CalType {
+	selectedService: string | null;
+	selectedDate: string | Date | null;
+}
 
-	const months = [
-		'Jan',
-		'Feb',
-		'Mar',
-		'Apr',
-		'May',
-		'Jun',
-		'Jul',
-		'Aug',
-		'Sep',
-		'Oct',
-		'Nov',
-		'Dec',
-	];
-
-	const daysOfWeek = [
-		{
-			day: 'Mon',
-			availableTimeSlots: [
-				{ start: '11:00', end: '12:00' },
-				{ start: '13:00', end: '14:00' },
-				{ start: '15:00', end: '16:00' },
-				{ start: '17:00', end: '18:00' },
-			],
-		},
-		{
-			day: 'Tue',
-			availableTimeSlots: [
-				{ start: '11:00', end: '12:00' },
-				{ start: '13:00', end: '14:00' },
-				{ start: '15:00', end: '16:00' },
-				{ start: '17:00', end: '18:00' },
-			],
-		},
-		{
-			day: 'Wed',
-			availableTimeSlots: [
-				{ start: '11:00', end: '12:00' },
-				{ start: '13:00', end: '14:00' },
-				{ start: '15:00', end: '16:00' },
-				{ start: '17:00', end: '18:00' },
-			],
-		},
-		{
-			day: 'Thu',
-			availableTimeSlots: [
-				{ start: '11:00', end: '12:00' },
-				{ start: '13:00', end: '14:00' },
-				{ start: '15:00', end: '16:00' },
-				{ start: '17:00', end: '18:00' },
-			],
-		},
-		{
-			day: 'Fri',
-			availableTimeSlots: [
-				{ start: '11:00', end: '12:00' },
-				{ start: '13:00', end: '14:00' },
-				{ start: '15:00', end: '16:00' },
-				{ start: '17:00', end: '18:00' },
-			],
-		},
-		{
-			day: 'Sat',
-			availableTimeSlots: [
-				{ start: '11:00', end: '12:00' },
-				{ start: '13:00', end: '14:00' },
-				{ start: '15:00', end: '16:00' },
-				{ start: '17:00', end: '18:00' },
-			],
-		},
-		{
-			day: 'Sun',
-			availableTimeSlots: [
-				{ start: '11:00', end: '12:00' },
-				{ start: '13:00', end: '14:00' },
-				{ start: '15:00', end: '16:00' },
-				{ start: '17:00', end: '18:00' },
-			],
-		},
-	];
+const CalendarComponent = ({ selectedService, selectedDate }: CalType) => {
+	const [value, onChange] = useState<Date>(new Date());
+	const [service, setService] = useState<string | null>(selectedService);
 
 	const unavailableDates = [
 		{ day: 12, month: 3 },
@@ -105,7 +33,28 @@ const CalendarComponent = () => {
 		}
 	});
 
-	// console.log(!unavailable);
+	useEffect(() => {
+		if (selectedDate) {
+			let selDate = new Date(selectedDate);
+
+			const day = selDate.getDate() + 1;
+			const year = selDate.getFullYear();
+			const month = selDate.getMonth() + 1;
+
+			const date = `${year}-${month}-${day}`;
+			onChange(new Date(date));
+		}
+
+		if (selectedService) {
+			tempPopTreats.find((i: TreatmentType) => {
+				selectedService;
+
+				if (i.slug === selectedService) {
+					setService(i.name);
+				}
+			});
+		}
+	}, [selectedDate, selectedService]);
 
 	return (
 		<Section>
@@ -114,6 +63,8 @@ const CalendarComponent = () => {
 			</Container>
 			<Container className='pt-10 mx-auto text-center'>
 				<Container>
+					{selectedService && <h2 className='text-4xl'>{service}</h2>}
+
 					{value.getDay() >= 1 && value.getDay() <= 5 && !unavailable ? (
 						<h3 className='text-3xl'>
 							Available time for: {months[value.getMonth()]},{' '}

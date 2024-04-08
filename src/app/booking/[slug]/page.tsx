@@ -1,20 +1,20 @@
 import CalendarComponent from '@/components/Calendar/Calendar';
 import Container from '@/components/Container';
-import { NextPage } from 'next';
+import { Params } from '@/utils/Types';
 
-import React from 'react';
+const Booking = ({ params }: Params) => {
+	const { slug } = params;
 
-const Book: NextPage = () => {
 	return (
 		<>
 			<Container className='text-center p-10'>
 				<h1 className='text-4xl'>Booking page</h1>
 			</Container>
 			<Container>
-				<CalendarComponent selectedDate={null} selectedService={null} />
+				<CalendarComponent selectedService={slug} selectedDate={null} />
 			</Container>
 		</>
 	);
 };
 
-export default Book;
+export default Booking;

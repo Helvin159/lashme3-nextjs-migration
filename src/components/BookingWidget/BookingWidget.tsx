@@ -1,6 +1,21 @@
-import React from 'react';
+'use client';
+import React, { useState } from 'react';
+import Link from 'next/link';
+import { handleChangeDate, handleChangeSelect } from '@/utils/utils';
+import { tempPopTreats } from '@/utils/mockData';
 
 const BookingWidget = () => {
+	const date = new Date();
+	const year = date.getFullYear();
+	const month =
+		date.getMonth() < 10 ? `0${date.getMonth() + 1}` : date.getMonth();
+	const day = date.getDate() < 10 ? `0${date.getDate()}` : date.getDate();
+
+	const currDate = `${year}-${month}-${day}`;
+
+	const [service, setService] = useState<string>(tempPopTreats[0].slug);
+	const [selectedDate, setSelectedDate] = useState<string>(currDate);
+
 	return (
 		<div className='container w-full max-w-969 tablet:w-3/4 bg-light-gray rounded-3xl translate-y-n2.5 laptop:translate-y-n50 py-8 tablet:px-0 mx-auto my-0'>
 			<div className='flex flex-row flex-wrap justify-between align-center text-center items-center tablet:px-8 mx-auto'>
@@ -10,10 +25,21 @@ const BookingWidget = () => {
 					</label>
 					<select
 						id='treatmentName'
+						onChange={(e) => {
+							handleChangeSelect(e, service, setService);
+						}}
+						defaultValue={service}
 						className='bg-light-gray rounded-lg placeholder:text-black outline-1 focus:outline-1 active:outline-0 focus:outline-variant-one py-2 px-2'>
-						<option className='outline-1 outline-variant-one'>
-							Extensions
-						</option>
+						{tempPopTreats.map((i, k) => {
+							return (
+								<option
+									key={k}
+									className='outline-1 outline-variant-one'
+									value={i.slug}>
+									{i.name}
+								</option>
+							);
+						})}
 					</select>
 				</div>
 				<div className='basis-4/12 tablet:basis-3/12 shrink mx-auto '>
@@ -23,8 +49,9 @@ const BookingWidget = () => {
 					<input
 						id='date'
 						type='date'
+						defaultValue={selectedDate}
+						onChange={(e) => handleChangeDate(e, selectedDate, setSelectedDate)}
 						className='bg-light-gray rounded-lg placeholder:text-black outline-1 focus:outline-1 active:outline-0 focus:outline-variant-one py-2 px-2 text-center'
-						placeholder='Select a date'
 					/>
 				</div>
 				<div className='basis-4/12 tablet:basis-3/12 shrink mx-auto text-center '>
@@ -48,10 +75,12 @@ const BookingWidget = () => {
 					/>
 				</div> */}
 				<div className='relative basis-full tablet:basis-3/12 mx-auto text-center pt-4 tablet:pt-0'>
-					<button className='bg-variant-one text-white rounded-lg py-3 px-5'>
+					<Link
+						href={`booking/${service}/${selectedDate}`}
+						className='bg-variant-one text-white rounded-lg py-3 px-5'>
 						<span className='tablet:hidden mr-2 tablet:mr-0'>Book Session</span>
 						&#8594;
-					</button>
+					</Link>
 				</div>
 			</div>
 		</div>
