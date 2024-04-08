@@ -17,10 +17,10 @@ const BookingWidget = () => {
 	const [selectedDate, setSelectedDate] = useState<string>(currDate);
 
 	return (
-		<div className='container w-full max-w-969 tablet:w-3/4 bg-light-gray rounded-3xl translate-y-n2.5 laptop:translate-y-n50 py-8 tablet:px-0 mx-auto my-0'>
-			<div className='flex flex-row flex-wrap justify-between align-center text-center items-center tablet:px-8 mx-auto'>
-				<div className='basis-4/12 tablet:basis-3/12 shrink mx-auto '>
-					<label htmlFor='treatmentName' className='block px-2'>
+		<div className='container w-11/12 tablet:w-full max-w-969 tablet:w-3/4 bg-light-gray rounded-3xl translate-y-n2.5 laptop:translate-y-n50 py-8 tablet:px-0 mx-auto my-0'>
+			<div className='flex flex-col  justify-around  tablet:flex-row tablet:flex-wrap tablet:justify-between align-center text-center items-center tablet:px-8 mx-auto'>
+				<div className='basis-4/12 tablet:basis-4/12 shrink mx-auto '>
+					<label htmlFor='treatmentName' className='block px-2 text-xl'>
 						Service
 					</label>
 					<select
@@ -42,39 +42,19 @@ const BookingWidget = () => {
 						})}
 					</select>
 				</div>
-				<div className='basis-4/12 tablet:basis-3/12 shrink mx-auto '>
-					<label htmlFor='date' className='block px-2'>
-						Date &amp; Time
+				<div className='basis-4/12 tablet:basis-4/12 shrink mx-auto '>
+					<label htmlFor='date' className='block px-2 text-xl'>
+						Date
 					</label>
 					<input
 						id='date'
 						type='date'
 						defaultValue={selectedDate}
 						onChange={(e) => handleChangeDate(e, selectedDate, setSelectedDate)}
-						className='bg-light-gray rounded-lg placeholder:text-black outline-1 focus:outline-1 active:outline-0 focus:outline-variant-one py-2 px-2 text-center'
+						className='bg-light-gray rounded-lg placeholder:text-black outline-1 outline-variant-one focus:outline-1 focus:outline-variant-one py-2 px-2 text-center'
 					/>
 				</div>
-				<div className='basis-4/12 tablet:basis-3/12 shrink mx-auto text-center '>
-					<label htmlFor='duration' className='block px-2'>
-						Duration
-					</label>
-					<select
-						id='duration'
-						className='bg-light-gray rounded-lg placeholder:text-black focus:outline-1 active:outline-0 focus:outline-variant-one py-2 px-2'>
-						<option className='outline-1 outline-variant-one'>1 Hour</option>
-					</select>
-				</div>
-				{/* <div>
-					<label htmlFor='technician' className='block px-2'>
-						Technician
-					</label>
-					<input
-						id='technician'
-						className='bg-light-gray rounded-lg placeholder:text-black focus:outline-1 active:outline-0 focus:outline-variant-one py-2 px-2'
-						placeholder='Select a technician'
-					/>
-				</div> */}
-				<div className='relative basis-full tablet:basis-3/12 mx-auto text-center pt-4 tablet:pt-0'>
+				<div className='relative basis-full tablet:basis-4/12 mx-auto text-center py-8 xtablet:py-0'>
 					<Link
 						href={`booking/${service}/${selectedDate}`}
 						className='bg-variant-one text-white rounded-lg py-3 px-5'>
