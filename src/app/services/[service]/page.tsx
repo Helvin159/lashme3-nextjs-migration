@@ -3,17 +3,18 @@ import { Params, TreatmentType } from '@/utils/Types';
 import Container from '@/components/Container';
 import Section from '@/components/Section';
 
-export const generateStaticParams = async () => {
+export async function generateStaticParams() {
 	const data = await fetch(
 		`https://firebasestorage.googleapis.com/v0/b/portfolio-db-b6a63.appspot.com/o/data.json?alt=media&token=838f7644-ad32-4734-ab1f-510f495ff115`
 	)
 		.then((res) => res.json())
 		.then((data) => data.services);
 
-	return data.map((i: TreatmentType) => ({
+	const dataArr = data.map((i: TreatmentType) => ({
 		slug: i.slug,
 	}));
-};
+	return dataArr;
+}
 
 export default async function Service({ params }: Params) {
 	const treatments = await fetch(

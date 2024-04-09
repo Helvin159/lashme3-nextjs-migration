@@ -22,6 +22,10 @@ h6 {
   font-weight: 600;
   font-style: normal; }
 
+@media (min-width: 768px) {
+  .react-calendar__tile {
+    padding: 17px !important; } }
+
 .react-calendar__navigation__arrow,
 .react-calendar__navigation__next2-button {
   background-color: transparent !important;

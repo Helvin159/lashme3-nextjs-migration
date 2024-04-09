@@ -11,9 +11,12 @@ export async function generateStaticParams() {
 		.then((res) => res.json())
 		.then((data) => data.products);
 
-	return data.map((i: ProductType) => ({
+	// Save data array to variable
+	const dataArr = data.map((i: ProductType) => ({
 		slug: i.slug,
 	}));
+
+	return dataArr;
 }
 
 const Product = async ({ params }: Params) => {
@@ -26,12 +29,9 @@ const Product = async ({ params }: Params) => {
 	const product = data.find((i: ProductType) => {
 		if (i.slug === params.product) {
 			let data = i;
-			console.log(data, 'data in find');
 			return data;
 		}
 	});
-
-	console.log(product, 'product');
 
 	return (
 		<Section>
