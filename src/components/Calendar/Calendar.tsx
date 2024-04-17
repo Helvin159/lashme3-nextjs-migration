@@ -1,15 +1,35 @@
-'use client';
-import { useEffect, useState } from 'react';
-import { tempPopTreats } from '@/utils/mockData';
+'use server';
 import { CalType, TreatmentType } from '@/utils/Types';
 import { daysOfWeek, months } from '@/utils/utils';
 import Section from '../Section';
 import Container from '../Container';
 import Cal from './components/Cal';
 
-const CalendarComponent = ({ selectedService, selectedDate }: CalType) => {
-	const [value, onChange] = useState<Date>(new Date());
-	const [service, setService] = useState<string | null>(selectedService);
+export async function generateStaticParams() {
+	const data = await fetch(
+		`https://firebasestorage.googleapis.com/v0/b/portfolio-db-b6a63.appspot.com/o/data.json?alt=media&token=838f7644-ad32-4734-ab1f-510f495ff115`
+	)
+		.then((res) => res.json())
+		.then((data) => data.services);
+
+	const dataArr = data.map((i: TreatmentType) => ({
+		slug: i.slug,
+	}));
+	return dataArr;
+}
+
+export default async function CalendarComponent({
+	selectedService,
+	selectedDate,
+}: CalType) {
+	const data = await fetch(
+		`https://firebasestorage.googleapis.com/v0/b/portfolio-db-b6a63.appspot.com/o/data.json?alt=media&token=838f7644-ad32-4734-ab1f-510f495ff115`
+	)
+		.then((res) => res.json())
+		.then((data) => data.services);
+
+	const value = new Date();
+	const service = selectedService;
 
 	const unavailableDates = [
 		{ day: 12, month: 3 },
@@ -28,33 +48,10 @@ const CalendarComponent = ({ selectedService, selectedDate }: CalType) => {
 		}
 	});
 
-	useEffect(() => {
-		if (selectedDate) {
-			let selDate = new Date(selectedDate);
-
-			const day = selDate.getDate() + 1;
-			const year = selDate.getFullYear();
-			const month = selDate.getMonth() + 1;
-
-			const date = `${year}-${month}-${day}`;
-			onChange(new Date(date));
-		}
-
-		if (selectedService) {
-			tempPopTreats.find((i: TreatmentType) => {
-				selectedService;
-
-				if (i.slug === selectedService) {
-					setService(i.name);
-				}
-			});
-		}
-	}, [selectedDate, selectedService]);
-
 	return (
 		<Section>
 			<Container className='text-center'>
-				<Cal value={value} onChange={onChange} />
+				<Cal selectedDate={selectedDate} />
 			</Container>
 			<Container className='pt-10 mx-auto text-center'>
 				<Container>
@@ -87,14 +84,29 @@ const CalendarComponent = ({ selectedService, selectedDate }: CalType) => {
 									</option>
 								))}
 							</select>
+
+							<div className='py-6'>
+								<h4 className='text-3xl'>Other services:</h4>
+								<fieldset className='py-3'>
+									{data.map((i: TreatmentType) => (
+										<span className='px-3' key={i.id}>
+											<label className='px-1' htmlFor={i.id}>
+												{i.name}
+											</label>
+											<input type='checkbox' name={i.name} id={i.id} />
+										</span>
+									))}
+								</fieldset>
+							</div>
 						</Container>
 					)}
 				</Container>
 			</Container>
 		</Section>
 	);
-};
+}
 
+// Functions used in Calendar Component
 const NotAvailableOnDay = () => (
 	<Container className='text-center'>
 		<h4 className='text-3xl'>Not available on this day.</h4>
@@ -107,5 +119,3 @@ const NotAvailableOnWeekend = () => (
 		<p>Please pick another date during the week.</p>
 	</Container>
 );
-
-export default CalendarComponent;
