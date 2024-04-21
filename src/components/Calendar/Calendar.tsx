@@ -1,5 +1,5 @@
 'use client';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { daysOfWeek, months } from '@/utils/utils';
 import Section from '../Section';
 import Container from '../Container';
@@ -12,6 +12,7 @@ const CalendarComponent = ({
 	services,
 	uDates,
 	appointments,
+	params,
 }: any) => {
 	const [value, onChange] = useState<Date | any>(new Date());
 	const [selCategory, setSelCategory] = useState<string>('');
@@ -31,6 +32,18 @@ const CalendarComponent = ({
 	const handleSelService = (id: string) => {
 		setSelService(id);
 	};
+
+	useEffect(() => {
+		if (params) {
+			let itemBySlug = categories.find((i: any) => {
+				if (i.fields.slug === params?.slug[0]) {
+					return i;
+				}
+			});
+
+			setSelCategory(itemBySlug.sys.id);
+		}
+	}, [categories, params, params?.slug]);
 
 	return (
 		<Section>

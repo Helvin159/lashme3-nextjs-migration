@@ -4,7 +4,7 @@ import Link from 'next/link';
 import { handleChangeDate, handleChangeSelect } from '@/utils/utils';
 import { tempPopTreats } from '@/utils/mockData';
 
-const BookingWidget = () => {
+const BookingWidget = ({ categories }: any) => {
 	const date = new Date();
 	const year = date.getFullYear();
 	const month =
@@ -30,13 +30,13 @@ const BookingWidget = () => {
 						}}
 						defaultValue={service}
 						className='bg-light-gray rounded-lg placeholder:text-black outline-1 focus:outline-1 active:outline-0 focus:outline-variant-one py-2 px-2'>
-						{tempPopTreats.map((i, k) => {
+						{categories.map((i: any) => {
 							return (
 								<option
-									key={k}
+									key={i.sys.id}
 									className='outline-1 outline-variant-one'
-									value={i.slug}>
-									{i.name}
+									value={i.fields.slug}>
+									{i.fields.categoryName}
 								</option>
 							);
 						})}

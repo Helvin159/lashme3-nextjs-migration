@@ -6,12 +6,18 @@ import StopSignUpCTA from '../components/StopSignUpCTA';
 
 import { tempPopTreats, mockData } from '@/utils/mockData';
 import { NextPage } from 'next';
+import ApiHandling from '@/utils/ApiHandling';
 
-const Home: NextPage = () => {
+const Home: NextPage = async () => {
+	const apiHandling = new ApiHandling();
+	// const { items: services } = await apiHandling.getContentfulEntries('service');
+	const { items: categories } = await apiHandling.getContentfulEntries(
+		'category'
+	);
 	return (
 		<>
 			<HomeHero />
-			<BookingWidget />
+			<BookingWidget categories={categories} />
 			<PopularTreatments treatments={tempPopTreats} />
 			<RecommendedProducts products={mockData} />
 			<StopSignUpCTA />
