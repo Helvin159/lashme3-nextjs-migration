@@ -1,10 +1,11 @@
 'use client';
+import Heading from '@/components/Heading';
 import React from 'react';
 
 const OtherServices = ({ services }: any) => {
 	return (
 		<div className='py-6'>
-			<h4 className='text-3xl'>Other services:</h4>
+			<Heading level='5'>Other services:</Heading>
 			<fieldset className='flex flex-col py-3'>
 				{services?.slice(0, 3).map((i: any) => (
 					<span className='px-3 py-2 ' key={i.sys.id}>

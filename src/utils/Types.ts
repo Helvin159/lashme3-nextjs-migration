@@ -21,7 +21,7 @@ export interface CalType {
 }
 
 // ***************
-// Wrapper Types
+// Component Utility Types
 // ***************
 export interface ContainerType {
 	children?: React.ReactNode;
@@ -36,10 +36,25 @@ export interface SectionType {
 // **********************
 // State Management Types
 // **********************
-export interface MenuStateType {
+export type MenuStateType = {
 	isOpen: boolean;
 	setIsOpen: Dispatch<SetStateAction<boolean>>;
+};
+
+export interface HeadingComponentType {
+	level?: string;
+	className?: string;
+	children: React.ReactNode;
 }
+
+export type HeadingLevel = {
+	'1': React.JSX.Element;
+	'2': React.JSX.Element;
+	'3': React.JSX.Element;
+	'4': React.JSX.Element;
+	'5': React.JSX.Element;
+	'6': React.JSX.Element;
+};
 
 // *************
 // Product types

@@ -4,6 +4,7 @@ import { NextPage } from 'next';
 import Container from '@/components/Container';
 import ApiHandling from '@/utils/ApiHandling';
 import CalendarComponent from '@/components/Calendar/Calendar';
+import Heading from '@/components/Heading';
 
 export async function generateStaticParams() {
 	const apiHandling = new ApiHandling();
@@ -18,6 +19,9 @@ export async function generateStaticParams() {
 const Book: NextPage = async () => {
 	const apiHandling = new ApiHandling();
 	const { items: services } = await apiHandling.getContentfulEntries('service');
+	const { items: appts } = await apiHandling.getContentfulEntries(
+		'appointments'
+	);
 	const { items: categories } = await apiHandling.getContentfulEntries(
 		'category'
 	);
@@ -28,13 +32,16 @@ const Book: NextPage = async () => {
 	return (
 		<>
 			<Container className='text-center p-10'>
-				<h1 className='text-4xl'>Booking page</h1>
+				<Heading level={'1'} className={''}>
+					Booking page
+				</Heading>
 			</Container>
 			<Container>
 				<CalendarComponent
 					categories={categories}
 					services={services}
 					uDates={uDates}
+					appointments={appts}
 				/>
 			</Container>
 		</>
