@@ -757,6 +757,10 @@ video {
   width: 100%;
 }
 
+.w-3\/6 {
+  width: 50%;
+}
+
 .max-w-1250 {
   max-width: 80rem;
 }
