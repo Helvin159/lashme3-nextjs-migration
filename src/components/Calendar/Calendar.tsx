@@ -50,16 +50,15 @@ const CalendarComponent = ({
 			{/* Category and Service Selection */}
 			<Container className='mx-auto w-full'>
 				<Container className='flex flex-col w-full tablet:w-10/12 mx-auto '>
-					<div className='text-center'>
-						<Heading level='3'>Select a category</Heading>
-					</div>
-
 					{/* Categories to select from, service will show 
 					after category has been chosen */}
 					<Container
 						className={`w-full text-center ${
 							selCategory === '' ? 'block' : 'hidden'
 						}`}>
+						<div className='text-center'>
+							<Heading level='3'>Select a Category</Heading>
+						</div>
 						{categories.map((i: any) => (
 							<button
 								key={i.sys.id}
@@ -77,6 +76,9 @@ const CalendarComponent = ({
 						className={`w-full text-center ${
 							selCategory !== '' && selService === '' ? 'block' : 'hidden'
 						}`}>
+						<div className='text-center'>
+							<Heading level='3'>Select a Service</Heading>
+						</div>
 						{services.map((i: any) => {
 							if (
 								i.fields.category.sys.id.toString() === selCategory.toString()
@@ -98,6 +100,9 @@ const CalendarComponent = ({
 					{/* Calendar Available Times & Other Services */}
 					<Container
 						className={`text-center ${selService !== '' ? 'block' : 'hidden'}`}>
+						<div className='text-center'>
+							<Heading level='3'>Select a Date</Heading>
+						</div>
 						<Calendar
 							onChange={onChange}
 							value={value}
@@ -108,7 +113,7 @@ const CalendarComponent = ({
 						{/* Time slots */}
 						<Container className='mx-auto text-center py-3'>
 							<Heading level={'5'} className='mt-6 mb-3'>
-								Available time for: {months[value.getMonth()]},{' '}
+								Select a Time for: {months[value.getMonth()]},{' '}
 								{daysOfWeek[value.getDay()].day} {value.getDate().toString()}
 							</Heading>
 							<select

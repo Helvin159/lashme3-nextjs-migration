@@ -33,7 +33,7 @@ const Book: NextPage = async () => {
 		<>
 			<Container className='text-center p-10'>
 				<Heading level={'1'} className={''}>
-					Booking page
+					Booking
 				</Heading>
 			</Container>
 			<Container>

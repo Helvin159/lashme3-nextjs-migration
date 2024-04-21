@@ -21,7 +21,7 @@ const Booking = async ({ params }: Params) => {
 	return (
 		<>
 			<Container className='text-center p-10'>
-				<h1 className='text-4xl'>Booking page</h1>
+				<h1 className='text-4xl'>Booking</h1>
 			</Container>
 			<Container>
 				<CalendarComponent
