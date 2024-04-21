@@ -2,7 +2,6 @@
 import React, { useState } from 'react';
 import Link from 'next/link';
 import { handleChangeDate, handleChangeSelect } from '@/utils/utils';
-import { tempPopTreats } from '@/utils/mockData';
 
 const BookingWidget = ({ categories }: any) => {
 	const date = new Date();
@@ -13,7 +12,7 @@ const BookingWidget = ({ categories }: any) => {
 
 	const currDate = `${year}-${month}-${day}`;
 
-	const [service, setService] = useState<string>(tempPopTreats[0].slug);
+	const [service, setService] = useState<string>(categories[0].fields.slug);
 	const [selectedDate, setSelectedDate] = useState<string>(currDate);
 
 	return (
