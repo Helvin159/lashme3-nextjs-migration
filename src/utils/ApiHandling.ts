@@ -1,22 +1,20 @@
-'use client';
-import axios from 'axios';
+import { createClient } from 'contentful';
 
 class ApiHandling {
-	args: { contentType: string; url: string };
-	apiKey: string;
+	client: any;
 
-	constructor(args: { contentType: string; url: string }, apiKey: string) {
-		this.apiKey = apiKey;
-		this.args = args;
+	constructor() {
+		this.client = createClient({
+			space: `${process.env.REACT_APP_CONTENTFUL_SPACE_ID}`,
+			accessToken: `${process.env.REACT_APP_CONTENTFUL_API_KEY}`,
+		});
 	}
 
-	async getDates() {
-		try {
-			// await axios.get(this.args.url);
-			// fetch('./mockData.ts')
-		} catch (e) {
-			console.log(e);
-		}
+	// Contentful
+	async getContentfulEntries(contentType: string) {
+		return await this.client.getEntries({
+			content_type: contentType,
+		});
 	}
 }
 
