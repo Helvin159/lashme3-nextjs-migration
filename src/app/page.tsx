@@ -10,7 +10,7 @@ import ApiHandling from '@/utils/ApiHandling';
 
 const Home: NextPage = async () => {
 	const apiHandling = new ApiHandling();
-	// const { items: services } = await apiHandling.getContentfulEntries('service');
+	const { items: services } = await apiHandling.getContentfulEntries('service');
 	const { items: categories } = await apiHandling.getContentfulEntries(
 		'category'
 	);
@@ -18,7 +18,7 @@ const Home: NextPage = async () => {
 		<>
 			<HomeHero />
 			<BookingWidget categories={categories} />
-			<PopularTreatments treatments={tempPopTreats} />
+			<PopularTreatments services={services} treatments={tempPopTreats} />
 			<RecommendedProducts products={mockData} />
 			<StopSignUpCTA />
 		</>

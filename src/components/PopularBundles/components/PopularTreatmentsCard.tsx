@@ -1,16 +1,20 @@
 import Image from 'next/image';
 import React from 'react';
-
-import { Treatment } from '@/utils/Types';
 import Link from 'next/link';
 
-const PopularTreatmentsCard = ({ treatment }: Treatment) => {
+const PopularTreatmentsCard = ({ service }: any) => {
 	return (
 		<div className='flex grow shrink mb-2 px-4 tablet:mb-0 tablet:px-0'>
 			<div className='flex pr-0 tablet:pr-1'>
-				<Link href={`/services/${treatment.id}`}>
+				<Link href={`/services/${service.fields.slug}`}>
 					<Image
-						src={treatment.one}
+						src={`https:${service.fields.samplePictures[0].fields.file.url}`}
+						width={
+							service.fields.samplePictures[0].fields.file.details.image.width
+						}
+						height={
+							service.fields.samplePictures[0].fields.file.details.image.height
+						}
 						alt=''
 						className='object-cover object-center w-full rounded-xl'
 					/>
@@ -18,18 +22,32 @@ const PopularTreatmentsCard = ({ treatment }: Treatment) => {
 			</div>
 			<div className='flex flex-col p-0 justify-between pl-1 tablet:pr-2'>
 				<div className='h-3/6 w-full self-start pb-1'>
-					<Link href={`/services/${treatment.id}`}>
+					<Link href={`/services/${service.fields.slug}`}>
 						<Image
-							src={treatment.two}
+							src={`https:${service.fields.samplePictures[1]?.fields.file.url}`}
+							width={
+								service.fields.samplePictures[1].fields.file.details.image.width
+							}
+							height={
+								service.fields.samplePictures[1].fields.file.details.image
+									.height
+							}
 							className='object-cover object-center w-full h-full rounded-xl'
 							alt=''
 						/>
 					</Link>
 				</div>
 				<div className='h-3/6 w-full self-end pt-1'>
-					<Link href={`/services/${treatment.id}`}>
+					<Link href={`/services/${service.fields.slug}`}>
 						<Image
-							src={treatment.three}
+							src={`https:${service.fields.samplePictures[2]?.fields.file.url}`}
+							width={
+								service.fields.samplePictures[2].fields.file.details.image.width
+							}
+							height={
+								service.fields.samplePictures[2].fields.file.details.image
+									.height
+							}
 							className='object-cover object-center w-full h-full rounded-xl'
 							alt=''
 						/>
