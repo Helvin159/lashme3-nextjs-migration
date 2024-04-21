@@ -15,8 +15,22 @@ const CalendarComponent = ({
 	params,
 }: any) => {
 	const [value, onChange] = useState<Date | any>(new Date());
-	const [selCategory, setSelCategory] = useState<string>('');
-	const [selService, setSelService] = useState<string>('');
+	const [selCategory, setSelCategory] = useState<
+		| {
+				id: string;
+				name: string;
+		  }
+		| null
+		| undefined
+	>(null);
+	const [selService, setSelService] = useState<
+		| {
+				id: string;
+				name: string;
+		  }
+		| null
+		| undefined
+	>(null);
 
 	const settings = {
 		defaultActiveStartDate: value,
@@ -25,12 +39,12 @@ const CalendarComponent = ({
 		selectRange: false,
 	};
 
-	const handleClick = (id: string) => {
-		setSelCategory(id);
+	const handleClick = ({ id, name }: { id: string; name: string }) => {
+		setSelCategory({ id: id, name: name });
 	};
 
-	const handleSelService = (id: string) => {
-		setSelService(id);
+	const handleSelService = ({ id, name }: { id: string; name: string }) => {
+		setSelService({ id: id, name: name });
 	};
 
 	useEffect(() => {
@@ -41,7 +55,10 @@ const CalendarComponent = ({
 				}
 			});
 
-			setSelCategory(itemBySlug.sys.id);
+			setSelCategory({
+				id: itemBySlug.sys.id,
+				name: itemBySlug.fields.categoryName,
+			});
 		}
 	}, [categories, params, params?.slug]);
 
@@ -54,7 +71,7 @@ const CalendarComponent = ({
 					after category has been chosen */}
 					<Container
 						className={`w-full text-center ${
-							selCategory === '' ? 'block' : 'hidden'
+							selCategory === null ? 'block' : 'hidden'
 						}`}>
 						<div className='text-center'>
 							<Heading level='3'>Select a Category</Heading>
@@ -64,7 +81,7 @@ const CalendarComponent = ({
 								key={i.sys.id}
 								className='bg-variant-one-light shadow-lg active:shadow-md rounded w-11/12 tablet:w-3/5 py-4 px-3 mx-auto my-2 text-2xl'
 								onClick={() => {
-									handleClick(i.sys.id);
+									handleClick({ id: i.sys.id, name: i.fields.categoryName });
 								}}>
 								{i.fields.categoryName}{' '}
 							</button>
@@ -74,21 +91,24 @@ const CalendarComponent = ({
 					{/* Service Menu shows after category is chosen */}
 					<Container
 						className={`w-full text-center ${
-							selCategory !== '' && selService === '' ? 'block' : 'hidden'
+							selCategory !== null && selService === null ? 'block' : 'hidden'
 						}`}>
-						<div className='text-center'>
-							<Heading level='3'>Select a Service</Heading>
+						<div className='text-center pb-6'>
+							<Heading level='3'>{selCategory?.name}</Heading>
+
+							<Heading level='6'>Select a Service</Heading>
 						</div>
 						{services.map((i: any) => {
-							if (
-								i.fields.category.sys.id.toString() === selCategory.toString()
-							) {
+							if (i.fields.category.sys.id.toString() === selCategory?.id) {
 								return (
 									<button
 										className='bg-variant-one-light shadow-lg active:shadow-md rounded w-11/12 tablet:w-3/5 py-4 px-3 mx-auto my-2 text-2xl'
 										key={i.sys.id}
 										onClick={() => {
-											handleSelService(i.sys.id);
+											handleSelService({
+												id: i.sys.id,
+												name: i.fields.serviceName,
+											});
 										}}>
 										{i.fields.serviceName}
 									</button>
@@ -99,9 +119,13 @@ const CalendarComponent = ({
 
 					{/* Calendar Available Times & Other Services */}
 					<Container
-						className={`text-center ${selService !== '' ? 'block' : 'hidden'}`}>
-						<div className='text-center'>
-							<Heading level='3'>Select a Date</Heading>
+						className={`text-center ${
+							selService !== null ? 'block' : 'hidden'
+						}`}>
+						<div className='text-center pb-6'>
+							<Heading level='4'>{selService?.name}</Heading>
+							<p>time @ price</p>
+							<Heading level='6'>Select a Date</Heading>
 						</div>
 						<Calendar
 							onChange={onChange}
@@ -135,8 +159,46 @@ const CalendarComponent = ({
 
 					{/* Other related services */}
 					<Container
-						className={`text-center ${selService !== '' ? 'block' : 'hidden'}`}>
+						className={`text-center ${
+							selService !== null ? 'block' : 'hidden'
+						}`}>
 						<OtherServices services={services} />
+					</Container>
+
+					<Container className='hidden'>
+						<form>
+							<label htmlFor='customerFName'>First Name</label>
+							<input
+								type='text'
+								id='customerFName'
+								required
+								placeholder='First Name'
+							/>
+
+							<label htmlFor='customerLName'>Last Name</label>
+							<input
+								type='text'
+								id='customerLName'
+								required
+								placeholder='Last Name'
+							/>
+
+							<label htmlFor='customerTel'>Phone Number</label>
+							<input
+								type='tel'
+								id='customerTel'
+								required
+								placeholder='Phone number'
+							/>
+
+							<label htmlFor='customerEmail'>Email</label>
+							<input
+								type='email'
+								id='customerEmail'
+								required
+								placeholder='Email'
+							/>
+						</form>
 					</Container>
 				</Container>
 			</Container>

@@ -725,6 +725,14 @@ video {
   height: 100%;
 }
 
+.max-h-80 {
+  max-height: 20rem;
+}
+
+.max-h-19rem {
+  max-height: 19rem;
+}
+
 .min-h-40 {
   min-height: 10rem;
 }
@@ -763,10 +771,6 @@ video {
 
 .shrink {
   flex-shrink: 1;
-}
-
-.grow {
-  flex-grow: 1;
 }
 
 .basis-1\/2 {
@@ -1030,12 +1034,12 @@ video {
   padding-bottom: 0.25rem;
 }
 
-.pl-1 {
-  padding-left: 0.25rem;
+.pb-6 {
+  padding-bottom: 1.5rem;
 }
 
-.pr-0 {
-  padding-right: 0px;
+.pl-1 {
+  padding-left: 0.25rem;
 }
 
 .pt-1 {

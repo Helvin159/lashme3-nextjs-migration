@@ -4,8 +4,8 @@ import Link from 'next/link';
 
 const PopularTreatmentsCard = ({ service }: any) => {
 	return (
-		<div className='flex grow shrink mb-2 px-4 tablet:mb-0 tablet:px-0'>
-			<div className='flex pr-0 tablet:pr-1'>
+		<div className='flex mb-2 px-4 tablet:mb-0 tablet:px-0'>
+			<div className='p-0 h-full w-full tablet:pr-1'>
 				<Link href={`/services/${service.fields.slug}`}>
 					<Image
 						src={`https:${service.fields.samplePictures[0].fields.file.url}`}
@@ -16,11 +16,11 @@ const PopularTreatmentsCard = ({ service }: any) => {
 							service.fields.samplePictures[0].fields.file.details.image.height
 						}
 						alt=''
-						className='object-cover object-center w-full rounded-xl'
+						className='object-cover object-center w-full h-full rounded-xl'
 					/>
 				</Link>
 			</div>
-			<div className='flex flex-col p-0 justify-between pl-1 tablet:pr-2'>
+			<div className='flex flex-col max-h-19rem p-0 justify-between pl-1 tablet:pr-2'>
 				<div className='h-3/6 w-full self-start pb-1'>
 					<Link href={`/services/${service.fields.slug}`}>
 						<Image

@@ -10,6 +10,10 @@ const PopularTreatments = ({ services, treatments }: any) => {
 			</div>
 			<div className='container flex flex-col tablet:flex-row items-center justify-evenly mx-auto'>
 				{services?.slice(0, 2).map((service: any) => {
+					console.log(service);
+					// if (service.fields.featured === true)
+					// 	<PopularTreatmentsCard service={service} key={Math.random()} />;
+
 					return (
 						<PopularTreatmentsCard service={service} key={Math.random()} />
 					);

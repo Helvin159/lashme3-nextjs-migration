@@ -33,6 +33,7 @@ const config: Config = {
 				1250: '80rem',
 				969: '60.5625rem',
 				'98%': '98%',
+				'19rem': '19rem',
 			},
 			translate: {
 				n60: '-60%',
