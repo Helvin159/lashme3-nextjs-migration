@@ -8,7 +8,7 @@ export async function generateStaticParams() {
 	const apiHandling = new ApiHandling();
 	const { items } = await apiHandling.getContentfulEntries('service');
 
-	const dataArr = items.map((i: any) => i.fields.slug);
+	const dataArr = items.map((i: any) => ({ slug: i.fields.slug }));
 	return dataArr;
 }
 
