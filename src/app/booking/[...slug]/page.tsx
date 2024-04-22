@@ -12,8 +12,6 @@ export async function generateStaticParams() {
 }
 
 const Booking = async ({ params }: Params) => {
-	// const { slug } = params;
-
 	const apiHandling = new ApiHandling();
 	const { items: services } = await apiHandling.getContentfulEntries('service');
 	const { items: appts } = await apiHandling.getContentfulEntries(

@@ -1,5 +1,5 @@
+import React, { Dispatch, SetStateAction } from 'react';
 import { StaticImageData } from 'next/image';
-import React, { Dispatch, MouseEvent, SetStateAction } from 'react';
 
 // ************
 export interface Params {
@@ -23,15 +23,15 @@ export interface CalType {
 // ***************
 // Component Utility Types
 // ***************
-export interface ContainerType {
+export type ContainerType = {
 	children?: React.ReactNode;
 	className?: string;
-}
+};
 
-export interface SectionType {
+export type SectionType = {
 	children?: React.ReactNode;
 	className?: string;
-}
+};
 
 // **********************
 // State Management Types
@@ -77,35 +77,6 @@ export interface ProductType {
 	purpose: string;
 	price: string;
 	image: string | StaticImageData;
-}
-
-export interface Treatments {
-	treatments: {
-		id: string;
-		name: string;
-		slug: string;
-		one: StaticImageData | string;
-		two: StaticImageData | string;
-		three: StaticImageData | string;
-	}[];
-}
-
-export interface Treatment {
-	treatment: {
-		id: string;
-		name: string;
-		one: StaticImageData | string;
-		two: StaticImageData | string;
-		three: StaticImageData | string;
-	};
-}
-export interface TreatmentType {
-	id: string;
-	name: string;
-	slug: string;
-	one: StaticImageData | string;
-	two: StaticImageData | string;
-	three: StaticImageData | string;
 }
 
 export type SelectedOptionState = {

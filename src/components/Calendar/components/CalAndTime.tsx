@@ -36,7 +36,7 @@ const CalAndTime = ({
 				<Container className='mx-auto text-center py-3'>
 					<Heading level={'5'} className='mt-6 mb-3'>
 						Select a Time for: {months[value.getMonth()]},{' '}
-						{daysOfWeek[value.getDay()].day} {value.getDate().toString()}
+						{daysOfWeek[value.getDay() - 1].day} {value.getDate()}
 					</Heading>
 					<select
 						name='time-slots'

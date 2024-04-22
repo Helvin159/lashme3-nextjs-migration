@@ -29,6 +29,10 @@ class ApiHandling {
 		});
 	}
 
+	async getContentfulEntry(contentId: string | undefined) {
+		return await this.client.getEntry(contentId);
+	}
+
 	async createApptEntry() {
 		this.env = await this.space.getEnvironment(
 			process.env.REACT_APP_CONTENTFUL_ENV_ID

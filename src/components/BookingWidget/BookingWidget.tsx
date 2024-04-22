@@ -6,8 +6,10 @@ import { handleChangeDate, handleChangeSelect } from '@/utils/utils';
 const BookingWidget = ({ categories }: any) => {
 	const date = new Date();
 	const year = date.getFullYear();
+
 	const month =
 		date.getMonth() < 10 ? `0${date.getMonth() + 1}` : date.getMonth();
+
 	const day = date.getDate() < 10 ? `0${date.getDate()}` : date.getDate();
 
 	const currDate = `${year}-${month}-${day}`;

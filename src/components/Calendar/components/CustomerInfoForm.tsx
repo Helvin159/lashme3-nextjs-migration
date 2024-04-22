@@ -68,6 +68,8 @@ const CustomerInfoForm = ({
 							className='p-4 w-80 tablet:w-96 shadow-lg rounded'
 							id='customerTel'
 							required
+							maxLength={18}
+							minLength={6}
 							placeholder='Phone number'
 						/>
 					</div>

@@ -54,10 +54,10 @@ const CalendarComponent = ({
 				id: itemBySlug.sys.id,
 				name: itemBySlug.fields.categoryName,
 			});
-		}
 
-		if (params?.slug[1]) {
-			onChange(new Date(params?.slug[1]));
+			if (params?.slug[1]) {
+				onChange(new Date(params?.slug[1]));
+			}
 		}
 	}, [categories, params, params?.slug]);
 
