@@ -3,16 +3,16 @@ import Container from '@/components/Container';
 import ApiHandling from '@/utils/ApiHandling';
 import { Params } from '@/utils/Types';
 
-// export async function generateStaticParams() {
-// 	const apiHandling = new ApiHandling();
-// 	const { items } = await apiHandling.getContentfulEntries('service');
+export async function generateStaticParams() {
+	const apiHandling = new ApiHandling();
+	const { items } = await apiHandling.getContentfulEntries('service');
 
-// 	const dataArr = items.map((i: any) => ({ slug: i.fields.slug }));
-// 	return dataArr;
-// }
+	const dataArr = items.map((i: any) => i.fields.slug);
+	return dataArr;
+}
 
 const Booking = async ({ params }: Params) => {
-	const { slug } = params;
+	// const { slug } = params;
 
 	const apiHandling = new ApiHandling();
 	const { items: services } = await apiHandling.getContentfulEntries('service');
