@@ -4,7 +4,7 @@ import Link from 'next/link';
 
 const PopularTreatmentsCard = ({ service }: any) => {
 	return (
-		<div className='flex mb-2 px-4 tablet:mb-0 tablet:px-0 self-start'>
+		<div className='flex self-start w-full tablet:w-6/12 mb-2 tablet:mb-0 px-4 tablet:px-0'>
 			<div className='flex p-0 h-full w-3/6 tablet:pr-1 self-start'>
 				<Link href={`/services/${service.fields.slug}`}>
 					<Image
@@ -16,7 +16,7 @@ const PopularTreatmentsCard = ({ service }: any) => {
 							service.fields.samplePictures[0].fields.file.details.image.height
 						}
 						alt=''
-						className='object-cover object-center w-full h-full rounded-xl'
+						className='w-full h-96 max-h-19rem rounded-xl object-cover object-center'
 					/>
 				</Link>
 			</div>

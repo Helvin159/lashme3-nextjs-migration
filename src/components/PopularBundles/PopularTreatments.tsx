@@ -1,12 +1,13 @@
 import React from 'react';
 import PopularTreatmentsCard from './components/PopularTreatmentsCard';
 import Section from '../Section';
+import Heading from '../Heading';
 
 const PopularTreatments = ({ services, treatments }: any) => {
 	return (
 		<Section>
 			<div className='container mx-auto py-4 px-5 tablet:px-0'>
-				<h2 className='text-xl'>Popular Treatments</h2>
+				<Heading level='4'>Popular Services</Heading>
 			</div>
 			<div className='container flex flex-col tablet:flex-row items-center justify-evenly mx-auto'>
 				{services?.slice(0, 2).map((service: any) => {
