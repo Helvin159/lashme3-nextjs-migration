@@ -5,6 +5,7 @@ import { handleChangeDate, handleChangeSelect } from '@/utils/utils';
 
 const BookingWidget = ({ categories }: any) => {
 	const date = new Date();
+
 	const year = date.getFullYear();
 
 	const month =

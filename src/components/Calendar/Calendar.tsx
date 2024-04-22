@@ -17,6 +17,7 @@ const CalendarComponent = ({
 	params,
 }: any) => {
 	const [value, onChange] = useState<Date | any>(new Date());
+
 	const [selCategory, setSelCategory] = useState<SelectedOptionState | null>(
 		null
 	);
@@ -56,7 +57,16 @@ const CalendarComponent = ({
 			});
 
 			if (params?.slug[1]) {
-				onChange(new Date(params?.slug[1]));
+				let date = new Date(params?.slug[1]);
+				let year = date.getFullYear();
+				let month =
+					date.getMonth() < 10 ? `0${date.getMonth() + 1}` : date.getMonth();
+				let day =
+					date.getDate() < 10 ? `0${date.getDate() + 2}` : date.getDate() + 2;
+				const selDate = `${year}-${month}-${day}`;
+
+				console.log(new Date(selDate), 'seldate');
+				onChange(new Date(selDate));
 			}
 		}
 	}, [categories, params, params?.slug]);

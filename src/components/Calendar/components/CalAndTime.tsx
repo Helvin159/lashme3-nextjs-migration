@@ -13,6 +13,10 @@ const CalAndTime = ({
 	selectedTime,
 	setSelectedTime,
 }: any) => {
+	const dayOfWeek = value?.getDay() - 1;
+	const month = value?.getMonth();
+	const day = value?.getDate();
+
 	return (
 		<Container
 			className={`text-center ${
@@ -35,8 +39,8 @@ const CalAndTime = ({
 				{/* Time slots */}
 				<Container className='mx-auto text-center py-3'>
 					<Heading level={'5'} className='mt-6 mb-3'>
-						Select a Time for: {months[value.getMonth()]},{' '}
-						{daysOfWeek[value.getDay() - 1].day} {value.getDate()}
+						Select a Time for: {months[month]}, {daysOfWeek[dayOfWeek]?.day}{' '}
+						{day ? day : 'loading...'}
 					</Heading>
 					<select
 						name='time-slots'
@@ -44,12 +48,12 @@ const CalAndTime = ({
 						title='time-slots'
 						className='w-2/4 mx-auto outline outline-black	rounded p-2 text-lg text-center'
 						onChange={(e) => {
-							setSelectedTime(e.target.value);
+							setSelectedTime(e?.target?.value);
 						}}>
 						<option className='text-center' defaultChecked value={'Time'}>
 							Time
 						</option>
-						{daysOfWeek[value.getDay()].availableTimeSlots.map((i, k) => (
+						{daysOfWeek[dayOfWeek]?.availableTimeSlots.map((i, k) => (
 							<option key={k}>
 								{i.start} - {i.end}
 							</option>

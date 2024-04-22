@@ -20,8 +20,6 @@
 // .react-calendar__month-view__days__day
 
 .react-calendar__month-view__days__day--weekend {
-	color: var(--variant-one) !important;
-
 	&:disabled {
 		color: var(--variant-one) !important;
 	}
@@ -37,6 +35,7 @@
 }
 
 .react-calendar__tile--active {
+	background: var(--variant-one) !important;
 	background-color: var(--variant-one) !important;
 	border-radius: 4px;
 }
