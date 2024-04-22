@@ -14,6 +14,7 @@ const Home: NextPage = async () => {
 	const { items: categories } = await apiHandling.getContentfulEntries(
 		'category'
 	);
+
 	return (
 		<>
 			<HomeHero />

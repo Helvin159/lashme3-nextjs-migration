@@ -23,6 +23,7 @@ const CalendarComponent = ({
 	const [selService, setSelService] = useState<SelectedOptionState | null>(
 		null
 	);
+	const [selTime, setSelTime] = useState<any>(null);
 
 	const settings = {
 		defaultActiveStartDate: value,
@@ -81,17 +82,24 @@ const CalendarComponent = ({
 						value={value}
 						onChange={onChange}
 						settings={settings}
+						selectedTime={selTime}
+						setSelectedTime={setSelTime}
 					/>
 
 					{/* Other related services */}
 					<Container
 						className={`text-center ${
-							selService !== null ? 'block' : 'hidden'
+							selService !== null && selTime === null ? 'block' : 'hidden'
 						}`}>
 						<OtherServices services={services} />
 					</Container>
 
-					<CustomerInfoForm />
+					<CustomerInfoForm
+						selectedTime={selTime}
+						selectedCat={selCategory}
+						selectedServ={selService}
+						selectedDate={value}
+					/>
 				</Container>
 			</Container>
 		</Section>
