@@ -1,17 +1,25 @@
-'use client';
+'use server';
 import { Params } from '@/utils/Types';
-import { GContext } from '@/context/GlobalContext';
 import Container from '@/components/Container';
 import Section from '@/components/Section';
-import { useContext } from 'react';
+import ApiHandling from '@/utils/ApiHandling';
 
-const Service = ({ params }: Params) => {
-	const {
-		treatments: { treatments },
-	} = useContext(GContext);
+export async function generateStaticParams() {
+	const apiHandling = new ApiHandling();
+	const data = await apiHandling.getContentfulEntries('service');
 
-	const data = treatments.find((i) => {
-		if (i.id === params.service) {
+	const dataArr = data.items.map((i: any) => ({
+		slug: i.fields.slug,
+	}));
+	return dataArr;
+}
+
+export default async function Service({ params }: Params) {
+	const apiHandling = new ApiHandling();
+	const { items } = await apiHandling.getContentfulEntries('service');
+
+	const data = items?.find((i: any) => {
+		if (i.fields.slug === params.service) {
 			let data = i;
 			return data;
 		}
@@ -20,11 +28,11 @@ const Service = ({ params }: Params) => {
 	return (
 		<Section>
 			<Container className='text-center'>
-				<h1 className='text-xl tablet:text-3xl'>{data?.name} </h1>
+				<h1 className='text-xl tablet:text-3xl'>
+					{data?.fields?.serviceName}{' '}
+				</h1>
 				<p>Service Page</p>
 			</Container>
 		</Section>
 	);
-};
-
-export default Service;
+}

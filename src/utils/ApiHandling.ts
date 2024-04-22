@@ -1,22 +1,58 @@
-'use client';
-import axios from 'axios';
+import { createClient } from 'contentful';
+import { createClient as createMgmtClient } from 'contentful-management';
 
 class ApiHandling {
-	args: { contentType: string; url: string };
-	apiKey: string;
+	client: any;
+	cmaClient: any;
+	space: any;
+	env: any;
 
-	constructor(args: { contentType: string; url: string }, apiKey: string) {
-		this.apiKey = apiKey;
-		this.args = args;
+	constructor() {
+		this.client = createClient({
+			space: `${process.env.REACT_APP_CONTENTFUL_SPACE_ID}`,
+			accessToken: `${process.env.REACT_APP_CONTENTFUL_API_KEY}`,
+		});
+
+		this.cmaClient = createMgmtClient({
+			accessToken: `${process.env.REACT_APP_CONTENTFUL_CMA}`,
+		});
+
+		this.space = this.cmaClient.getSpace(
+			process.env.REACT_APP_CONTENTFUL_SPACE_ID
+		);
 	}
 
-	async getDates() {
-		try {
-			// await axios.get(this.args.url);
-			// fetch('./mockData.ts')
-		} catch (e) {
-			console.log(e);
-		}
+	// Contentful
+	async getContentfulEntries(contentType: string) {
+		return await this.client.getEntries({
+			content_type: contentType,
+		});
+	}
+
+	async getContentfulEntry(contentId: string | undefined) {
+		return await this.client.getEntry(contentId);
+	}
+
+	async createApptEntry() {
+		this.env = await this.space.getEnvironment(
+			process.env.REACT_APP_CONTENTFUL_ENV_ID
+		);
+
+		this.env
+			.createEntry('appointments', {
+				fields: {
+					appointmentName: 'test',
+					customerName: 'test',
+					appointmentDate: '2024-04-23',
+					customerEmail: 'h@g.com',
+					customerPhoneNumber: '9299299928',
+				},
+			})
+			.then((entry: any) => entry.publish())
+			.then((entry: any) => {
+				console.log(entry, 'success');
+			})
+			.catch(console.error, 'error');
 	}
 }
 

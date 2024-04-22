@@ -1,165 +1,125 @@
 'use client';
-import { useState } from 'react';
-import Container from '../Container';
+import { useEffect, useState } from 'react';
+import { SelectedOptionState } from '@/utils/Types';
 import Section from '../Section';
-import Cal from './components/Cal';
+import Container from '../Container';
+import OtherServices from './components/OtherServices';
+import SelectCategory from './components/SelectCategory';
+import SelectService from './components/SelectService';
+import CustomerInfoForm from './components/CustomerInfoForm';
+import CalAndTime from './components/CalAndTime';
 
-const CalendarComponent = () => {
-	const [value, onChange] = useState(new Date());
+const CalendarComponent = ({
+	categories,
+	services,
+	uDates,
+	appointments,
+	params,
+}: any) => {
+	const [value, onChange] = useState<Date | any>(new Date());
 
-	const months = [
-		'Jan',
-		'Feb',
-		'Mar',
-		'Apr',
-		'May',
-		'Jun',
-		'Jul',
-		'Aug',
-		'Sep',
-		'Oct',
-		'Nov',
-		'Dec',
-	];
+	const [selCategory, setSelCategory] = useState<SelectedOptionState | null>(
+		null
+	);
+	const [selService, setSelService] = useState<SelectedOptionState | null>(
+		null
+	);
+	const [selTime, setSelTime] = useState<any>(null);
 
-	const daysOfWeek = [
-		{
-			day: 'Mon',
-			availableTimeSlots: [
-				{ start: '11:00', end: '12:00' },
-				{ start: '13:00', end: '14:00' },
-				{ start: '15:00', end: '16:00' },
-				{ start: '17:00', end: '18:00' },
-			],
-		},
-		{
-			day: 'Tue',
-			availableTimeSlots: [
-				{ start: '11:00', end: '12:00' },
-				{ start: '13:00', end: '14:00' },
-				{ start: '15:00', end: '16:00' },
-				{ start: '17:00', end: '18:00' },
-			],
-		},
-		{
-			day: 'Wed',
-			availableTimeSlots: [
-				{ start: '11:00', end: '12:00' },
-				{ start: '13:00', end: '14:00' },
-				{ start: '15:00', end: '16:00' },
-				{ start: '17:00', end: '18:00' },
-			],
-		},
-		{
-			day: 'Thu',
-			availableTimeSlots: [
-				{ start: '11:00', end: '12:00' },
-				{ start: '13:00', end: '14:00' },
-				{ start: '15:00', end: '16:00' },
-				{ start: '17:00', end: '18:00' },
-			],
-		},
-		{
-			day: 'Fri',
-			availableTimeSlots: [
-				{ start: '11:00', end: '12:00' },
-				{ start: '13:00', end: '14:00' },
-				{ start: '15:00', end: '16:00' },
-				{ start: '17:00', end: '18:00' },
-			],
-		},
-		{
-			day: 'Sat',
-			availableTimeSlots: [
-				{ start: '11:00', end: '12:00' },
-				{ start: '13:00', end: '14:00' },
-				{ start: '15:00', end: '16:00' },
-				{ start: '17:00', end: '18:00' },
-			],
-		},
-		{
-			day: 'Sun',
-			availableTimeSlots: [
-				{ start: '11:00', end: '12:00' },
-				{ start: '13:00', end: '14:00' },
-				{ start: '15:00', end: '16:00' },
-				{ start: '17:00', end: '18:00' },
-			],
-		},
-	];
+	const settings = {
+		defaultActiveStartDate: value,
+		minDate: new Date(2024, 3, 8),
+		maxDate: new Date(2025, 0, 1),
+		selectRange: false,
+	};
 
-	const unavailableDates = [
-		{ day: 12, month: 3 },
-		{ day: 25, month: 3 },
-	];
+	const handleClick = ({ id, name }: { id: string; name: string }) => {
+		setSelCategory({ id: id, name: name });
+	};
 
-	const unavailable = unavailableDates.find((i) => {
-		let unavailable;
+	const handleSelService = ({ id, name }: { id: string; name: string }) => {
+		setSelService({ id: id, name: name });
+	};
 
-		if (i.day === value.getDate() && i.month === value.getMonth()) {
-			unavailable = true;
-			return unavailable;
-		} else {
-			unavailable = false;
-			return unavailable;
+	console.log(uDates, appointments);
+
+	useEffect(() => {
+		if (params) {
+			let itemBySlug = categories.find((i: any) => {
+				if (i.fields.slug === params?.slug[0]) {
+					return i;
+				}
+			});
+
+			setSelCategory({
+				id: itemBySlug.sys.id,
+				name: itemBySlug.fields.categoryName,
+			});
+
+			if (params?.slug[1]) {
+				let date = new Date(params?.slug[1]);
+				let year = date.getFullYear();
+				let month =
+					date.getMonth() < 10 ? `0${date.getMonth() + 1}` : date.getMonth();
+				let day =
+					date.getDate() < 10 ? `0${date.getDate() + 2}` : date.getDate() + 2;
+				const selDate = `${year}-${month}-${day}`;
+
+				console.log(new Date(selDate), 'seldate');
+				onChange(new Date(selDate));
+			}
 		}
-	});
-
-	// console.log(!unavailable);
+	}, [categories, params, params?.slug]);
 
 	return (
 		<Section>
-			<Container className='text-center'>
-				<Cal value={value} onChange={onChange} />
-			</Container>
-			<Container className='pt-10 mx-auto text-center'>
-				<Container>
-					{value.getDay() >= 1 && value.getDay() <= 5 && !unavailable ? (
-						<h3 className='text-3xl'>
-							Available time for: {months[value.getMonth()]},{' '}
-							{daysOfWeek[value.getDay()].day} {value.getDate().toString()}
-						</h3>
-					) : !unavailable === false ? (
-						<NotAvailableOnDay />
-					) : (
-						<NotAvailableOnWeekend />
-					)}
+			{/* Category and Service Selection */}
+			<Container className='mx-auto w-full'>
+				<Container className='flex flex-col w-full tablet:w-10/12 mx-auto '>
+					{/* Categories to select from, service will show 
+					after category has been chosen */}
+					<SelectCategory
+						selectedCat={selCategory}
+						categories={categories}
+						handleClick={handleClick}
+					/>
 
-					{value.getDay() >= 1 && value.getDay() <= 5 && !unavailable && (
-						<Container className='mx-auto text-center py-3'>
-							<select
-								name='time-slots'
-								id='timeSlots'
-								title='time-slots'
-								className='w-2/4 mx-auto outline outline-black	rounded p-2 text-lg text-center'>
-								<option className='text-center' defaultChecked value={'Time'}>
-									Time
-								</option>
-								{daysOfWeek[value.getDay()].availableTimeSlots.map((i, k) => (
-									<option key={k}>
-										{i.start} - {i.end}
-									</option>
-								))}
-							</select>
-						</Container>
-					)}
+					{/* Service Menu shows after category is chosen */}
+					<SelectService
+						selectedCat={selCategory}
+						selectedServ={selService}
+						services={services}
+						handleSelService={handleSelService}
+					/>
+
+					{/* Calendar Available Times & Other Services */}
+					<CalAndTime
+						selectedService={selService}
+						value={value}
+						services={services}
+						onChange={onChange}
+						settings={settings}
+						selectedTime={selTime}
+						setSelectedTime={setSelTime}
+					/>
+
+					{/* Other related services */}
+					{/* <Container
+						className={`text-center ${
+							selService !== null && selTime === null ? 'block' : 'hidden'
+						}`}>
+						<OtherServices services={services} />
+					</Container> */}
+
+					<CustomerInfoForm
+						selectedTime={selTime}
+						selectedCat={selCategory}
+						selectedServ={selService}
+						selectedDate={value}
+					/>
 				</Container>
 			</Container>
 		</Section>
 	);
 };
-
-const NotAvailableOnDay = () => (
-	<Container className='text-center'>
-		<h4 className='text-3xl'>Not available on this day.</h4>
-		<p>Please pick another date.</p>
-	</Container>
-);
-const NotAvailableOnWeekend = () => (
-	<Container className='text-center'>
-		<h4 className='text-3xl'>Not available on weekends.</h4>
-		<p>Please pick another date during the week.</p>
-	</Container>
-);
-
 export default CalendarComponent;

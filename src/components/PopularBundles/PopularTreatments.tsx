@@ -1,19 +1,21 @@
 import React from 'react';
 import PopularTreatmentsCard from './components/PopularTreatmentsCard';
 import Section from '../Section';
-import { Treatments } from '@/utils/Types';
+import Heading from '../Heading';
 
-const PopularTreatments = ({ treatments }: Treatments) => {
+const PopularTreatments = ({ services }: any) => {
 	return (
 		<Section>
 			<div className='container mx-auto py-4 px-5 tablet:px-0'>
-				<h2 className='text-xl'>Popular Treatments</h2>
+				<Heading level='4'>Popular Services</Heading>
 			</div>
 			<div className='container flex flex-col tablet:flex-row items-center justify-evenly mx-auto'>
-				{treatments?.slice(0, 2).map((treatment) => {
-					return (
-						<PopularTreatmentsCard treatment={treatment} key={Math.random()} />
-					);
+				{services.map((service: any) => {
+					if (service?.fields?.featured) {
+						return (
+							<PopularTreatmentsCard service={service} key={service.sys.id} />
+						);
+					}
 				})}
 			</div>
 		</Section>

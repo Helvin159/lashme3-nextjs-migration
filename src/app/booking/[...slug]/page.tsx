@@ -1,12 +1,17 @@
-'use server';
-import React from 'react';
-import { NextPage } from 'next';
+import CalendarComponent from '@/components/Calendar/Calendar';
 import Container from '@/components/Container';
 import ApiHandling from '@/utils/ApiHandling';
-import CalendarComponent from '@/components/Calendar/Calendar';
-import Heading from '@/components/Heading';
+import { Params } from '@/utils/Types';
 
-const Book: NextPage = async () => {
+export async function generateStaticParams() {
+	const apiHandling = new ApiHandling();
+	const { items } = await apiHandling.getContentfulEntries('service');
+
+	const dataArr = items.map((i: any) => i.fields.slug);
+	return dataArr;
+}
+
+const Booking = async ({ params }: Params) => {
 	const apiHandling = new ApiHandling();
 	const { items: services } = await apiHandling.getContentfulEntries('service');
 	const { items: appts } = await apiHandling.getContentfulEntries(
@@ -22,12 +27,11 @@ const Book: NextPage = async () => {
 	return (
 		<>
 			<Container className='text-center p-10'>
-				<Heading level={'1'} className={''}>
-					Booking
-				</Heading>
+				<h1 className='text-4xl'>Booking</h1>
 			</Container>
 			<Container>
 				<CalendarComponent
+					params={params}
 					categories={categories}
 					services={services}
 					uDates={uDates}
@@ -38,4 +42,4 @@ const Book: NextPage = async () => {
 	);
 };
 
-export default Book;
+export default Booking;

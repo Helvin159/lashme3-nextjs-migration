@@ -1,9 +1,16 @@
 import React from 'react';
-import { Product } from '@/utils/Types';
+import { ProductType } from '@/utils/Types';
 import Image from 'next/image';
 import Link from 'next/link';
 
-const RecProductCard = ({ id, image, name, slug, purpose, price }: Product) => {
+const RecProductCard = ({
+	id,
+	image,
+	name,
+	slug,
+	purpose,
+	price,
+}: ProductType) => {
 	return (
 		<div className='container px-2 mb-6 tablet:mb-0'>
 			<div className='container rounded-xl p-3 bg-light-gray'>
