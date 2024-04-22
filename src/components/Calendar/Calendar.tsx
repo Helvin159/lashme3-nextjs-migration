@@ -40,6 +40,8 @@ const CalendarComponent = ({
 		setSelService({ id: id, name: name });
 	};
 
+	console.log(uDates, appointments);
+
 	useEffect(() => {
 		if (params) {
 			let itemBySlug = categories.find((i: any) => {
@@ -52,6 +54,10 @@ const CalendarComponent = ({
 				id: itemBySlug.sys.id,
 				name: itemBySlug.fields.categoryName,
 			});
+		}
+
+		if (params?.slug[1]) {
+			onChange(new Date(params?.slug[1]));
 		}
 	}, [categories, params, params?.slug]);
 
