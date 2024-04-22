@@ -16,7 +16,7 @@ const PopularTreatmentsCard = ({ service }: any) => {
 							service.fields.samplePictures[0].fields.file.details.image.height
 						}
 						alt=''
-						className='w-full h-96 max-h-19rem rounded-xl object-cover object-center'
+						className='w-96 h-96 max-h-19rem rounded-xl object-cover object-center'
 					/>
 				</Link>
 			</div>
