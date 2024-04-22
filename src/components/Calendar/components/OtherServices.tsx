@@ -4,7 +4,7 @@ import React from 'react';
 
 const OtherServices = ({ services }: any) => {
 	return (
-		<div className='py-6'>
+		<div className=''>
 			<Heading level='5'>Other services:</Heading>
 			<fieldset className='flex flex-col py-3'>
 				{services?.slice(0, 3).map((i: any) => (

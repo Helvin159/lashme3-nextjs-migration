@@ -96,6 +96,7 @@ const CalendarComponent = ({
 					<CalAndTime
 						selectedService={selService}
 						value={value}
+						services={services}
 						onChange={onChange}
 						settings={settings}
 						selectedTime={selTime}
@@ -103,12 +104,12 @@ const CalendarComponent = ({
 					/>
 
 					{/* Other related services */}
-					<Container
+					{/* <Container
 						className={`text-center ${
 							selService !== null && selTime === null ? 'block' : 'hidden'
 						}`}>
 						<OtherServices services={services} />
-					</Container>
+					</Container> */}
 
 					<CustomerInfoForm
 						selectedTime={selTime}

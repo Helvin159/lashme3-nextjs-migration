@@ -31,12 +31,12 @@ const BookingWidget = ({ categories }: any) => {
 							handleChangeSelect(e, service, setService);
 						}}
 						defaultValue={service}
-						className='bg-light-gray rounded-lg placeholder:text-black outline-1 focus:outline-1 active:outline-0 focus:outline-variant-one py-2 px-2'>
+						className='bg-light-gray rounded-lg placeholder:text-black outline-1 focus:outline-1 active:outline-0 focus:outline-variant-one py-2 px-2 text-center'>
 						{categories.map((i: any) => {
 							return (
 								<option
 									key={i.sys.id}
-									className='outline-1 outline-variant-one'
+									className='outline-1 outline-variant-one text-center'
 									value={i.fields.slug}>
 									{i.fields.categoryName}
 								</option>

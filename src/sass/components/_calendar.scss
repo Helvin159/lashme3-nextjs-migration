@@ -5,6 +5,10 @@
 // 	.react-calendar__month-view__days__day
 // 	.react-calendar__month-view__days__day--weekend
 
+.react-calendar {
+	border: none !important;
+}
+
 .react-calendar__tile {
 	@media (min-width: 768px) {
 		padding: 17px !important;
