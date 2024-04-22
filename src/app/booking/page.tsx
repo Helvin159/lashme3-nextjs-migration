@@ -6,16 +6,6 @@ import ApiHandling from '@/utils/ApiHandling';
 import CalendarComponent from '@/components/Calendar/Calendar';
 import Heading from '@/components/Heading';
 
-export async function generateStaticParams() {
-	const apiHandling = new ApiHandling();
-	const { items } = await apiHandling.getContentfulEntries('service');
-
-	const dataArr = items.map((i: any) => ({
-		slug: i.fields.slug,
-	}));
-	return dataArr;
-}
-
 const Book: NextPage = async () => {
 	const apiHandling = new ApiHandling();
 	const { items: services } = await apiHandling.getContentfulEntries('service');

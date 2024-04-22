@@ -108,6 +108,11 @@ export interface TreatmentType {
 	three: StaticImageData | string;
 }
 
+export type SelectedOptionState = {
+	id: string;
+	name: string;
+};
+
 // ************
 // Button Types
 // ************
