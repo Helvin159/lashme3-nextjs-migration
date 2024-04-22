@@ -1,4 +1,3 @@
-'use server';
 import CalendarComponent from '@/components/Calendar/Calendar';
 import Container from '@/components/Container';
 import ApiHandling from '@/utils/ApiHandling';
