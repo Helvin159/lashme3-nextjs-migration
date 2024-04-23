@@ -9,7 +9,7 @@ export async function generateStaticParams() {
 		space: `${process.env.REACT_APP_CONTENTFUL_SPACE_ID}`,
 		accessToken: `${process.env.REACT_APP_CONTENTFUL_API_KEY}`,
 	});
-	const apiHandling = new ApiHandling(client, null);
+	const apiHandling = new ApiHandling();
 	const { items } = await apiHandling.getContentfulEntries('service');
 
 	const dataArr = items.map((i: any) => i.fields.slug);
@@ -17,11 +17,7 @@ export async function generateStaticParams() {
 }
 
 const Booking = async ({ params }: Params) => {
-	let client = await createClient({
-		space: `${process.env.REACT_APP_CONTENTFUL_SPACE_ID}`,
-		accessToken: `${process.env.REACT_APP_CONTENTFUL_API_KEY}`,
-	});
-	const apiHandling = new ApiHandling(client, null);
+	const apiHandling = new ApiHandling();
 
 	const { items: services } = await apiHandling.getContentfulEntries('service');
 	const { items: appts } = await apiHandling.getContentfulEntries(
