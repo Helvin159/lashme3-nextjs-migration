@@ -25,6 +25,7 @@ const CalendarComponent = ({
 		null
 	);
 	const [selTime, setSelTime] = useState<any>(null);
+	const [isSubmitted, setIsSubmitted] = useState<Boolean>(false);
 
 	const settings = {
 		defaultActiveStartDate: value,
@@ -116,6 +117,8 @@ const CalendarComponent = ({
 						selectedCat={selCategory}
 						selectedServ={selService}
 						selectedDate={value}
+						isSubmitted={isSubmitted}
+						setIsSubmitted={setIsSubmitted}
 					/>
 				</Container>
 			</Container>

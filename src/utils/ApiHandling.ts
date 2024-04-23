@@ -11,11 +11,13 @@ class ApiHandling {
 
 	constructor() {
 		this.client = createClient({
-			space: `${process.env.REACT_APP_CONTENTFUL_SPACE_ID}`,
-			accessToken: `${process.env.REACT_APP_CONTENTFUL_API_KEY}`,
+			space: `${process.env.NEXT_PUBLIC_REACT_APP_CONTENTFUL_SPACE_ID}`,
+			accessToken: `${process.env.NEXT_PUBLIC_REACT_APP_CONTENTFUL_API_KEY}`,
+		});
+		this.cmaClient = createMgmtClient({
+			accessToken: `${process.env.NEXT_PUBLIC_REACT_APP_CONTENTFUL_CMA}`,
 		});
 		this.space;
-		this.cmaClient;
 		this.cmaSpace;
 		this.cmaEnv;
 	}
@@ -36,12 +38,10 @@ class ApiHandling {
 		date: string,
 		email: string,
 		tel: string,
-		slug: string
+		slug: string,
+		isSubmitted: boolean,
+		setIsSubmitted: any
 	) {
-		this.cmaClient = createMgmtClient({
-			accessToken: `${process.env.NEXT_PUBLIC_REACT_APP_CONTENTFUL_CMA}`,
-		});
-
 		this.space = await this.cmaClient.getSpace(
 			process.env.NEXT_PUBLIC_REACT_APP_CONTENTFUL_SPACE_ID
 		);
@@ -53,7 +53,7 @@ class ApiHandling {
 		this.cmaEnv
 			.createEntry('appointments', {
 				fields: {
-					appointmentName: { 'en-US': `${name}` },
+					appointmentName: { 'en-US': `${name}-${date}-${tel}` },
 					customerName: { 'en-US': name },
 					appointmentDate: { 'en-US': date },
 					customerEmail: { 'en-US': email },
@@ -64,6 +64,7 @@ class ApiHandling {
 			.then((entry: any) => entry.publish())
 			.then((entry: any) => {
 				console.log(entry, 'success');
+				setIsSubmitted(!isSubmitted);
 			})
 			.catch(console.error);
 	}

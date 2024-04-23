@@ -10,11 +10,12 @@ const CustomerInfoForm = ({
 	selectedCat,
 	selectedServ,
 	selectedDate,
+	isSubmitted,
+	setIsSubmitted,
 }: any) => {
 	const apiHandling = new ApiHandling();
 
 	const date = new Date(selectedDate);
-
 	const year = date.getFullYear();
 	const month =
 		date.getMonth() < 10 ? `0${date.getMonth() + 1}` : date.getMonth() + 1;
@@ -29,7 +30,15 @@ const CustomerInfoForm = ({
 		const date = `${year}-${month}-${day}`.trim();
 		const slug = `${e?.target[0].value.trim()}${e?.target[1].value.trim()}-${date.trim()}`;
 
-		await apiHandling.createApptEntry(name, date, email, tel, slug);
+		await apiHandling.createApptEntry(
+			name,
+			date,
+			email,
+			tel,
+			slug,
+			isSubmitted,
+			setIsSubmitted
+		);
 	};
 
 	return (
@@ -102,6 +111,10 @@ const CustomerInfoForm = ({
 					</div>
 				</Container>
 			</form>
+
+			<Heading level='1' className={`${isSubmitted ? 'block' : 'hidden'}`}>
+				success
+			</Heading>
 		</Container>
 	);
 };
