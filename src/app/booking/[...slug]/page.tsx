@@ -2,9 +2,14 @@ import CalendarComponent from '@/components/Calendar/Calendar';
 import Container from '@/components/Container';
 import ApiHandling from '@/utils/ApiHandling';
 import { Params } from '@/utils/Types';
+import { createClient } from 'contentful';
 
 export async function generateStaticParams() {
-	const apiHandling = new ApiHandling();
+	let client = await createClient({
+		space: `${process.env.REACT_APP_CONTENTFUL_SPACE_ID}`,
+		accessToken: `${process.env.REACT_APP_CONTENTFUL_API_KEY}`,
+	});
+	const apiHandling = new ApiHandling(client, null);
 	const { items } = await apiHandling.getContentfulEntries('service');
 
 	const dataArr = items.map((i: any) => i.fields.slug);
@@ -12,7 +17,12 @@ export async function generateStaticParams() {
 }
 
 const Booking = async ({ params }: Params) => {
-	const apiHandling = new ApiHandling();
+	let client = await createClient({
+		space: `${process.env.REACT_APP_CONTENTFUL_SPACE_ID}`,
+		accessToken: `${process.env.REACT_APP_CONTENTFUL_API_KEY}`,
+	});
+	const apiHandling = new ApiHandling(client, null);
+
 	const { items: services } = await apiHandling.getContentfulEntries('service');
 	const { items: appts } = await apiHandling.getContentfulEntries(
 		'appointments'

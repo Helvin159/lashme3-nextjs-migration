@@ -1,8 +1,9 @@
 'use client';
-import React from 'react';
+import React, { useRef } from 'react';
 import Button from '@/components/Button';
 import Container from '@/components/Container';
 import Heading from '@/components/Heading';
+import ApiHandling from '@/utils/ApiHandling';
 
 const CustomerInfoForm = ({
 	selectedTime,
@@ -10,11 +11,26 @@ const CustomerInfoForm = ({
 	selectedServ,
 	selectedDate,
 }: any) => {
+	const apiHandling = new ApiHandling();
+
 	const date = new Date(selectedDate);
 
 	const year = date.getFullYear();
-	const month = date.getMonth() + 1;
-	const day = date.getDate();
+	const month =
+		date.getMonth() < 10 ? `0${date.getMonth() + 1}` : date.getMonth() + 1;
+	const day = date.getDate() < 10 ? `0${date.getDate}` : date.getDate();
+
+	const onSubmit = async (e: any) => {
+		e.preventDefault();
+
+		const name = `${e?.target[0].value} ${e?.target[1].value}`;
+		const tel = `${e?.target[2].value}`;
+		const email = `${e?.target[3].value}`;
+		const date = `${year}-${month}-${day}`;
+		const slug = `${e?.target[0].value}${e?.target[1].value}-${date}`;
+
+		await apiHandling.createApptEntry(name, date, email, tel, slug);
+	};
 
 	return (
 		<Container
@@ -28,11 +44,7 @@ const CustomerInfoForm = ({
 					On {month}/{day}/{year} @ {selectedTime}
 				</p>
 			</div>
-			<form
-				onSubmit={(e) => {
-					e.preventDefault();
-					console.log(e);
-				}}>
+			<form onSubmit={onSubmit}>
 				<Container className='flex flex-col justify-center items-center	'>
 					<div className='py-2'>
 						<label className='block text-lg' htmlFor='customerFName'>

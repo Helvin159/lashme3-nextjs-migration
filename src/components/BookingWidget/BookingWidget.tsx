@@ -19,7 +19,7 @@ const BookingWidget = ({ categories }: any) => {
 	const [selectedDate, setSelectedDate] = useState<string>(currDate);
 
 	return (
-		<div className='container w-11/12 tablet:w-full max-w-969 tablet:w-3/4 bg-light-gray rounded-3xl translate-y-n10 laptop:translate-y-n30 py-8 tablet:px-0 mx-auto my-0'>
+		<div className='container w-11/12 tablet:w-full max-w-969 tablet:w-3/4 bg-light-gray rounded-3xl translate-y-n10 laptop:translate-y-n30 py-8 tablet:px-0 mx-auto my-0 shadow-lg'>
 			<div className='flex flex-col  justify-around  tablet:flex-row tablet:flex-wrap tablet:justify-between align-center text-center items-center tablet:px-8 mx-auto'>
 				<div className='basis-4/12 tablet:basis-4/12 shrink mx-auto '>
 					<label htmlFor='treatmentName' className='block px-2 text-xl'>

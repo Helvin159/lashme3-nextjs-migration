@@ -1,7 +1,7 @@
 import React from 'react';
 import { ButtonType, ButtonVariants } from '@/utils/Types';
 
-const Button = ({ children, variant }: ButtonType) => {
+const Button = ({ children, variant, onClick }: ButtonType) => {
 	// ************************************
 	// Button variant object.
 	// Containts all necessary classes
@@ -16,6 +16,7 @@ const Button = ({ children, variant }: ButtonType) => {
 
 	return (
 		<button
+			onClick={onClick}
 			aria-label='Button'
 			className={`${
 				variant

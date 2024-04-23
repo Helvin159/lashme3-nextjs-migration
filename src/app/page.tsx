@@ -10,6 +10,7 @@ import { mockData } from '@/utils/mockData';
 
 const Home: NextPage = async () => {
 	const apiHandling = new ApiHandling();
+
 	const businessDetails = await apiHandling.getContentfulEntry(
 		process.env.REACT_APP_CONTENTFUL_BUSINESS_DETAILS
 	);
@@ -18,6 +19,16 @@ const Home: NextPage = async () => {
 	const { items: categories } = await apiHandling.getContentfulEntries(
 		'category'
 	);
+
+	// const data = apiHandling.createApptEntry(
+	// 	'helvin',
+	// 	'2024-05-15',
+	// 	'test@g.com',
+	// 	'123456789',
+	// 	'slug'
+	// );
+
+	// console.log(data, 'data');
 
 	return (
 		<>

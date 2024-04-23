@@ -90,6 +90,7 @@ export type SelectedOptionState = {
 export interface ButtonType {
 	children?: React.ReactNode;
 	variant: string;
+	onClick?: React.MouseEventHandler<HTMLButtonElement>;
 }
 
 export interface LinkButtonType {

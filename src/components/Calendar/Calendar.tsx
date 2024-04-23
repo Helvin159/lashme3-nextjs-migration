@@ -41,7 +41,7 @@ const CalendarComponent = ({
 		setSelService({ id: id, name: name });
 	};
 
-	console.log(uDates, appointments);
+	// console.log(uDates, appointments);
 
 	useEffect(() => {
 		if (params) {
