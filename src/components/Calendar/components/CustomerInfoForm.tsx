@@ -23,11 +23,11 @@ const CustomerInfoForm = ({
 	const onSubmit = async (e: any) => {
 		e.preventDefault();
 
-		const name = `${e?.target[0].value} ${e?.target[1].value}`;
-		const tel = `${e?.target[2].value}`;
-		const email = `${e?.target[3].value}`;
-		const date = `${year}-${month}-${day}`;
-		const slug = `${e?.target[0].value}${e?.target[1].value}-${date}`;
+		const name = `${e?.target[0].value.trim()} ${e?.target[1].value.trim()}`;
+		const tel = `${e?.target[2].value.trim()}`;
+		const email = `${e?.target[3].value.trim()}`;
+		const date = `${year}-${month}-${day}`.trim();
+		const slug = `${e?.target[0].value.trim()}-${e?.target[1].value.trim()}-${date.trim()}`;
 
 		await apiHandling.createApptEntry(name, date, email, tel, slug);
 	};
