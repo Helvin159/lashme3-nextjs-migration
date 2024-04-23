@@ -27,7 +27,7 @@ const CustomerInfoForm = ({
 		const tel = `${e?.target[2].value.trim()}`;
 		const email = `${e?.target[3].value.trim()}`;
 		const date = `${year}-${month}-${day}`.trim();
-		const slug = `${e?.target[0].value.trim()}-${e?.target[1].value.trim()}-${date.trim()}`;
+		const slug = `${e?.target[0].value.trim()}${e?.target[1].value.trim()}-${date.trim()}`;
 
 		await apiHandling.createApptEntry(name, date, email, tel, slug);
 	};
