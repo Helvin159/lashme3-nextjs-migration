@@ -669,6 +669,11 @@ video {
   margin-bottom: 0.5rem;
 }
 
+.my-8 {
+  margin-top: 2rem;
+  margin-bottom: 2rem;
+}
+
 .mb-2 {
   margin-bottom: 0.5rem;
 }
@@ -693,12 +698,20 @@ video {
   margin-top: 0.5rem;
 }
 
+.mt-3 {
+  margin-top: 0.75rem;
+}
+
 .mt-5 {
   margin-top: 1.25rem;
 }
 
 .mt-6 {
   margin-top: 1.5rem;
+}
+
+.mb-4 {
+  margin-bottom: 1rem;
 }
 
 .block {
@@ -771,6 +784,10 @@ video {
 
 .w-full {
   width: 100%;
+}
+
+.w-3\/4 {
+  width: 75%;
 }
 
 .max-w-1250 {
@@ -1230,10 +1247,22 @@ video {
   outline-width: 0px;
 }
 
+@media (min-width: 575.5px) {
+  .mobile\:text-2xl {
+    font-size: 1.5rem;
+    line-height: 2rem;
+  }
+}
+
 @media (min-width: 768px) {
   .tablet\:mx-0 {
     margin-left: 0px;
     margin-right: 0px;
+  }
+
+  .tablet\:my-0 {
+    margin-top: 0px;
+    margin-bottom: 0px;
   }
 
   .tablet\:mb-0 {
@@ -1246,6 +1275,10 @@ video {
 
   .tablet\:mr-14 {
     margin-right: 3.5rem;
+  }
+
+  .tablet\:mb-auto {
+    margin-bottom: auto;
   }
 
   .tablet\:block {
@@ -1282,6 +1315,10 @@ video {
 
   .tablet\:w-full {
     width: 100%;
+  }
+
+  .tablet\:w-4\/12 {
+    width: 33.333333%;
   }
 
   .tablet\:max-w-2xl {
@@ -1329,12 +1366,21 @@ video {
     padding-bottom: 0.5rem;
   }
 
+  .tablet\:py-0 {
+    padding-top: 0px;
+    padding-bottom: 0px;
+  }
+
   .tablet\:pr-1 {
     padding-right: 0.25rem;
   }
 
   .tablet\:pr-2 {
     padding-right: 0.5rem;
+  }
+
+  .tablet\:text-center {
+    text-align: center;
   }
 
   .tablet\:text-3xl {
@@ -1345,6 +1391,21 @@ video {
   .tablet\:text-xl {
     font-size: 1.25rem;
     line-height: 1.75rem;
+  }
+
+  .tablet\:text-4xl {
+    font-size: 2.25rem;
+    line-height: 2.5rem;
+  }
+
+  .tablet\:text-5xl {
+    font-size: 3rem;
+    line-height: 1;
+  }
+
+  .tablet\:text-6xl {
+    font-size: 3.75rem;
+    line-height: 1;
   }
 }
 
