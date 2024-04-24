@@ -1,20 +1,23 @@
 'use client';
-import React, { useRef } from 'react';
+import React, { Dispatch, SetStateAction, useRef } from 'react';
 import Button from '@/components/Button';
 import Container from '@/components/Container';
 import Heading from '@/components/Heading';
 import ApiHandling from '@/utils/ApiHandling';
+import { CustomerInfoFormType } from '@/utils/Types';
 
 const CustomerInfoForm = ({
 	selectedTime,
+	setSelectedTime,
 	selectedCat,
 	selectedServ,
 	selectedDate,
 	isSubmitted,
 	setIsSubmitted,
-}: any) => {
+}: CustomerInfoFormType) => {
 	const apiHandling = new ApiHandling();
 
+	console.log(selectedTime);
 	const date = new Date(selectedDate);
 	const year = date.getFullYear();
 	const month =
@@ -34,6 +37,7 @@ const CustomerInfoForm = ({
 			name,
 			date,
 			email,
+			selectedTime,
 			tel,
 			slug,
 			isSubmitted,
@@ -41,11 +45,20 @@ const CustomerInfoForm = ({
 		);
 	};
 
+	const goBack = () => {
+		setSelectedTime(null);
+	};
+
 	return (
 		<Container
 			className={`${
 				selectedTime !== null ? 'block' : 'hidden'
 			} mx-auto w-11/12`}>
+			<Container className='mx-auto w-full text-left'>
+				<Button variant='pink' onClick={goBack}>
+					Back
+				</Button>
+			</Container>
 			<div className='w-full mx-auto text-center py-6'>
 				<Heading level='3'>{selectedServ?.name}</Heading>
 				<p>{selectedCat?.name}</p>

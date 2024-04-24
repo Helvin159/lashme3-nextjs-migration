@@ -24,8 +24,8 @@ const CalendarComponent = ({
 	const [selService, setSelService] = useState<SelectedOptionState | null>(
 		null
 	);
-	const [selTime, setSelTime] = useState<any>(null);
-	const [isSubmitted, setIsSubmitted] = useState<Boolean>(false);
+	const [selTime, setSelTime] = useState<any | null>(null);
+	const [isSubmitted, setIsSubmitted] = useState<Boolean | null>(false);
 
 	const settings = {
 		defaultActiveStartDate: value,
@@ -42,7 +42,7 @@ const CalendarComponent = ({
 		setSelService({ id: id, name: name });
 	};
 
-	// console.log(uDates, appointments);
+	console.log(appointments, 'appts');
 
 	useEffect(() => {
 		if (params) {
@@ -88,6 +88,7 @@ const CalendarComponent = ({
 					{/* Service Menu shows after category is chosen */}
 					<SelectService
 						selectedCat={selCategory}
+						setSelectedCat={setSelCategory}
 						selectedServ={selService}
 						services={services}
 						handleSelService={handleSelService}
@@ -96,6 +97,7 @@ const CalendarComponent = ({
 					{/* Calendar Available Times & Other Services */}
 					<CalAndTime
 						selectedService={selService}
+						setSelectedService={setSelService}
 						value={value}
 						services={services}
 						onChange={onChange}
@@ -104,15 +106,8 @@ const CalendarComponent = ({
 						setSelectedTime={setSelTime}
 					/>
 
-					{/* Other related services */}
-					{/* <Container
-						className={`text-center ${
-							selService !== null && selTime === null ? 'block' : 'hidden'
-						}`}>
-						<OtherServices services={services} />
-					</Container> */}
-
 					<CustomerInfoForm
+						setSelectedTime={setSelTime}
 						selectedTime={selTime}
 						selectedCat={selCategory}
 						selectedServ={selService}

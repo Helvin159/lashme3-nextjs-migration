@@ -5,9 +5,11 @@ import { daysOfWeek, months } from '@/utils/utils';
 import React from 'react';
 import Calendar from 'react-calendar';
 import OtherServices from './OtherServices';
+import Button from '@/components/Button';
 
 const CalAndTime = ({
 	selectedService,
+	setSelectedService,
 	value,
 	onChange,
 	services,
@@ -19,11 +21,20 @@ const CalAndTime = ({
 	const month = value?.getMonth();
 	const day = value?.getDate();
 
+	const goBack = () => {
+		setSelectedService(null);
+	};
+
 	return (
 		<Container
 			className={`text-center ${
 				selectedService !== null && selectedTime === null ? 'block' : 'hidden'
 			}`}>
+			<Container className='mx-auto w-full text-left'>
+				<Button variant='pink' onClick={goBack}>
+					Back
+				</Button>
+			</Container>
 			<div className='text-center pb-6'>
 				<Heading level='4'>{selectedService?.name}</Heading>
 				<p>time @ price</p>
@@ -62,9 +73,7 @@ const CalAndTime = ({
 								Time
 							</option>
 							{daysOfWeek[dayOfWeek]?.availableTimeSlots.map((i, k) => (
-								<option key={k}>
-									{i.start} - {i.end}
-								</option>
+								<option key={k}>{i.start}</option>
 							))}
 						</select>
 					</Container>

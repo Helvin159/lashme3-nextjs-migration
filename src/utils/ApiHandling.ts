@@ -35,30 +35,35 @@ class ApiHandling {
 
 	async createApptEntry(
 		name: string,
-		date: string,
+		date: string | null,
 		email: string,
+		time: string | null,
 		tel: string,
 		slug: string,
-		isSubmitted: boolean,
-		setIsSubmitted: any
+		isSubmitted: Boolean | null,
+		setIsSubmitted: any | null
 	) {
-		this.space = await this.cmaClient.getSpace(
+		this.cmaSpace = await this.cmaClient.getSpace(
 			process.env.NEXT_PUBLIC_REACT_APP_CONTENTFUL_SPACE_ID
 		);
 
-		this.cmaEnv = await this.space.getEnvironment(
+		this.cmaEnv = await this.cmaSpace.getEnvironment(
 			process.env.NEXT_PUBLIC_REACT_APP_CONTENTFUL_ENV_ID
 		);
+
+		let dateTime = `${date}T${time}`;
 
 		this.cmaEnv
 			.createEntry('appointments', {
 				fields: {
-					appointmentName: { 'en-US': `${name}-${date}-${tel}` },
+					appointmentName: {
+						'en-US': `${name.replace(/\s/g, '')}-${tel}-${dateTime}`,
+					},
 					customerName: { 'en-US': name },
-					appointmentDate: { 'en-US': date },
+					appointmentDate: { 'en-US': dateTime },
 					customerEmail: { 'en-US': email },
 					customerPhoneNumber: { 'en-US': tel },
-					slug: { 'en-US': `${slug}` },
+					slug: { 'en-US': slug },
 				},
 			})
 			.then((entry: any) => entry.publish())
