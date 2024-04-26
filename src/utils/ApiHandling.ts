@@ -1,6 +1,5 @@
 import { createClient } from 'contentful';
 import { createClient as createMgmtClient } from 'contentful-management';
-// import { redirect } from 'next/navigation';
 
 class ApiHandling {
 	client: any;
@@ -24,7 +23,9 @@ class ApiHandling {
 	}
 
 	// Contentful
+	// **************
 	// Getter Methods
+	// **************
 	async getContentfulEntries(contentType: string) {
 		return await this.client.getEntries({
 			content_type: `${contentType}`,
@@ -35,7 +36,12 @@ class ApiHandling {
 		return await this.client.getEntry(`${contentId}`);
 	}
 
+	// **************
 	// Create Methods
+	// **************
+
+	// Creates new client with
+	// name, emal and phone number
 	async createClientEntry(name: string, email: string, tel: string) {
 		this.cmaSpace = await this.cmaClient.getSpace(
 			process.env.NEXT_PUBLIC_REACT_APP_CONTENTFUL_SPACE_ID
@@ -63,6 +69,8 @@ class ApiHandling {
 			.catch(console.error);
 	}
 
+	// Creates an appointment and user
+	// if user doesn't already exist
 	async createApptEntry(
 		name: string,
 		date: string | null,
@@ -81,20 +89,21 @@ class ApiHandling {
 			process.env.NEXT_PUBLIC_REACT_APP_CONTENTFUL_ENV_ID
 		);
 
-		let dateTime = `${date}T${time}`;
+		const dateTime = `${date}T${time}`;
 
-		let clientList = await this.client.getEntries({
+		// Fetch list of clients
+		const clientList = await this.client.getEntries({
 			content_type: 'clients',
 		});
 
-		// console.log(clientList.items, 'client list');
-
+		// Check if client already exists
 		const clienExists = clientList.items.find((i: any) => {
 			return i.fields.email.trim() === email.trim();
 		});
 
-		// console.log(clienExists ? true : false, 'check client');
-
+		// If client exists, make appointment without
+		// creating a new client, else creates a client
+		// and creates a new appointment
 		if (clienExists) {
 			this.cmaEnv
 				.createEntry('appointments', {
@@ -154,7 +163,9 @@ class ApiHandling {
 		}
 	}
 
+	// **************
 	// Update Methods
+	// **************
 	async confirmAppointment(entryId: string | undefined) {
 		this.cmaSpace = await this.cmaClient.getSpace(
 			process.env.NEXT_PUBLIC_REACT_APP_CONTENTFUL_SPACE_ID
