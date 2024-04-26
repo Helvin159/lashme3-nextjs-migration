@@ -8,6 +8,8 @@ export interface Params {
 		service?: string;
 		product?: string;
 		date?: string;
+		apptId?: string;
+		clientId?: string;
 	};
 }
 

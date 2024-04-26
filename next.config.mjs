@@ -9,6 +9,16 @@ const nextConfig = {
 			},
 		],
 	},
+	async redirects() {
+		return [
+			// Basic redirect
+			{
+				source: '/comfirmappointment',
+				destination: '/',
+				permanent: false,
+			},
+		];
+	},
 };
 
 export default nextConfig;
