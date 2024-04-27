@@ -29,7 +29,7 @@ const CalendarComponent = ({
 
 	const settings = {
 		defaultActiveStartDate: value,
-		minDate: new Date(2024, 3, 8),
+		minDate: new Date(),
 		maxDate: new Date(2025, 0, 1),
 		selectRange: false,
 	};
