@@ -122,6 +122,14 @@ class ApiHandling {
 				.then((entry: any) => entry.publish())
 				.then((entry: any) => {
 					console.log(entry, 'success');
+
+					try {
+						const res = axios.post('https://lashme3.com/email.php');
+						console.log(res);
+					} catch (e) {
+						console.log(e);
+					}
+
 					setIsSubmitted(!isSubmitted);
 				})
 				.catch(console.error);

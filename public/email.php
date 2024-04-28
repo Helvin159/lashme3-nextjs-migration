@@ -1,4 +1,6 @@
 <?php 
+    print $_POST;
+
     $to      = 'helvin159@gmail.com';
     $subject = 'test ';
     $message = 'hello';
