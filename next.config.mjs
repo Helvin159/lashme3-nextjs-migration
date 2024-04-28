@@ -1,5 +1,6 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
+	basePath: '/',
 	images: {
 		remotePatterns: [
 			{
@@ -11,9 +12,13 @@ const nextConfig = {
 	},
 	async redirects() {
 		return [
-			// Basic redirect
 			{
 				source: '/comfirmappointment',
+				destination: '/',
+				permanent: false,
+			},
+			{
+				source: '/comfirmemail',
 				destination: '/',
 				permanent: false,
 			},
