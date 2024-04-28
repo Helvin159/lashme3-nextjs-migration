@@ -124,7 +124,7 @@ class ApiHandling {
 					console.log(entry, 'success');
 
 					try {
-						const res = axios.post('https://lashme3.com/email.php');
+						const res = axios.post('https://lashme3.com/email');
 						console.log(res);
 					} catch (e) {
 						console.log(e);
