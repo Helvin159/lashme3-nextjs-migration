@@ -18,11 +18,13 @@ const CustomerInfoForm = ({
 	const apiHandling = new ApiHandling();
 
 	console.log(selectedTime);
+	console.log(selectedDate);
+
 	const date = new Date(selectedDate);
 	const year = date.getFullYear();
 	const month =
 		date.getMonth() < 10 ? `0${date.getMonth() + 1}` : date.getMonth() + 1;
-	const day = date.getDate() < 10 ? `0${date.getDate}` : date.getDate();
+	const day = date.getDate() < 10 ? `0${date.getDate()}` : date.getDate();
 
 	const onSubmit = async (e: any) => {
 		e.preventDefault();

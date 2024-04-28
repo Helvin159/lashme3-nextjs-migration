@@ -42,8 +42,6 @@ const CalendarComponent = ({
 		setSelService({ id: id, name: name });
 	};
 
-	console.log(appointments, 'appts');
-
 	useEffect(() => {
 		if (params) {
 			let itemBySlug = categories.find((i: any) => {
