@@ -1,5 +1,6 @@
 import { createClient } from 'contentful';
 import { createClient as createMgmtClient } from 'contentful-management';
+import axios from 'axios';
 
 class ApiHandling {
 	client: any;
