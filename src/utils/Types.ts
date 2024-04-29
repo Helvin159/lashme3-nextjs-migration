@@ -84,6 +84,9 @@ export interface ProductType {
 export type SelectedOptionState = {
 	id: string;
 	name: string;
+	price?: number;
+	hours?: number;
+	minutes?: number;
 };
 
 // ************
@@ -93,6 +96,7 @@ export interface ButtonType {
 	children?: React.ReactNode;
 	variant: string;
 	onClick?: React.MouseEventHandler<HTMLButtonElement>;
+	className?: string;
 }
 
 export interface LinkButtonType {

@@ -1,5 +1,5 @@
 'use client';
-import React, { Dispatch, SetStateAction, useRef } from 'react';
+import React from 'react';
 import Button from '@/components/Button';
 import Container from '@/components/Container';
 import Heading from '@/components/Heading';
@@ -56,11 +56,6 @@ const CustomerInfoForm = ({
 			className={`${
 				selectedTime !== null ? 'block' : 'hidden'
 			} mx-auto w-11/12`}>
-			<Container className='mx-auto w-full text-left'>
-				<Button variant='pink' onClick={goBack}>
-					Back
-				</Button>
-			</Container>
 			<div className='w-full mx-auto text-center py-6'>
 				<Heading level='3'>{selectedServ?.name}</Heading>
 				<p>{selectedCat?.name}</p>
@@ -130,6 +125,11 @@ const CustomerInfoForm = ({
 			<Heading level='1' className={`${isSubmitted ? 'block' : 'hidden'}`}>
 				success
 			</Heading>
+			<Container className='mx-auto w-full text-center p-6'>
+				<Button variant='pink' onClick={goBack}>
+					Back
+				</Button>
+			</Container>
 		</Container>
 	);
 };

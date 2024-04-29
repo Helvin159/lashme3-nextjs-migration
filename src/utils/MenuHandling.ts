@@ -15,7 +15,6 @@ class MenuHandling {
 		setState: Dispatch<SetStateAction<boolean>>
 	) => {
 		setState(!state);
-		console.log(state);
 		document.body.style.overflow = 'hidden';
 	};
 

@@ -19,11 +19,6 @@ const SelectService = ({
 			className={`w-full text-center ${
 				selectedCat !== null && selectedServ === null ? 'block' : 'hidden'
 			}`}>
-			<Container className='mx-auto w-full text-left'>
-				<Button variant='pink' onClick={goBack}>
-					Back
-				</Button>
-			</Container>
 			<div className='text-center pb-6'>
 				<Heading level='3'>{selectedCat?.name}</Heading>
 
@@ -39,6 +34,9 @@ const SelectService = ({
 								handleSelService({
 									id: i.sys.id,
 									name: i.fields.serviceName,
+									price: i.fields.price,
+									hours: i.fields.hours,
+									minutes: i.fields.minutes,
 								});
 							}}>
 							{i.fields.serviceName}
@@ -46,6 +44,11 @@ const SelectService = ({
 					);
 				}
 			})}
+			<Container className='mx-auto w-full text-center p-6'>
+				<Button variant='pink' onClick={goBack}>
+					Back
+				</Button>
+			</Container>
 		</Container>
 	);
 };

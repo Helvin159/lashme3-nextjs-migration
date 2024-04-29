@@ -17,10 +17,10 @@ const CalendarComponent = ({
 	params,
 }: any) => {
 	const [value, onChange] = useState<Date | any>(new Date());
-
 	const [selCategory, setSelCategory] = useState<SelectedOptionState | null>(
 		null
 	);
+
 	const [selService, setSelService] = useState<SelectedOptionState | null>(
 		null
 	);
@@ -34,12 +34,38 @@ const CalendarComponent = ({
 		selectRange: false,
 	};
 
+	/*
+	add to selServivce DurationHours, Duration Minutes and Price
+	
+	if service is selected from other services
+	add duration of the added service to the main service duration time
+
+*/
+
 	const handleClick = ({ id, name }: { id: string; name: string }) => {
 		setSelCategory({ id: id, name: name });
 	};
 
-	const handleSelService = ({ id, name }: { id: string; name: string }) => {
-		setSelService({ id: id, name: name });
+	const handleSelService = ({
+		id,
+		name,
+		price,
+		hours,
+		minutes,
+	}: {
+		id: string;
+		name: string;
+		price: number;
+		hours: number;
+		minutes: number;
+	}) => {
+		setSelService({
+			id: id,
+			name: name,
+			price: price,
+			hours: hours,
+			minutes: minutes,
+		});
 	};
 
 	useEffect(() => {

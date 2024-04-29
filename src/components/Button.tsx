@@ -1,7 +1,7 @@
 import React from 'react';
 import { ButtonType, ButtonVariants } from '@/utils/Types';
 
-const Button = ({ children, variant, onClick }: ButtonType) => {
+const Button = ({ children, variant, onClick, className }: ButtonType) => {
 	// ************************************
 	// Button variant object.
 	// Containts all necessary classes
@@ -22,7 +22,7 @@ const Button = ({ children, variant, onClick }: ButtonType) => {
 				variant
 					? variants[variant as keyof typeof variants]
 					: variants['light' as keyof typeof variants]
-			}`}>
+			} ${className}`}>
 			{children}
 		</button>
 	);

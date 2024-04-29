@@ -2,7 +2,7 @@
 import Container from '@/components/Container';
 import Heading from '@/components/Heading';
 import { daysOfWeek, months } from '@/utils/utils';
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import Calendar from 'react-calendar';
 import OtherServices from './OtherServices';
 import Button from '@/components/Button';
@@ -21,23 +21,58 @@ const CalAndTime = ({
 	const month = value?.getMonth();
 	const day = value?.getDate();
 
+	const [otherServices, setOtherServices] = useState<any>(null);
+	const [totalHours, setTotalHours] = useState<any>(selectedService?.hours);
+	const [totalMins, setTotalMins] = useState<any>();
+
 	const goBack = () => {
 		setSelectedService(null);
 	};
+
+	useEffect(() => {
+		setTotalHours(selectedService?.hours);
+		setTotalMins(selectedService?.minutes);
+
+		let otherTotalHours = 0;
+		let otherTotalMinutes = 0;
+		let totalH = 0;
+		let totalM = 0;
+
+		if (otherServices) {
+			for (let i = 0; i < otherServices.length; i++) {
+				otherTotalHours = otherTotalHours + otherServices[i].fields.hours;
+				otherTotalMinutes = otherTotalMinutes + otherServices[i].fields.minutes;
+			}
+
+			totalH = selectedService.hours + otherTotalHours;
+			totalM = selectedService.minutes + otherTotalMinutes;
+
+			setTotalMins(totalM);
+			setTotalHours(totalH);
+		}
+	}, [
+		otherServices,
+		selectedService?.hours,
+		selectedService?.minutes,
+		selectedService,
+	]);
 
 	return (
 		<Container
 			className={`text-center ${
 				selectedService !== null && selectedTime === null ? 'block' : 'hidden'
 			}`}>
-			<Container className='mx-auto w-full text-left'>
-				<Button variant='pink' onClick={goBack}>
-					Back
-				</Button>
-			</Container>
 			<div className='text-center pb-6'>
 				<Heading level='4'>{selectedService?.name}</Heading>
-				<p>time @ price</p>
+				<p>
+					{totalHours < 1
+						? ''
+						: totalHours === 1
+						? `${totalHours} hour`
+						: `${totalHours} hours`}
+					{totalMins > 0 && ` & ${totalMins} minutes`} @ $
+					{selectedService?.price}
+				</p>
 				<Heading level='6'>Select a Date</Heading>
 			</div>
 			<div className='flex flex-col tablet:flex-row px-5'>
@@ -52,7 +87,10 @@ const CalAndTime = ({
 				{/* Time slots */}
 				<Container className='mx-auto text-center py-3'>
 					<Container className='shadow-lg rounded-xl py-6'>
-						<OtherServices services={services} />
+						<OtherServices
+							setOtherServices={setOtherServices}
+							services={services}
+						/>
 					</Container>
 
 					<Container className='shadow-lg rounded-xl py-6 px-3 mt-5'>
@@ -69,16 +107,30 @@ const CalAndTime = ({
 							onChange={(e) => {
 								setSelectedTime(e?.target?.value);
 							}}>
-							<option className='text-center' defaultChecked value={'Time'}>
+							<option
+								className='text-center'
+								defaultValue={'Time'}
+								value={'Time'}>
 								Time
 							</option>
 							{daysOfWeek[dayOfWeek]?.availableTimeSlots.map((i, k) => (
-								<option key={k}>{i.start}</option>
+								<option key={k} value={`${i.time.hour}:${i.time.minutes}`}>
+									{`${
+										parseInt(i.time.hour) > 12
+											? parseInt(i.time.hour) - 12
+											: i.time.hour
+									}:${i.time.minutes}`}
+								</option>
 							))}
 						</select>
 					</Container>
 				</Container>
 			</div>
+			<Container className='mx-auto w-full text-center p-6'>
+				<Button variant='pink' onClick={goBack}>
+					Back
+				</Button>
+			</Container>
 		</Container>
 	);
 };

@@ -1,5 +1,7 @@
+import BookingRules from '@/components/BookingRules';
 import CalendarComponent from '@/components/Calendar/Calendar';
 import Container from '@/components/Container';
+import Heading from '@/components/Heading';
 import ApiHandling from '@/utils/ApiHandling';
 import { Params } from '@/utils/Types';
 import { createClient } from 'contentful';
@@ -18,7 +20,10 @@ export async function generateStaticParams() {
 
 const Booking = async ({ params }: Params) => {
 	const apiHandling = new ApiHandling();
-
+	const { items: details } = await apiHandling.getContentfulEntries(
+		'businessDetails'
+	);
+	const dets = details.find((i: any) => i.fields.useThisLive === true);
 	const { items: services } = await apiHandling.getContentfulEntries('service');
 	const { items: appts } = await apiHandling.getContentfulEntries(
 		'appointments'
@@ -35,6 +40,7 @@ const Booking = async ({ params }: Params) => {
 			<Container className='text-center p-10'>
 				<h1 className='text-4xl'>Booking</h1>
 			</Container>
+			<BookingRules rules={dets.fields.bookingRules} />
 			<Container>
 				<CalendarComponent
 					params={params}

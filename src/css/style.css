@@ -48,3 +48,29 @@ h6 {
   background: var(--variant-one) !important;
   background-color: var(--variant-one) !important;
   border-radius: 4px; }
+
+.booking__rules h3 {
+  font-size: 2rem;
+  line-height: 2; }
+  @media (min-width: 768px) {
+    .booking__rules h3 {
+      font-size: 2.25rem; } }
+
+.booking__rules h4 {
+  font-size: 1.625rem; }
+  @media (min-width: 768px) {
+    .booking__rules h4 {
+      font-size: 1.875rem; } }
+
+.booking__rules h5 {
+  font-size: 1.25rem; }
+  @media (min-width: 768px) {
+    .booking__rules h5 {
+      font-size: 1.5rem; } }
+
+.booking__rules p {
+  margin-bottom: 0.5rem;
+  line-height: 1.7; }
+
+.booking__rules hr {
+  margin: 1rem 0; }
