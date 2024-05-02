@@ -2,6 +2,7 @@
 import { useMenuCtx } from '@/context/MenuContext';
 import MenuHandling from '@/utils/MenuHandling';
 import Link from 'next/link';
+import { useRouter } from 'next/navigation';
 
 const MobileMenu = () => {
 	const { isOpen, setIsOpen } = useMenuCtx();
@@ -9,6 +10,8 @@ const MobileMenu = () => {
 	// Use Menu Hadnling Class to
 	// access handleMobileClose function
 	const menuHandling = new MenuHandling(isOpen, setIsOpen);
+
+	const router = useRouter();
 
 	return (
 		<nav
@@ -26,24 +29,62 @@ const MobileMenu = () => {
 			<nav className='absolute top-2/4 left-2/4 translate-y-n60 translate-x-n50'>
 				<ul className='p-0list-none text-center'>
 					<li className='block py-5'>
-						<Link className='poppins-semibold text-5xl' href='/'>
+						<button
+							onClick={() => {
+								router.push('/');
+
+								setTimeout(
+									() => menuHandling.handleMobileClose(isOpen, setIsOpen),
+									500
+								);
+							}}
+							className='poppins-semibold text-5xl'
+							// href='/'
+						>
 							Home
-						</Link>
+						</button>
 					</li>
 					<li className='block py-5'>
-						<Link className='poppins-semibold text-5xl' href='/booking'>
+						<button
+							className='poppins-semibold text-5xl'
+							// href='/booking'
+							onClick={() => {
+								router.push('/booking');
+								setTimeout(
+									() => menuHandling.handleMobileClose(isOpen, setIsOpen),
+									500
+								);
+							}}>
 							Booking
-						</Link>
+						</button>
 					</li>
 					<li className='block py-5'>
-						<Link className='poppins-semibold text-5xl' href='/services'>
+						<button
+							className='poppins-semibold text-5xl'
+							// href='/services'
+							onClick={() => {
+								router.push('/services');
+								setTimeout(
+									() => menuHandling.handleMobileClose(isOpen, setIsOpen),
+									500
+								);
+							}}>
 							Services
-						</Link>
+						</button>
 					</li>
 					<li className='block py-5'>
-						<Link className='poppins-semibold text-5xl' href='/products'>
+						<button
+							className='poppins-semibold text-5xl'
+							// href='/products'
+							onClick={() => {
+								router.push('/products');
+								setTimeout(
+									() => menuHandling.handleMobileClose(isOpen, setIsOpen),
+									500
+								);
+							}}>
 							Products
-						</Link>
+						</button>
 					</li>
 				</ul>
 			</nav>

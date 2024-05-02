@@ -14,14 +14,17 @@ export const BookingProvider = ({
 	children: React.ReactNode;
 }) => {
 	const date = new Date();
+
 	const year = date.getFullYear();
+
 	const month =
 		date.getMonth() < 10 ? `0${date.getMonth() + 1}` : date.getMonth();
+
 	const day = date.getDate() < 10 ? `0${date.getDate()}` : date.getDate();
 
 	const currDate = `${year}-${month}-${day}`;
 
-	const [service, setService] = useState<string>();
+	const [service, setService] = useState<string>('');
 	const [selectedDate, setSelectedDate] = useState<string>(currDate);
 
 	const value = { service, setService, selectedDate, setSelectedDate };
