@@ -74,8 +74,8 @@ const CalAndTime = ({ services, settings }: any) => {
 					{totalHours < 1
 						? ''
 						: totalHours === 1
-						? `${totalHours} hour ${totalMins > 0 && '&'}`
-						: `${totalHours} hours ${totalMins > 0 && '&'}`}
+						? `${totalHours} hour ${totalMins > 0 && ' &'}`
+						: `${totalHours} hours ${totalMins > 0 && ' &'}`}
 					{totalMins > 0 && `${totalMins} minutes`} @ ${selService?.price}
 				</p>
 				<Heading level='6'>Select a Date</Heading>
