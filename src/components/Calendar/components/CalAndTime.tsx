@@ -6,32 +6,35 @@ import React, { useEffect, useState } from 'react';
 import Calendar from 'react-calendar';
 import OtherServices from './OtherServices';
 import Button from '@/components/Button';
+import { useCalendarCtx } from '@/context/CalendarContext';
 
-const CalAndTime = ({
-	selectedService,
-	setSelectedService,
-	value,
-	onChange,
-	services,
-	settings,
-	selectedTime,
-	setSelectedTime,
-}: any) => {
-	const dayOfWeek = value?.getDay() - 1;
-	const month = value?.getMonth();
-	const day = value?.getDate();
+const CalAndTime = ({ services, settings }: any) => {
+	const {
+		calendarDate,
+		setCalendarDate,
+		selService,
+		setSelService,
+		selTime,
+		setSelTime,
+		otherServices,
+		setOtherServices,
+		totalHours,
+		setTotalHours,
+		totalMins,
+		setTotalMins,
+	} = useCalendarCtx();
 
-	const [otherServices, setOtherServices] = useState<any>(null);
-	const [totalHours, setTotalHours] = useState<any>(selectedService?.hours);
-	const [totalMins, setTotalMins] = useState<any>();
+	const dayOfWeek = calendarDate?.getDay() - 1;
+	const month = calendarDate?.getMonth();
+	const day = calendarDate?.getDate();
 
 	const goBack = () => {
-		setSelectedService(null);
+		setSelService(null);
 	};
 
 	useEffect(() => {
-		setTotalHours(selectedService?.hours);
-		setTotalMins(selectedService?.minutes);
+		setTotalHours(selService?.hours);
+		setTotalMins(selService?.minutes);
 
 		let otherTotalHours = 0;
 		let otherTotalMinutes = 0;
@@ -44,42 +47,44 @@ const CalAndTime = ({
 				otherTotalMinutes = otherTotalMinutes + otherServices[i].fields.minutes;
 			}
 
-			totalH = selectedService.hours + otherTotalHours;
-			totalM = selectedService.minutes + otherTotalMinutes;
+			totalH = selService.hours + otherTotalHours;
+			totalM = selService.minutes + otherTotalMinutes;
 
 			setTotalMins(totalM);
 			setTotalHours(totalH);
 		}
 	}, [
 		otherServices,
-		selectedService?.hours,
-		selectedService?.minutes,
-		selectedService,
+		selService?.hours,
+		selService?.minutes,
+		selService,
+		setTotalHours,
+		totalHours,
+		setTotalMins,
 	]);
 
 	return (
 		<Container
 			className={`text-center ${
-				selectedService !== null && selectedTime === null ? 'block' : 'hidden'
+				selService !== null && selTime === null ? 'block' : 'hidden'
 			}`}>
 			<div className='text-center pb-6'>
-				<Heading level='4'>{selectedService?.name}</Heading>
+				<Heading level='4'>{selService?.name}</Heading>
 				<p>
 					{totalHours < 1
 						? ''
 						: totalHours === 1
 						? `${totalHours} hour`
 						: `${totalHours} hours`}
-					{totalMins > 0 && ` & ${totalMins} minutes`} @ $
-					{selectedService?.price}
+					{totalMins > 0 && ` & ${totalMins} minutes`} @ ${selService?.price}
 				</p>
 				<Heading level='6'>Select a Date</Heading>
 			</div>
 			<div className='flex flex-col tablet:flex-row px-5'>
 				<Container className='tablet:px-5'>
 					<Calendar
-						onChange={onChange}
-						value={value}
+						onChange={setCalendarDate}
+						value={calendarDate}
 						{...settings}
 						className={'mx-auto rounded-xl w-full shadow-lg'}
 					/>
@@ -105,7 +110,7 @@ const CalAndTime = ({
 							title='time-slots'
 							className='w-2/4 mx-auto outline outline-black	rounded p-2 text-lg text-center'
 							onChange={(e) => {
-								setSelectedTime(e?.target?.value);
+								setSelTime(e?.target?.value);
 							}}>
 							<option
 								className='text-center'

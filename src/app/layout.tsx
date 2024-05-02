@@ -1,6 +1,11 @@
 import type { Metadata } from 'next';
 import { Inter } from 'next/font/google';
-import Header from '../components/Header/Header';
+
+import { AppointmentsProvider } from '@/context/AppointmentsContext';
+import { MenuProvider } from '@/context/MenuContext';
+import { CalendarProvider } from '@/context/CalendarContext';
+
+import Header from '@/components/Header/Header';
 import Footer from '../components/Footer';
 
 // Styles
@@ -70,11 +75,17 @@ export default function RootLayout({
 }>) {
 	return (
 		<html lang='en'>
-			<body className={inter.className} suppressHydrationWarning={true}>
-				<Header />
-				<main>{children}</main>
-				<Footer />
-			</body>
+			<MenuProvider>
+				<AppointmentsProvider>
+					<CalendarProvider>
+						<body className={inter.className} suppressHydrationWarning={true}>
+							<Header />
+							<main>{children}</main>
+							<Footer />
+						</body>
+					</CalendarProvider>
+				</AppointmentsProvider>
+			</MenuProvider>
 		</html>
 	);
 }

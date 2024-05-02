@@ -8,6 +8,8 @@ import SelectCategory from './components/SelectCategory';
 import SelectService from './components/SelectService';
 import CustomerInfoForm from './components/CustomerInfoForm';
 import CalAndTime from './components/CalAndTime';
+import { useApptsCtx } from '@/context/AppointmentsContext';
+import { useCalendarCtx } from '@/context/CalendarContext';
 
 const CalendarComponent = ({
 	categories,
@@ -16,19 +18,21 @@ const CalendarComponent = ({
 	appointments,
 	params,
 }: any) => {
-	const [value, onChange] = useState<Date | any>(new Date());
-	const [selCategory, setSelCategory] = useState<SelectedOptionState | null>(
-		null
-	);
-
-	const [selService, setSelService] = useState<SelectedOptionState | null>(
-		null
-	);
-	const [selTime, setSelTime] = useState<any | null>(null);
-	const [isSubmitted, setIsSubmitted] = useState<Boolean | null>(false);
+	const {
+		calendarDate,
+		setCalendarDate,
+		selCategory,
+		setSelCategory,
+		selService,
+		setSelService,
+		selTime,
+		setSelTime,
+		isSubmitted,
+		setIsSubmitted,
+	} = useCalendarCtx();
 
 	const settings = {
-		defaultActiveStartDate: value,
+		defaultActiveStartDate: calendarDate,
 		minDate: new Date(),
 		maxDate: new Date(2025, 0, 1),
 		selectRange: false,
@@ -91,10 +95,10 @@ const CalendarComponent = ({
 				const selDate = `${year}-${month}-${day}`;
 
 				console.log(new Date(selDate), 'seldate');
-				onChange(new Date(selDate));
+				setCalendarDate(new Date(selDate));
 			}
 		}
-	}, [categories, params, params?.slug]);
+	}, [categories, params, params?.slug, setSelCategory]);
 
 	return (
 		<Section>
@@ -122,9 +126,9 @@ const CalendarComponent = ({
 					<CalAndTime
 						selectedService={selService}
 						setSelectedService={setSelService}
-						value={value}
+						value={calendarDate}
 						services={services}
-						onChange={onChange}
+						onChange={setCalendarDate}
 						settings={settings}
 						selectedTime={selTime}
 						setSelectedTime={setSelTime}
@@ -135,7 +139,7 @@ const CalendarComponent = ({
 						selectedTime={selTime}
 						selectedCat={selCategory}
 						selectedServ={selService}
-						selectedDate={value}
+						selectedDate={calendarDate}
 						isSubmitted={isSubmitted}
 						setIsSubmitted={setIsSubmitted}
 					/>

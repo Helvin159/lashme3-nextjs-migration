@@ -5,19 +5,21 @@ import Container from '@/components/Container';
 import Heading from '@/components/Heading';
 import ApiHandling from '@/utils/ApiHandling';
 import { CustomerInfoFormType } from '@/utils/Types';
+import { useCalendarCtx } from '@/context/CalendarContext';
 
-const CustomerInfoForm = ({
-	selectedTime,
-	setSelectedTime,
-	selectedCat,
-	selectedServ,
-	selectedDate,
-	isSubmitted,
-	setIsSubmitted,
-}: CustomerInfoFormType) => {
+const CustomerInfoForm = ({ selectedDate }: CustomerInfoFormType) => {
 	const apiHandling = new ApiHandling();
 
-	console.log(selectedTime);
+	const {
+		selCategory,
+		selService,
+		selTime,
+		setSelTime,
+		isSubmitted,
+		setIsSubmitted,
+	} = useCalendarCtx();
+
+	console.log(selTime);
 	console.log(selectedDate);
 
 	const date = new Date(selectedDate);
@@ -33,13 +35,13 @@ const CustomerInfoForm = ({
 		const tel = `${e?.target[2].value.trim()}`;
 		const email = `${e?.target[3].value.trim()}`;
 		const date = `${year}-${month}-${day}`.trim();
-		const slug = `${e?.target[0].value.trim()}${e?.target[1].value.trim()}&${date.trim()}&${selectedTime}`;
+		const slug = `${e?.target[0].value.trim()}${e?.target[1].value.trim()}&${date.trim()}&${selTime}`;
 
 		await apiHandling.createApptEntry(
 			name,
 			date,
 			email,
-			selectedTime,
+			selTime,
 			tel,
 			slug,
 			isSubmitted,
@@ -48,19 +50,17 @@ const CustomerInfoForm = ({
 	};
 
 	const goBack = () => {
-		setSelectedTime(null);
+		setSelTime(null);
 	};
 
 	return (
 		<Container
-			className={`${
-				selectedTime !== null ? 'block' : 'hidden'
-			} mx-auto w-11/12`}>
+			className={`${selTime !== null ? 'block' : 'hidden'} mx-auto w-11/12`}>
 			<div className='w-full mx-auto text-center py-6'>
-				<Heading level='3'>{selectedServ?.name}</Heading>
-				<p>{selectedCat?.name}</p>
+				<Heading level='3'>{selService?.name}</Heading>
+				<p>{selCategory?.name}</p>
 				<p>
-					On {month}/{day}/{year} @ {selectedTime}
+					On {month}/{day}/{year} @ {selTime}
 				</p>
 			</div>
 			<form onSubmit={onSubmit}>

@@ -1,31 +1,29 @@
 'use client';
+import React from 'react';
+import { useCalendarCtx } from '@/context/CalendarContext';
 import Button from '@/components/Button';
 import Container from '@/components/Container';
 import Heading from '@/components/Heading';
-import React from 'react';
 
-const SelectService = ({
-	selectedCat,
-	setSelectedCat,
-	selectedServ,
-	services,
-	handleSelService,
-}: any) => {
+const SelectService = ({ services, handleSelService }: any) => {
+	const { selCategory, setSelCategory, selService } = useCalendarCtx();
+
 	const goBack = () => {
-		setSelectedCat(null);
+		setSelCategory(null);
 	};
+
 	return (
 		<Container
 			className={`w-full text-center ${
-				selectedCat !== null && selectedServ === null ? 'block' : 'hidden'
+				selCategory !== null && selService === null ? 'block' : 'hidden'
 			}`}>
 			<div className='text-center pb-6'>
-				<Heading level='3'>{selectedCat?.name}</Heading>
+				<Heading level='3'>{selCategory?.name}</Heading>
 
 				<Heading level='6'>Select a Service</Heading>
 			</div>
 			{services.map((i: any) => {
-				if (i.fields.category.sys.id.toString() === selectedCat?.id) {
+				if (i.fields.category.sys.id.toString() === selCategory?.id) {
 					return (
 						<button
 							className='bg-variant-one-light shadow-lg active:shadow-md rounded w-11/12 tablet:w-3/5 py-4 px-3 mx-auto my-2 text-2xl'

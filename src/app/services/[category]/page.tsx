@@ -1,3 +1,4 @@
+'use server';
 import React from 'react';
 import Container from '@/components/Container';
 import Heading from '@/components/Heading';
@@ -26,7 +27,7 @@ const Categories = async ({ params }: any) => {
 	return (
 		<>
 			<Container className='text-center py-10'>
-				<Heading level='1'>{category.fields.categoryName}</Heading>
+				<Heading level='1'>{category?.fields.categoryName}</Heading>
 			</Container>
 			<Container className='flex flex-row flex-wrap justify-between content-evenly items-start w-full mx-auto '>
 				{services.map((i: any, k: any) => {

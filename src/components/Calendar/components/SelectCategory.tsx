@@ -1,13 +1,15 @@
 'use client';
 import Container from '@/components/Container';
 import Heading from '@/components/Heading';
+import { useCalendarCtx } from '@/context/CalendarContext';
 import React from 'react';
 
-const SelectCategory = ({ selectedCat, categories, handleClick }: any) => {
+const SelectCategory = ({ categories, handleClick }: any) => {
+	const { selCategory } = useCalendarCtx();
 	return (
 		<Container
 			className={`w-full text-center ${
-				selectedCat === null ? 'block' : 'hidden'
+				selCategory === null ? 'block' : 'hidden'
 			}`}>
 			<div className='text-center'>
 				<Heading level='3'>Select a Category</Heading>

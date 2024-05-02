@@ -1,24 +1,16 @@
 'use client';
-import React, { useState } from 'react';
+import React from 'react';
+import { useBookingWidgetCtx } from '@/context/BookingWidgetCtx';
 import Link from 'next/link';
-import { handleChangeDate, handleChangeSelect } from '@/utils/utils';
 import Heading from '../Heading';
 import Container from '../Container';
+import { handleChangeDate, handleChangeSelect } from '@/utils/utils';
 
 const BookingWidget = ({ categories }: any) => {
-	const date = new Date();
+	const { service, setService, selectedDate, setSelectedDate } =
+		useBookingWidgetCtx();
 
-	const year = date.getFullYear();
-
-	const month =
-		date.getMonth() < 10 ? `0${date.getMonth() + 1}` : date.getMonth();
-
-	const day = date.getDate() < 10 ? `0${date.getDate()}` : date.getDate();
-
-	const currDate = `${year}-${month}-${day}`;
-
-	const [service, setService] = useState<string>(categories[0].fields.slug);
-	const [selectedDate, setSelectedDate] = useState<string>(currDate);
+	setService(categories[0].fields.slug);
 
 	return (
 		<div className='container w-11/12 tablet:w-full max-w-969 tablet:w-3/4 bg-light-gray rounded-3xl translate-y-n10 laptop:translate-y-n30 py-8 tablet:px-0 mx-auto my-0 shadow-lg'>

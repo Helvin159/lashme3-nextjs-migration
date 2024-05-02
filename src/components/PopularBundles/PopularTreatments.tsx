@@ -1,9 +1,10 @@
+'use server';
 import React from 'react';
 import PopularTreatmentsCard from './components/PopularTreatmentsCard';
 import Section from '../Section';
 import Heading from '../Heading';
 
-const PopularTreatments = ({ services }: any) => {
+const PopularTreatments = async ({ services }: any) => {
 	return (
 		<Section>
 			<div className='container mx-auto py-4 px-5 tablet:px-0'>

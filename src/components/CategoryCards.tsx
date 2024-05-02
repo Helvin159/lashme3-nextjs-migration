@@ -1,10 +1,11 @@
+'use server';
 import React from 'react';
 import Container from './Container';
 import Link from 'next/link';
 import Heading from './Heading';
 import Image from 'next/image';
 
-const CategoryCards = ({ category }: any) => {
+const CategoryCards = async ({ category }: any) => {
 	return (
 		<Container
 			key={category.sys.id}

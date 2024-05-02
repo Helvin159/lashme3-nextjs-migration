@@ -1,9 +1,10 @@
 'use client';
+import { useMenuCtx } from '@/context/MenuContext';
 import MenuHandling from '@/utils/MenuHandling';
 import Link from 'next/link';
-import { MenuStateType } from '@/utils/Types';
 
-const MobileMenu = ({ isOpen, setIsOpen }: MenuStateType) => {
+const MobileMenu = () => {
+	const { isOpen, setIsOpen } = useMenuCtx();
 	// *************
 	// Use Menu Hadnling Class to
 	// access handleMobileClose function

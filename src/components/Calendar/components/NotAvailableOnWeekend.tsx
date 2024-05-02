@@ -1,4 +1,4 @@
-'use client';
+'use server';
 import Container from '@/components/Container';
 
 const NotAvailableOnWeekend = () => (

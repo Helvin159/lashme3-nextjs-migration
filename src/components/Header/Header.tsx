@@ -1,9 +1,9 @@
 'use client';
-import React, { useState } from 'react';
+import React from 'react';
+import { useMenuCtx } from '@/context/MenuContext';
 import MenuHandling from '@/utils/MenuHandling';
 import Image from 'next/image';
 import Link from 'next/link';
-import Button from '../Button';
 import MobileMenu from './components/MobileMenu';
 
 // Hamburger image
@@ -12,8 +12,8 @@ import NavLink from '../NavLink';
 
 const Header = () => {
 	// *************
-	// Mobile Menu State
-	const [isOpen, setIsOpen] = useState(false);
+	// Menu Context
+	const { isOpen, setIsOpen } = useMenuCtx();
 
 	// *************
 	// Use Menu Hadnling Class to
@@ -61,7 +61,7 @@ const Header = () => {
 					</button>
 				</div>
 			</header>
-			<MobileMenu isOpen={isOpen} setIsOpen={setIsOpen} />
+			<MobileMenu />
 		</>
 	);
 };

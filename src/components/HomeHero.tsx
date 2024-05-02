@@ -1,10 +1,10 @@
+'use server';
 import React from 'react';
 
 import Image from 'next/image';
-import Heading from './Heading';
 import heroImg from '../assets/png/Image.png';
 
-const HomeHero = ({ headline, subHeadline }: any) => {
+const HomeHero = async ({ headline, subHeadline }: any) => {
 	return (
 		<section className='w-full relative px-0 tablet:px-12'>
 			<div className='container p-0 my-0 mx-auto'>

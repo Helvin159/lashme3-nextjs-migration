@@ -1,3 +1,4 @@
+'use server';
 import CategoryCards from '@/components/CategoryCards';
 import Container from '@/components/Container';
 import Heading from '@/components/Heading';

@@ -1,7 +1,8 @@
+'use server';
 import Link from 'next/link';
 import React from 'react';
 
-const Footer = () => {
+const Footer = async () => {
 	return (
 		<footer className='w-full px-5'>
 			<div className='container flex flex-col tablet:flex-row basis-1/2 justify-between mx-auto py-8'>
