@@ -1,10 +1,14 @@
+'use server';
 import React from 'react';
 import Container from './Container';
 import Link from 'next/link';
 import Heading from './Heading';
 import Image from 'next/image';
 
-const ServiceCards = ({ service }: any) => {
+const ServiceCards = async ({ service }: any) => {
+	console.log(service.fields.category.fields.slug);
+
+	const serviceUrl = `/services/${service.fields.category.fields.slug}/${service.fields.slug}`;
 	return (
 		<Container key={service.sys.id} className='flex-col w-4/12 '>
 			<Container className=''>
@@ -24,7 +28,7 @@ const ServiceCards = ({ service }: any) => {
 						})}
 				</Container>
 				<Container className='py-3 text-center'>
-					<Link href={`/services/${service.fields.slug}`}>
+					<Link href={`${serviceUrl}`}>
 						<Heading className='text-md' level='6'>
 							{service.fields.serviceName}
 						</Heading>
@@ -33,7 +37,6 @@ const ServiceCards = ({ service }: any) => {
 			</Container>
 		</Container>
 	);
-	return null;
 };
 
 export default ServiceCards;

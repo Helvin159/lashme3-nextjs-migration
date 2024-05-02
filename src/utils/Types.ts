@@ -113,11 +113,5 @@ export interface ButtonVariants {
 // Components
 
 export interface CustomerInfoFormType {
-	selectedTime: string;
-	setSelectedTime: Dispatch<SetStateAction<string | null>>;
-	selectedCat: SelectedOptionState | null;
-	selectedServ: SelectedOptionState | null;
 	selectedDate: string;
-	isSubmitted: Boolean | null;
-	setIsSubmitted: Dispatch<SetStateAction<Boolean | null>>;
 }

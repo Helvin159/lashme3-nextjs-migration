@@ -1,14 +1,12 @@
 'use client';
-import { useEffect, useState } from 'react';
-import { SelectedOptionState } from '@/utils/Types';
+import { useEffect } from 'react';
+
 import Section from '../Section';
 import Container from '../Container';
-import OtherServices from './components/OtherServices';
 import SelectCategory from './components/SelectCategory';
 import SelectService from './components/SelectService';
 import CustomerInfoForm from './components/CustomerInfoForm';
 import CalAndTime from './components/CalAndTime';
-import { useApptsCtx } from '@/context/AppointmentsContext';
 import { useCalendarCtx } from '@/context/CalendarContext';
 
 const CalendarComponent = ({
@@ -18,18 +16,8 @@ const CalendarComponent = ({
 	appointments,
 	params,
 }: any) => {
-	const {
-		calendarDate,
-		setCalendarDate,
-		selCategory,
-		setSelCategory,
-		selService,
-		setSelService,
-		selTime,
-		setSelTime,
-		isSubmitted,
-		setIsSubmitted,
-	} = useCalendarCtx();
+	const { calendarDate, setCalendarDate, setSelCategory, setSelService } =
+		useCalendarCtx();
 
 	const settings = {
 		defaultActiveStartDate: calendarDate,
@@ -37,14 +25,6 @@ const CalendarComponent = ({
 		maxDate: new Date(2025, 0, 1),
 		selectRange: false,
 	};
-
-	/*
-	add to selServivce DurationHours, Duration Minutes and Price
-	
-	if service is selected from other services
-	add duration of the added service to the main service duration time
-
-*/
 
 	const handleClick = ({ id, name }: { id: string; name: string }) => {
 		setSelCategory({ id: id, name: name });
@@ -98,51 +78,27 @@ const CalendarComponent = ({
 				setCalendarDate(new Date(selDate));
 			}
 		}
-	}, [categories, params, params?.slug, setSelCategory]);
+	}, [categories, params, params?.slug, setSelCategory, setCalendarDate]);
 
 	return (
 		<Section>
-			{/* Category and Service Selection */}
 			<Container className='mx-auto w-full'>
 				<Container className='flex flex-col w-full tablet:w-10/12 mx-auto '>
 					{/* Categories to select from, service will show 
 					after category has been chosen */}
-					<SelectCategory
-						selectedCat={selCategory}
-						categories={categories}
-						handleClick={handleClick}
-					/>
+					<SelectCategory categories={categories} handleClick={handleClick} />
 
 					{/* Service Menu shows after category is chosen */}
 					<SelectService
-						selectedCat={selCategory}
-						setSelectedCat={setSelCategory}
-						selectedServ={selService}
 						services={services}
 						handleSelService={handleSelService}
 					/>
 
 					{/* Calendar Available Times & Other Services */}
-					<CalAndTime
-						selectedService={selService}
-						setSelectedService={setSelService}
-						value={calendarDate}
-						services={services}
-						onChange={setCalendarDate}
-						settings={settings}
-						selectedTime={selTime}
-						setSelectedTime={setSelTime}
-					/>
+					<CalAndTime services={services} settings={settings} />
 
-					<CustomerInfoForm
-						setSelectedTime={setSelTime}
-						selectedTime={selTime}
-						selectedCat={selCategory}
-						selectedServ={selService}
-						selectedDate={calendarDate}
-						isSubmitted={isSubmitted}
-						setIsSubmitted={setIsSubmitted}
-					/>
+					{/* Form to enter customer name, email and phone number */}
+					<CustomerInfoForm selectedDate={calendarDate} />
 				</Container>
 			</Container>
 		</Section>
