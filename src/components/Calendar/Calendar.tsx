@@ -61,8 +61,8 @@ const CalendarComponent = ({
 			});
 
 			setSelCategory({
-				id: itemBySlug.sys.id,
-				name: itemBySlug.fields.categoryName,
+				id: itemBySlug?.sys.id,
+				name: itemBySlug?.fields.categoryName,
 			});
 
 			if (params?.slug[1]) {

@@ -12,6 +12,7 @@ import Footer from '../components/Footer';
 import 'react-calendar/dist/Calendar.css';
 import '../css/output.css';
 import '../css/style.css';
+import { BookingProvider } from '@/context/BookingWidgetCtx';
 
 const inter = Inter({ subsets: ['latin'] });
 
@@ -78,11 +79,13 @@ export default function RootLayout({
 			<MenuProvider>
 				<AppointmentsProvider>
 					<CalendarProvider>
-						<body className={inter.className} suppressHydrationWarning={true}>
-							<Header />
-							<main>{children}</main>
-							<Footer />
-						</body>
+						<BookingProvider>
+							<body className={inter.className} suppressHydrationWarning={true}>
+								<Header />
+								<main>{children}</main>
+								<Footer />
+							</body>
+						</BookingProvider>
 					</CalendarProvider>
 				</AppointmentsProvider>
 			</MenuProvider>

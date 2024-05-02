@@ -21,8 +21,8 @@ export const BookingProvider = ({
 
 	const currDate = `${year}-${month}-${day}`;
 
-	const [service, setService] = useState<string | null>();
-	const [selectedDate, setSelectedDate] = useState<string | null>(currDate);
+	const [service, setService] = useState<string>();
+	const [selectedDate, setSelectedDate] = useState<string>(currDate);
 
 	const value = { service, setService, selectedDate, setSelectedDate };
 
