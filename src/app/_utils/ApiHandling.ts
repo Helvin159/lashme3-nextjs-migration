@@ -43,7 +43,7 @@ class ApiHandling {
 
 	// Creates new client with
 	// name, emal and phone number
-	async createClientEntry(name: string, email: string, tel: string) {
+	async createClientEntry(name: string, email: string, tel?: string) {
 		this.cmaSpace = await this.cmaClient.getSpace(
 			process.env.NEXT_PUBLIC_REACT_APP_CONTENTFUL_SPACE_ID
 		);
@@ -57,8 +57,7 @@ class ApiHandling {
 				fields: {
 					fullName: { 'en-US': name },
 					email: { 'en-US': email },
-					phoneNumber: 9299329932,
-					// clientsPhysicalAddress: { 'en-US': tel },
+					phoneNumber: { 'en-US': tel ? tel : 1231231234 },
 					slug: { 'en-US': name.replace(/\s/g, '-') },
 					// appointments: { 'en-US': name },
 				},

@@ -9,16 +9,27 @@ import MobileMenu from './components/MobileMenu';
 // Hamburger image
 import menuBtn from '../../_assets/svg/icon-menu.svg';
 import NavLink from '../NavLink';
+import FirebaseApi from '@/app/_utils/FirebaseApi';
+import Button from '../Button';
+import { useUserContext } from '@/app/_context/UserContext';
 
 const Header = () => {
 	// *************
 	// Menu Context
 	const { isOpen, setIsOpen } = useMenuCtx();
+	const { user, setUser } = useUserContext();
+
+	// *************
+	// New Firebase Api Class Instance
+	const firebaseApi = new FirebaseApi();
 
 	// *************
 	// Use Menu Hadnling Class to
 	// access handleMobileClose function
 	const menuHandling = new MenuHandling(isOpen, setIsOpen);
+
+	const loginBtn = async () => await firebaseApi.signInWPopup(setUser);
+	const logoutBtn = async () => await firebaseApi.signoutUser(setUser);
 
 	return (
 		<>
@@ -46,9 +57,18 @@ const Header = () => {
 						<NavLink variant={'light'} url='/booking'>
 							Book Now
 						</NavLink>
-						<NavLink variant={'pink'} url='/booking'>
+						<Button
+							variant={'pink'}
+							className={`${user ? 'hidden' : 'block'}`}
+							onClick={loginBtn}>
 							Login
-						</NavLink>
+						</Button>
+						<Button
+							variant={'pink'}
+							className={`${user ? 'block' : 'hidden'}`}
+							onClick={logoutBtn}>
+							Logout
+						</Button>
 					</div>
 				</div>
 				<div className='absolute right-6 top-6 tablet:hidden'>

@@ -14,6 +14,7 @@ import '../css/output.css';
 import '../css/style.css';
 import { BookingProvider } from '@/app/_context/BookingWidgetCtx';
 import { BookingTermsProvider } from '@/app/_context/BookingTermsContext';
+import { UserProvider } from './_context/UserContext';
 
 const inter = Inter({ subsets: ['latin'] });
 
@@ -77,23 +78,25 @@ export default function RootLayout({
 }>) {
 	return (
 		<html lang='en'>
-			<MenuProvider>
-				<AppointmentsProvider>
-					<CalendarProvider>
-						<BookingProvider>
-							<BookingTermsProvider>
-								<body
-									className={inter.className}
-									suppressHydrationWarning={true}>
-									<Header />
-									<main>{children}</main>
-									<Footer />
-								</body>
-							</BookingTermsProvider>
-						</BookingProvider>
-					</CalendarProvider>
-				</AppointmentsProvider>
-			</MenuProvider>
+			<AppointmentsProvider>
+				<CalendarProvider>
+					<BookingProvider>
+						<BookingTermsProvider>
+							<UserProvider>
+								<MenuProvider>
+									<body
+										className={inter.className}
+										suppressHydrationWarning={true}>
+										<Header />
+										<main>{children}</main>
+										<Footer />
+									</body>
+								</MenuProvider>
+							</UserProvider>
+						</BookingTermsProvider>
+					</BookingProvider>
+				</CalendarProvider>
+			</AppointmentsProvider>
 		</html>
 	);
 }
