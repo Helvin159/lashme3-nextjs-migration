@@ -1,9 +1,9 @@
 'use server';
 import React from 'react';
-import { Params } from '@/utils/Types';
-import Container from '@/components/Container';
-import Heading from '@/components/Heading';
-import ApiHandling from '@/utils/ApiHandling';
+import { Params } from '@/app/_utils/Types';
+import Container from '@/app/_components/Container';
+import Heading from '@/app/_components/Heading';
+import ApiHandling from '@/app/_utils/ApiHandling';
 
 const ClientEmailConfirmation = async ({ params }: Params) => {
 	const { clientId } = params;

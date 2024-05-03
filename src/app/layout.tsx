@@ -1,18 +1,19 @@
 import type { Metadata } from 'next';
 import { Inter } from 'next/font/google';
 
-import { AppointmentsProvider } from '@/context/AppointmentsContext';
-import { MenuProvider } from '@/context/MenuContext';
-import { CalendarProvider } from '@/context/CalendarContext';
+import { AppointmentsProvider } from '@/app/_context/AppointmentsContext';
+import { MenuProvider } from '@/app/_context/MenuContext';
+import { CalendarProvider } from '@/app/_context/CalendarContext';
 
-import Header from '@/components/Header/Header';
-import Footer from '../components/Footer';
+import Header from '@/app/_components/Header/Header';
+import Footer from './_components/Footer';
 
 // Styles
 import 'react-calendar/dist/Calendar.css';
 import '../css/output.css';
 import '../css/style.css';
-import { BookingProvider } from '@/context/BookingWidgetCtx';
+import { BookingProvider } from '@/app/_context/BookingWidgetCtx';
+import { BookingTermsProvider } from '@/app/_context/BookingTermsContext';
 
 const inter = Inter({ subsets: ['latin'] });
 
@@ -80,11 +81,15 @@ export default function RootLayout({
 				<AppointmentsProvider>
 					<CalendarProvider>
 						<BookingProvider>
-							<body className={inter.className} suppressHydrationWarning={true}>
-								<Header />
-								<main>{children}</main>
-								<Footer />
-							</body>
+							<BookingTermsProvider>
+								<body
+									className={inter.className}
+									suppressHydrationWarning={true}>
+									<Header />
+									<main>{children}</main>
+									<Footer />
+								</body>
+							</BookingTermsProvider>
 						</BookingProvider>
 					</CalendarProvider>
 				</AppointmentsProvider>

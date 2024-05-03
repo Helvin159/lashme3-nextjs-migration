@@ -1,8 +1,16 @@
-import Container from '@/components/Container';
-import Heading from '@/components/Heading';
-import ApiHandling from '@/utils/ApiHandling';
-import { Params } from '@/utils/Types';
+import Container from '@/app/_components/Container';
+import Heading from '@/app/_components/Heading';
+import ApiHandling from '@/app/_utils/ApiHandling';
+import { Params } from '@/app/_utils/Types';
 import React from 'react';
+
+export async function generateStaticParams() {
+	const apiHandling = new ApiHandling();
+	const { items } = await apiHandling.getContentfulEntries('clients');
+
+	const dataArr = items.map((i: any) => i.sys.id);
+	return dataArr;
+}
 
 const ConfirmAppt = async ({ params }: Params) => {
 	const apiHandling = new ApiHandling();

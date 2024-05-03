@@ -1,8 +1,8 @@
 'use server';
-import CategoryCards from '@/components/CategoryCards';
-import Container from '@/components/Container';
-import Heading from '@/components/Heading';
-import ApiHandling from '@/utils/ApiHandling';
+import CategoryCards from '@/app/_components/CategoryCards';
+import Container from '@/app/_components/Container';
+import Heading from '@/app/_components/Heading';
+import ApiHandling from '@/app/_utils/ApiHandling';
 
 const Services = async () => {
 	const apiHandling = new ApiHandling();

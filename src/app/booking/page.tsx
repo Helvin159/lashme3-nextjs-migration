@@ -1,11 +1,11 @@
 'use server';
 import React from 'react';
 import { NextPage } from 'next';
-import Container from '@/components/Container';
-import ApiHandling from '@/utils/ApiHandling';
-import CalendarComponent from '@/components/Calendar/Calendar';
-import Heading from '@/components/Heading';
-import BookingRules from '@/components/BookingRules';
+import Container from '@/app/_components/Container';
+import ApiHandling from '@/app/_utils/ApiHandling';
+import CalendarComponent from '@/app/_components/Calendar/Calendar';
+import Heading from '@/app/_components/Heading';
+import BookingTerms from '@/app/_components/BookingTerms';
 
 const Book: NextPage = async () => {
 	const apiHandling = new ApiHandling();
@@ -34,7 +34,7 @@ const Book: NextPage = async () => {
 					Booking
 				</Heading>
 			</Container>
-			<BookingRules rules={dets.fields.bookingRules} />
+			<BookingTerms rules={dets.fields.bookingRules} />
 			<Container>
 				<CalendarComponent
 					categories={categories}

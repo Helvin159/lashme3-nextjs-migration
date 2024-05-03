@@ -1,8 +1,8 @@
 'use server';
-import { Params } from '@/utils/Types';
-import Container from '@/components/Container';
-import Section from '@/components/Section';
-import ApiHandling from '@/utils/ApiHandling';
+import { Params } from '@/app/_utils/Types';
+import Container from '@/app/_components/Container';
+import Section from '@/app/_components/Section';
+import ApiHandling from '@/app/_utils/ApiHandling';
 
 export async function generateStaticParams() {
 	const apiHandling = new ApiHandling();

@@ -1,5 +1,5 @@
 'use server';
-import { ProductType } from '@/utils/Types';
+import { ProductType } from '@/app/_utils/Types';
 import Link from 'next/link';
 import React from 'react';
 

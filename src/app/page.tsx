@@ -1,13 +1,13 @@
 'use server';
 import { NextPage } from 'next';
-import ApiHandling from '@/utils/ApiHandling';
-import HomeHero from '../components/HomeHero';
-import PopularTreatments from '../components/PopularBundles/PopularTreatments';
-import RecommendedProducts from '../components/RecommendedProducts/RecommendedProducts';
-import BookingWidget from '../components/BookingWidget/BookingWidget';
-import StopSignUpCTA from '../components/StopSignUpCTA';
+import ApiHandling from '@/app/_utils/ApiHandling';
+import HomeHero from './_components/HomeHero';
+import PopularTreatments from './_components/PopularBundles/PopularTreatments';
+import RecommendedProducts from './_components/RecommendedProducts/RecommendedProducts';
+import BookingWidget from './_components/BookingWidget/BookingWidget';
+import StopSignUpCTA from './_components/StopSignUpCTA';
 
-import { mockData } from '@/utils/mockData';
+import { mockData } from '@/app/_utils/mockData';
 
 const Home: NextPage = async () => {
 	const apiHandling = new ApiHandling();

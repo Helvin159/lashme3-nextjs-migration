@@ -1,6 +1,6 @@
 'use server';
-import Container from '@/components/Container';
-import Heading from '@/components/Heading';
+import Container from '@/app/_components/Container';
+import Heading from '@/app/_components/Heading';
 import React from 'react';
 
 import { redirect } from 'next/navigation';

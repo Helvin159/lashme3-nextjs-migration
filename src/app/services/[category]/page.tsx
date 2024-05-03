@@ -1,9 +1,9 @@
 'use server';
 import React from 'react';
-import Container from '@/components/Container';
-import Heading from '@/components/Heading';
-import ServiceCards from '@/components/ServiceCards';
-import ApiHandling from '@/utils/ApiHandling';
+import Container from '@/app/_components/Container';
+import Heading from '@/app/_components/Heading';
+import ServiceCards from '@/app/_components/ServiceCards';
+import ApiHandling from '@/app/_utils/ApiHandling';
 
 export async function generateStaticParams() {
 	const apiHandling = new ApiHandling();

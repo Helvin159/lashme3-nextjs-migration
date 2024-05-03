@@ -1,8 +1,8 @@
 'use server';
 import React from 'react';
-import { Params, ProductType } from '@/utils/Types';
-import Section from '@/components/Section';
-import Container from '@/components/Container';
+import { Params, ProductType } from '@/app/_utils/Types';
+import Section from '@/app/_components/Section';
+import Container from '@/app/_components/Container';
 
 export async function generateStaticParams() {
 	const data = await fetch(
