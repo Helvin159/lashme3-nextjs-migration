@@ -132,10 +132,8 @@ const CustomerInfoForm = ({ selectedDate }: CustomerInfoFormType) => {
 				</Container>
 			</form>
 
-			<Container className='text-center'>
-				<Heading
-					level='1'
-					className={`${isSubmitted ? 'block' : 'hidden'}  capitalize`}>
+			<Container className={`${isSubmitted ? 'block' : 'hidden'}  text-center`}>
+				<Heading level='1' className='capitalize'>
 					Success!
 				</Heading>
 				<p className='text-lg py-3'>
