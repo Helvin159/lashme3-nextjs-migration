@@ -1,3 +1,4 @@
+'use client';
 import Button from '@/app/_components/Button';
 import Container from '@/app/_components/Container';
 import RowContainer from '@/app/_components/RowContainer';
