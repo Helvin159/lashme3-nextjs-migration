@@ -16,6 +16,10 @@ export const handleChangeDate = (
 	setter(e.target.value);
 };
 
+export const goBack = (setState: Dispatch<SetStateAction<any>>) => {
+	setState(null);
+};
+
 export const months = [
 	'Jan',
 	'Feb',

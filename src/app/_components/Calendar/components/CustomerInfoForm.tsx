@@ -7,6 +7,8 @@ import ApiHandling from '@/app/_utils/ApiHandling';
 import { CustomerInfoFormType } from '@/app/_utils/Types';
 import { useCalendarCtx } from '@/app/_context/CalendarContext';
 import RowContainer from '@/app/_components/RowContainer';
+import { goBack } from '@/app/_utils/utils';
+import Section from '../../Section';
 
 const CustomerInfoForm = ({ selectedDate }: CustomerInfoFormType) => {
 	const apiHandling = new ApiHandling();
@@ -47,10 +49,6 @@ const CustomerInfoForm = ({ selectedDate }: CustomerInfoFormType) => {
 		);
 	};
 
-	const goBack = () => {
-		setSelTime(null);
-	};
-
 	return (
 		<Container
 			className={`${selTime !== null ? 'block' : 'hidden'} mx-auto w-11/12`}>
@@ -64,6 +62,7 @@ const CustomerInfoForm = ({ selectedDate }: CustomerInfoFormType) => {
 					On {month}/{day}/{year} @ {selTime}
 				</p>
 			</div>
+
 			<form
 				onSubmit={onSubmit}
 				className={`${isSubmitted ? 'hidden' : 'block'}`}>
@@ -125,7 +124,11 @@ const CustomerInfoForm = ({ selectedDate }: CustomerInfoFormType) => {
 					</div>
 					<RowContainer>
 						<div className='py-6 mx-auto'>
-							<Button variant='light' onClick={goBack}>
+							<Button
+								variant='light'
+								onClick={() => {
+									goBack(setSelTime);
+								}}>
 								Back
 							</Button>
 						</div>

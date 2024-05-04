@@ -942,6 +942,10 @@ video {
   justify-content: space-evenly;
 }
 
+.justify-items-start {
+  justify-items: start;
+}
+
 .justify-items-center {
   justify-items: center;
 }
@@ -952,6 +956,53 @@ video {
 
 .gap-2 {
   gap: 0.5rem;
+}
+
+.gap-5 {
+  gap: 1.25rem;
+}
+
+.gap-y-6 {
+  row-gap: 1.5rem;
+}
+
+.gap-x-3 {
+  -moz-column-gap: 0.75rem;
+       column-gap: 0.75rem;
+}
+
+.gap-y-3 {
+  row-gap: 0.75rem;
+}
+
+.gap-x-6 {
+  -moz-column-gap: 1.5rem;
+       column-gap: 1.5rem;
+}
+
+.gap-x-10 {
+  -moz-column-gap: 2.5rem;
+       column-gap: 2.5rem;
+}
+
+.gap-x-12 {
+  -moz-column-gap: 3rem;
+       column-gap: 3rem;
+}
+
+.gap-x-20 {
+  -moz-column-gap: 5rem;
+       column-gap: 5rem;
+}
+
+.gap-x-16 {
+  -moz-column-gap: 4rem;
+       column-gap: 4rem;
+}
+
+.gap-x-14 {
+  -moz-column-gap: 3.5rem;
+       column-gap: 3.5rem;
 }
 
 .self-start {
@@ -1435,8 +1486,17 @@ video {
     flex-wrap: wrap;
   }
 
+  .tablet\:justify-start {
+    justify-content: flex-start;
+  }
+
   .tablet\:justify-between {
     justify-content: space-between;
+  }
+
+  .tablet\:gap-x-12 {
+    -moz-column-gap: 3rem;
+         column-gap: 3rem;
   }
 
   .tablet\:px-0 {

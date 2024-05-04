@@ -1,7 +1,7 @@
 'use client';
 import Container from '@/app/_components/Container';
 import Heading from '@/app/_components/Heading';
-import { daysOfWeek, months } from '@/app/_utils/utils';
+import { daysOfWeek, goBack, months } from '@/app/_utils/utils';
 import React, { useEffect, useState } from 'react';
 import Calendar from 'react-calendar';
 import OtherServices from './OtherServices';
@@ -28,10 +28,9 @@ const CalAndTime = ({ appointments, services, settings }: any) => {
 	const month = calendarDate?.getMonth();
 	const day = calendarDate?.getDate();
 
-	const goBack = () => {
-		setSelService(null);
-	};
-
+	// Get unavailable hours and minutes from current appointments
+	// The for loop will push each time in the form of a string
+	// for use in the if() block returning the time options
 	let unavailableHours: any = [];
 	for (let i = 0; i < appointments.length; i++) {
 		let date = new Date(appointments[i].fields.appointmentDate);
@@ -170,7 +169,11 @@ const CalAndTime = ({ appointments, services, settings }: any) => {
 				</Container>
 			</div>
 			<Container className='mx-auto w-full text-center p-6'>
-				<Button variant='pink' onClick={goBack}>
+				<Button
+					variant='pink'
+					onClick={() => {
+						goBack(setSelService);
+					}}>
 					Back
 				</Button>
 			</Container>

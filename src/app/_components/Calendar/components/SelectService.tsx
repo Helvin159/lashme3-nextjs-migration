@@ -4,13 +4,10 @@ import { useCalendarCtx } from '@/app/_context/CalendarContext';
 import Button from '@/app/_components/Button';
 import Container from '@/app/_components/Container';
 import Heading from '@/app/_components/Heading';
+import { goBack } from '@/app/_utils/utils';
 
 const SelectService = ({ services, handleSelService }: any) => {
 	const { selCategory, setSelCategory, selService } = useCalendarCtx();
-
-	const goBack = () => {
-		setSelCategory(null);
-	};
 
 	return (
 		<Container
@@ -43,7 +40,11 @@ const SelectService = ({ services, handleSelService }: any) => {
 				}
 			})}
 			<Container className='mx-auto w-full text-center p-6'>
-				<Button variant='pink' onClick={goBack}>
+				<Button
+					variant='pink'
+					onClick={() => {
+						goBack(setSelCategory);
+					}}>
 					Back
 				</Button>
 			</Container>
