@@ -34,6 +34,10 @@ export type RowContainerType = {
 	children?: React.ReactNode;
 	className?: string;
 };
+export type FlexColType = {
+	children?: React.ReactNode;
+	className?: string;
+};
 
 export type SectionType = {
 	children?: React.ReactNode;

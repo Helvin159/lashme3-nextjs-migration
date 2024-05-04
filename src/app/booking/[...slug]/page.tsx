@@ -1,6 +1,7 @@
 import BookingTerms from '@/app/_components/BookingTerms';
 import CalendarComponent from '@/app/_components/Calendar/Calendar';
 import Container from '@/app/_components/Container';
+import Section from '@/app/_components/Section';
 import ApiHandling from '@/app/_utils/ApiHandling';
 import { Params } from '@/app/_utils/Types';
 
@@ -31,19 +32,25 @@ const Booking = async ({ params }: Params) => {
 
 	return (
 		<>
-			<Container className='text-center p-10'>
-				<h1 className='text-4xl'>Booking</h1>
-			</Container>
-			<BookingTerms rules={dets.fields.bookingRules} />
-			<Container>
-				<CalendarComponent
-					params={params}
-					categories={categories}
-					services={services}
-					uDates={uDates}
-					appointments={appts}
-				/>
-			</Container>
+			<Section>
+				<Container className='text-center p-10'>
+					<h1 className='text-4xl'>Booking</h1>
+				</Container>
+			</Section>
+			<Section>
+				<BookingTerms rules={dets.fields.bookingRules} />
+			</Section>
+			<Section>
+				<Container>
+					<CalendarComponent
+						params={params}
+						categories={categories}
+						services={services}
+						uDates={uDates}
+						appointments={appts}
+					/>
+				</Container>
+			</Section>
 		</>
 	);
 };

@@ -76,6 +76,7 @@ const CustomerInfoForm = ({ selectedDate }: CustomerInfoFormType) => {
 							type='text'
 							className='p-4 w-80 tablet:w-96 shadow-lg rounded'
 							id='customerFName'
+							name='customerFName'
 							required
 							placeholder='First Name'
 						/>
@@ -89,6 +90,7 @@ const CustomerInfoForm = ({ selectedDate }: CustomerInfoFormType) => {
 							type='text'
 							className='p-4 w-80 tablet:w-96 shadow-lg rounded'
 							id='customerLName'
+							name='customerLName'
 							required
 							placeholder='Last Name'
 						/>
@@ -101,6 +103,7 @@ const CustomerInfoForm = ({ selectedDate }: CustomerInfoFormType) => {
 							type='tel'
 							className='p-4 w-80 tablet:w-96 shadow-lg rounded'
 							id='customerTel'
+							name='customerTel'
 							required
 							maxLength={18}
 							minLength={6}
@@ -115,6 +118,7 @@ const CustomerInfoForm = ({ selectedDate }: CustomerInfoFormType) => {
 							type='email'
 							className='p-4 w-80 tablet:w-96 shadow-lg rounded'
 							id='customerEmail'
+							name='customerEmail'
 							required
 							placeholder='Email'
 						/>

@@ -78,25 +78,23 @@ export default function RootLayout({
 }>) {
 	return (
 		<html lang='en'>
-			<AppointmentsProvider>
-				<CalendarProvider>
-					<BookingProvider>
-						<BookingTermsProvider>
-							<UserProvider>
-								<MenuProvider>
-									<body
-										className={inter.className}
-										suppressHydrationWarning={true}>
-										<Header />
-										<main>{children}</main>
-										<Footer />
-									</body>
-								</MenuProvider>
-							</UserProvider>
-						</BookingTermsProvider>
-					</BookingProvider>
-				</CalendarProvider>
-			</AppointmentsProvider>
+			<CalendarProvider>
+				<BookingProvider>
+					<BookingTermsProvider>
+						<UserProvider>
+							<MenuProvider>
+								<body
+									className={inter.className}
+									suppressHydrationWarning={true}>
+									<Header />
+									<main>{children}</main>
+									<Footer />
+								</body>
+							</MenuProvider>
+						</UserProvider>
+					</BookingTermsProvider>
+				</BookingProvider>
+			</CalendarProvider>
 		</html>
 	);
 }

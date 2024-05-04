@@ -722,6 +722,10 @@ video {
   display: inline-block;
 }
 
+.inline {
+  display: inline;
+}
+
 .flex {
   display: flex;
 }
@@ -806,6 +810,10 @@ video {
   width: 100%;
 }
 
+.w-3\/12 {
+  width: 25%;
+}
+
 .max-w-1250 {
   max-width: 80rem;
 }
@@ -816,6 +824,22 @@ video {
 
 .max-w-full {
   max-width: 100%;
+}
+
+.max-w-72 {
+  max-width: 18rem;
+}
+
+.flex-1 {
+  flex: 1 1 0%;
+}
+
+.flex-auto {
+  flex: 1 1 auto;
+}
+
+.flex-initial {
+  flex: 0 1 auto;
 }
 
 .shrink {
@@ -832,6 +856,10 @@ video {
 
 .basis-3\/12 {
   flex-basis: 25%;
+}
+
+.basis-4\/12 {
+  flex-basis: 33.333333%;
 }
 
 .translate-x-n50 {
@@ -870,6 +898,14 @@ video {
   flex-wrap: wrap;
 }
 
+.content-center {
+  align-content: center;
+}
+
+.content-start {
+  align-content: flex-start;
+}
+
 .content-evenly {
   align-content: space-evenly;
 }
@@ -880,6 +916,14 @@ video {
 
 .items-center {
   align-items: center;
+}
+
+.justify-normal {
+  justify-content: normal;
+}
+
+.justify-start {
+  justify-content: flex-start;
 }
 
 .justify-center {
@@ -898,12 +942,28 @@ video {
   justify-content: space-evenly;
 }
 
+.justify-items-center {
+  justify-items: center;
+}
+
+.gap-1 {
+  gap: 0.25rem;
+}
+
+.gap-2 {
+  gap: 0.5rem;
+}
+
 .self-start {
   align-self: flex-start;
 }
 
 .self-end {
   align-self: flex-end;
+}
+
+.justify-self-start {
+  justify-self: start;
 }
 
 .whitespace-nowrap {
@@ -1175,6 +1235,10 @@ video {
   line-height: 1.75rem;
 }
 
+.capitalize {
+  text-transform: capitalize;
+}
+
 .text-white {
   --tw-text-opacity: 1;
   color: rgb(255 255 255 / var(--tw-text-opacity));
@@ -1234,6 +1298,14 @@ video {
 .placeholder\:text-black::placeholder {
   --tw-text-opacity: 1;
   color: rgb(0 0 0 / var(--tw-text-opacity));
+}
+
+.last\:justify-start:last-child {
+  justify-content: flex-start;
+}
+
+.last\:justify-self-start:last-child {
+  justify-self: start;
 }
 
 .hover\:border-black:hover {

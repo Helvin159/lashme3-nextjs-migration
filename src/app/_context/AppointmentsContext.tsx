@@ -2,26 +2,6 @@
 import ApiHandling from '@/app/_utils/ApiHandling';
 import { createContext, useContext, useState } from 'react';
 
-const apiHandling = new ApiHandling();
-
-let data = async () => {
-	let { items } = await apiHandling
-		.getContentfulEntries('appointments')
-		.then((res) => res);
-
-	let newArrItems = [];
-
-	for (let i = 0; i < items?.length; i++) {
-		newArrItems.push(items[i]);
-	}
-
-	let newObj = {
-		items: newArrItems,
-	};
-
-	return newObj;
-};
-
 // Create Context
 const AppointmentsContext = createContext<any>(null);
 
@@ -31,7 +11,12 @@ export const AppointmentsProvider = ({
 }: {
 	children: React.ReactNode;
 }) => {
-	const [appointments, setAppointments] = useState<any>(data);
+	const apiHandling = new ApiHandling();
+
+	const fetchAppts = async () =>
+		await apiHandling.getContentfulEntries('appointments');
+
+	const [appointments, setAppointments] = useState<any | null>();
 
 	const value = { appointments, setAppointments };
 
@@ -42,4 +27,4 @@ export const AppointmentsProvider = ({
 	);
 };
 
-export const useApptsCtx = () => useContext(AppointmentsContext);
+export const UseApptsCtx = () => useContext(AppointmentsContext);

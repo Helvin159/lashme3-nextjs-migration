@@ -8,7 +8,7 @@ import OtherServices from './OtherServices';
 import Button from '@/app/_components/Button';
 import { useCalendarCtx } from '@/app/_context/CalendarContext';
 
-const CalAndTime = ({ services, settings }: any) => {
+const CalAndTime = ({ appointments, services, settings }: any) => {
 	const {
 		calendarDate,
 		setCalendarDate,
@@ -31,6 +31,27 @@ const CalAndTime = ({ services, settings }: any) => {
 	const goBack = () => {
 		setSelService(null);
 	};
+
+	let unavailableHours: any = [];
+	for (let i = 0; i < appointments.length; i++) {
+		let date = new Date(appointments[i].fields.appointmentDate);
+		let hour =
+			date.getHours() < 10
+				? `0${date.getHours()}`
+				: date.getHours() > 12
+				? date.getHours() - 12
+				: date.getHours();
+		let minutes =
+			date.getMinutes() < 1 ? `0${date.getMinutes()}` : date.getMinutes();
+
+		const month = date?.getMonth() + 1;
+		const day = date?.getDate();
+
+		unavailableHours.push({
+			date: `${month}/${day}`,
+			time: `${hour}:${minutes}`,
+		});
+	}
 
 	useEffect(() => {
 		setTotalHours(selService?.hours);
@@ -118,15 +139,32 @@ const CalAndTime = ({ services, settings }: any) => {
 								value={'Time'}>
 								Time
 							</option>
-							{daysOfWeek[dayOfWeek]?.availableTimeSlots.map((i, k) => (
-								<option key={k} value={`${i.time.hour}:${i.time.minutes}`}>
-									{`${
-										parseInt(i.time.hour) > 12
-											? parseInt(i.time.hour) - 12
-											: i.time.hour
-									}:${i.time.minutes}`}
-								</option>
-							))}
+							{daysOfWeek[dayOfWeek]?.availableTimeSlots.map((i, k) => {
+								let time = `${
+									parseInt(i.time.hour) > 12
+										? parseInt(i.time.hour) - 12
+										: i.time.hour
+								}:${i.time.minutes}`;
+
+								let unavailableTime = unavailableHours.find(
+									(i: any) => i.time === time
+								);
+
+								if (
+									unavailableTime === undefined &&
+									unavailableTime?.date !== `${month + 1}/${day}`
+								) {
+									return (
+										<option key={k} value={`${i.time.hour}:${i.time.minutes}`}>
+											{`${
+												parseInt(i.time.hour) > 12
+													? parseInt(i.time.hour) - 12
+													: i.time.hour
+											}:${i.time.minutes}`}
+										</option>
+									);
+								}
+							})}
 						</select>
 					</Container>
 				</Container>

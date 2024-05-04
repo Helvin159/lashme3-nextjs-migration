@@ -11,7 +11,12 @@ import SelectService from './components/SelectService';
 import CustomerInfoForm from './components/CustomerInfoForm';
 import CalAndTime from './components/CalAndTime';
 
-const CalendarComponent = ({ categories, services, params }: any) => {
+const CalendarComponent = ({
+	categories,
+	services,
+	params,
+	appointments,
+}: any) => {
 	// ************
 	// If this is routed to an address that doesn't include a Date
 	// on the address in the dynamic slug expecting a date on the
@@ -117,7 +122,11 @@ const CalendarComponent = ({ categories, services, params }: any) => {
 					/>
 
 					{/* Calendar Available Times & Other Services */}
-					<CalAndTime services={services} settings={settings} />
+					<CalAndTime
+						appointments={appointments}
+						services={services}
+						settings={settings}
+					/>
 
 					{/* Form to enter customer name, email and phone number */}
 					<CustomerInfoForm selectedDate={calendarDate} />
