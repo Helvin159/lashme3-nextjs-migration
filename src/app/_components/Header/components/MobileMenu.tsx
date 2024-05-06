@@ -24,7 +24,7 @@ const MobileMenu = ({ businessDetails }: any) => {
 						{businessDetails && (
 							<Image
 								className='max-w-14 rounded-xl shadow'
-								src={`https://${businessDetails.fields.logo.fields.file.url}`}
+								src={`https:${businessDetails.fields.logo.fields.file.url}`}
 								alt={businessDetails?.fields?.businessName}
 								width={
 									businessDetails.fields.logo.fields.file.details.image.width
