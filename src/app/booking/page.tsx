@@ -28,6 +28,7 @@ const Book: NextPage = async () => {
 		'unavailableDates'
 	);
 
+	console.log(appts[0].fields.relatedService, 'appointments');
 	return (
 		<>
 			<Section>

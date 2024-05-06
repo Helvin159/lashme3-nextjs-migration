@@ -6,17 +6,29 @@ import ServiceCards from '@/app/_components/ServiceCards';
 import ApiHandling from '@/app/_utils/ApiHandling';
 import Section from '@/app/_components/Section';
 import RowContainer from '@/app/_components/RowContainer';
+import { Metadata } from 'next';
 
-export async function generateStaticParams() {
-	const apiHandling = new ApiHandling();
+const apiHandling = new ApiHandling();
+
+export const generateStaticParams = async () => {
 	const { items } = await apiHandling.getContentfulEntries('category');
-
 	const dataArr = items.map((i: any) => i.fields.slug);
+
 	return dataArr;
-}
+};
+
+export const generateMetadata = async ({
+	params,
+}: {
+	params: { category: string };
+}): Promise<Metadata> => {
+	const { items } = await apiHandling.getContentfulEntries('category');
+	const data = items?.find((i: any) => i.fields.slug === params.category);
+
+	return { title: { absolute: `Lash Me E. - ${data.fields.categoryName}` } };
+};
 
 const Categories = async ({ params }: any) => {
-	const apiHandling = new ApiHandling();
 	const { items: categories } = await apiHandling.getContentfulEntries(
 		'category'
 	);

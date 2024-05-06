@@ -8,7 +8,7 @@ import { CustomerInfoFormType } from '@/app/_utils/Types';
 import { useCalendarCtx } from '@/app/_context/CalendarContext';
 import RowContainer from '@/app/_components/RowContainer';
 import { goBack } from '@/app/_utils/utils';
-import Section from '../../Section';
+import SelectService from './SelectService';
 
 const CustomerInfoForm = ({ selectedDate }: CustomerInfoFormType) => {
 	const apiHandling = new ApiHandling();
@@ -45,9 +45,12 @@ const CustomerInfoForm = ({ selectedDate }: CustomerInfoFormType) => {
 			tel,
 			slug,
 			isSubmitted,
-			setIsSubmitted
+			setIsSubmitted,
+			selService
 		);
 	};
+
+	console.log(selService);
 
 	return (
 		<Container

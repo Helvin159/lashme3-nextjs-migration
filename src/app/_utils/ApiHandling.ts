@@ -1,6 +1,6 @@
+// import axios from 'axios';
 import { createClient } from 'contentful';
 import { createClient as createMgmtClient } from 'contentful-management';
-import axios from 'axios';
 
 class ApiHandling {
 	client: any;
@@ -79,7 +79,8 @@ class ApiHandling {
 		tel: string,
 		slug: string,
 		isSubmitted: Boolean | null,
-		setIsSubmitted: any | null
+		setIsSubmitted: any | null,
+		selService?: any
 	) {
 		this.cmaSpace = await this.cmaClient.getSpace(
 			process.env.NEXT_PUBLIC_REACT_APP_CONTENTFUL_SPACE_ID
@@ -105,6 +106,7 @@ class ApiHandling {
 		// creating a new client, else creates a client
 		// and creates a new appointment
 		if (clienExists) {
+			console.log(clienExists, 'existing client');
 			this.cmaEnv
 				.createEntry('appointments', {
 					fields: {
@@ -115,38 +117,54 @@ class ApiHandling {
 						appointmentDate: { 'en-US': dateTime },
 						customerEmail: { 'en-US': email },
 						customerPhoneNumber: { 'en-US': tel },
+						durationHours: { 'en-US': selService.hours },
+						durationMinutes: { 'en-US': selService.minutes },
 						slug: { 'en-US': slug },
+						client: {
+							'en-US': {
+								sys: {
+									type: 'Link',
+									linkType: 'Entry',
+									id: clienExists.sys.id,
+								},
+							},
+						},
 					},
 				})
 				.then((entry: any) => entry.publish())
 				.then((entry: any) => {
 					console.log(entry, 'success');
 
-					try {
-						const res = axios.post('https://lashme3.com/email');
-						console.log(res);
-					} catch (e) {
-						console.log(e);
-					}
+					// try {
+					// 	const res = axios.post('https://lashme3.com/email');
+					// 	console.log(res);
+					// } catch (e) {
+					// 	console.log(e);
+					// }
 
 					setIsSubmitted(!isSubmitted);
 				})
 				.catch(console.error);
 		} else {
+			// Create client entry, then create
+			// appointment entry with client.
 			this.cmaEnv
 				.createEntry('clients', {
 					fields: {
 						fullName: { 'en-US': name },
 						email: { 'en-US': email },
 						phoneNumber: { 'en-US': parseInt(tel) },
-						// clientsPhysicalAddress: { 'en-US': tel },
-						slug: { 'en-US': name.replace(/\s/g, '-') },
-						// appointments: { 'en-US': name },
+						slug: { 'en-US': name.replace(/\s/g, '-').toLowerCase() },
+						clientsPhysicalAddress: { 'en-US': `${name}, \n${tel} \n${email}` },
 					},
 				})
 				.then((clientEntry: any) => clientEntry.publish())
 				.then((clientEntry: any) => {
+					// Successfully created client entry
 					console.log(clientEntry, 'Client created successfuly');
+
+					// Now that client is created, create
+					// the appointment for the client
 					this.cmaEnv
 						.createEntry('appointments', {
 							fields: {
@@ -157,12 +175,38 @@ class ApiHandling {
 								appointmentDate: { 'en-US': dateTime },
 								customerEmail: { 'en-US': email },
 								customerPhoneNumber: { 'en-US': tel },
+								durationHours: { 'en-US': selService.hours },
+								durationMinutes: { 'en-US': selService.minutes },
 								slug: { 'en-US': slug },
+								client: {
+									'en-US': {
+										sys: {
+											type: 'Link',
+											linkType: 'Entry',
+											id: clientEntry.sys.id,
+										},
+									},
+								},
+								// relatedService: {
+								// 	'en-US': {
+								// 		sys: { type: 'Array'
+
+								// 		},
+								// 		items: [
+								// 			{
+								// 				linkType: 'Entry',
+								// 				id: selService.id,
+								// 				type: 'Link',
+								// 			},
+								// 		],
+								// 	},
+								// },
 							},
 						})
 						.then((apptEntry: any) => apptEntry.publish())
 						.then((apptEntry: any) => {
 							console.log(apptEntry, 'Appt success');
+
 							setIsSubmitted(!isSubmitted);
 						})
 						.catch(console.error);

@@ -19,7 +19,7 @@ import { UserProvider } from './_context/UserContext';
 const inter = Inter({ subsets: ['latin'] });
 
 export const metadata: Metadata = {
-	title: 'Lash Me E.',
+	title: { default: 'Lash Me E.', template: 'Lash Me E | %s' },
 	description: 'Lash Tech in Boston',
 	category: 'beauty',
 	robots: {

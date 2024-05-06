@@ -1,12 +1,12 @@
 'use client';
+import { useCalendarCtx } from '@/app/_context/CalendarContext';
+import { daysOfWeek, goBack, months } from '@/app/_utils/utils';
 import Container from '@/app/_components/Container';
 import Heading from '@/app/_components/Heading';
-import { daysOfWeek, goBack, months } from '@/app/_utils/utils';
-import React, { useEffect, useState } from 'react';
+import React, { useEffect } from 'react';
 import Calendar from 'react-calendar';
 import OtherServices from './OtherServices';
 import Button from '@/app/_components/Button';
-import { useCalendarCtx } from '@/app/_context/CalendarContext';
 
 const CalAndTime = ({ appointments, services, settings }: any) => {
 	const {
@@ -34,24 +34,25 @@ const CalAndTime = ({ appointments, services, settings }: any) => {
 	let unavailableHours: any = [];
 	for (let i = 0; i < appointments.length; i++) {
 		let date = new Date(appointments[i].fields.appointmentDate);
-		let hour =
+		let hour: any =
 			date.getHours() < 10
 				? `0${date.getHours()}`
 				: date.getHours() > 12
 				? date.getHours() - 12
 				: date.getHours();
 		let minutes =
-			date.getMinutes() < 1 ? `0${date.getMinutes()}` : date.getMinutes();
+			date.getMinutes() <= 9 ? `0${date.getMinutes()}` : date.getMinutes();
 
 		const month = date?.getMonth() + 1;
 		const day = date?.getDate();
 
 		unavailableHours.push({
 			date: `${month}/${day}`,
-			time: `${hour}:${minutes}`,
+			time: `${hour + 1}:${minutes}`,
 		});
 	}
 
+	// Rerender where necessary
 	useEffect(() => {
 		setTotalHours(selService?.hours);
 		setTotalMins(selService?.minutes);
@@ -94,8 +95,8 @@ const CalAndTime = ({ appointments, services, settings }: any) => {
 					{totalHours < 1
 						? ''
 						: totalHours === 1
-						? `${totalHours} hour ${totalMins > 0 && ' &'}`
-						: `${totalHours} hours ${totalMins > 0 && ' &'}`}
+						? `${totalHours} hour ${totalMins > 0 && ' & '}`
+						: `${totalHours} hours ${totalMins > 0 && ' & '}`}
 					{totalMins > 0 && `${totalMins} minutes`} @ ${selService?.price}
 				</p>
 				<Heading level='6'>Select a Date</Heading>
