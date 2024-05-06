@@ -21,6 +21,8 @@ const Menu = ({ businessDetails }: any) => {
 	// access handleMobileClose function
 	const loginBtn = async () => await firebaseApi.signInWPopup(setUser);
 	const logoutBtn = async () => await firebaseApi.signoutUser(setUser);
+
+	console.log(businessDetails);
 	return (
 		<div className='flex flex-col tablet:flex-row justify-between py-7 px-14'>
 			<div className='flex mx-auto tablet:mx-0'>
@@ -30,7 +32,7 @@ const Menu = ({ businessDetails }: any) => {
 							<Image
 								className='max-w-14 rounded-xl shadow'
 								src={`https://${businessDetails.fields.logo.fields.file.url}`}
-								alt={businessDetails?.fields?.logo.title}
+								alt={businessDetails?.fields?.businessName}
 								width={
 									businessDetails.fields.logo.fields.file.details.image.width
 								}

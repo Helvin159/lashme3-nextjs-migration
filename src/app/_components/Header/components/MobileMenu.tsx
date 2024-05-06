@@ -2,7 +2,6 @@
 import { useMenuCtx } from '@/app/_context/MenuContext';
 import MenuHandling from '@/app/_utils/MenuHandling';
 import Image from 'next/image';
-import Link from 'next/link';
 import { useRouter } from 'next/navigation';
 
 const MobileMenu = ({ businessDetails }: any) => {
@@ -22,11 +21,11 @@ const MobileMenu = ({ businessDetails }: any) => {
 			<div className='flex flex-col tablet:flex-row justify-between py-7 px-14'>
 				<div className='flex mx-auto tablet:mx-0'>
 					<div className='mx-auto text-2xl tablet:mr-14 '>
-						{businessDetails?.fields?.logo && (
+						{businessDetails && (
 							<Image
 								className='max-w-14 rounded-xl shadow'
 								src={`https://${businessDetails.fields.logo.fields.file.url}`}
-								alt={businessDetails?.fields?.logo.title}
+								alt={businessDetails?.fields?.businessName}
 								width={
 									businessDetails.fields.logo.fields.file.details.image.width
 								}
@@ -56,7 +55,7 @@ const MobileMenu = ({ businessDetails }: any) => {
 
 									setTimeout(
 										() => menuHandling.handleMobileClose(isOpen, setIsOpen),
-										500
+										100
 									);
 								}}
 								className='poppins-semibold text-5xl'
@@ -73,7 +72,7 @@ const MobileMenu = ({ businessDetails }: any) => {
 									router.push('/booking');
 									setTimeout(
 										() => menuHandling.handleMobileClose(isOpen, setIsOpen),
-										500
+										100
 									);
 								}}>
 								Booking
@@ -101,7 +100,7 @@ const MobileMenu = ({ businessDetails }: any) => {
 									router.push('/products');
 									setTimeout(
 										() => menuHandling.handleMobileClose(isOpen, setIsOpen),
-										500
+										100
 									);
 								}}>
 								Products
