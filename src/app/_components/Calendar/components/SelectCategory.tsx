@@ -4,8 +4,14 @@ import Heading from '@/app/_components/Heading';
 import { useCalendarCtx } from '@/app/_context/CalendarContext';
 import React from 'react';
 
-const SelectCategory = ({ categories, handleClick }: any) => {
-	const { selCategory } = useCalendarCtx();
+const SelectCategory = ({ categories }: any) => {
+	const { selCategory, setSelCategory } = useCalendarCtx();
+
+	// Click and Change functions
+	const handleClick = ({ id, name }: { id: string; name: string }) => {
+		setSelCategory({ id: id, name: name });
+	};
+
 	return (
 		<Container
 			className={`w-full text-center ${

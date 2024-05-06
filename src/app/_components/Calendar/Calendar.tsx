@@ -33,21 +33,7 @@ const CalendarComponent = ({
 
 	// Get Data from context
 	const { isAgreed } = useBookingTermsCtx();
-	const { calendarDate, setCalendarDate, setSelCategory, setSelService } =
-		useCalendarCtx();
-
-	// Calendar Settings
-	const settings = {
-		defaultActiveStartDate: calendarDate,
-		minDate: new Date(),
-		maxDate: new Date(2025, 0, 1),
-		selectRange: false,
-	};
-
-	// Click and Change functions
-	const handleClick = ({ id, name }: { id: string; name: string }) => {
-		setSelCategory({ id: id, name: name });
-	};
+	const { setCalendarDate, setSelCategory, setSelService } = useCalendarCtx();
 
 	const handleSelService = ({
 		id,
@@ -113,7 +99,7 @@ const CalendarComponent = ({
 				<Container className='flex flex-col w-full tablet:w-10/12 mx-auto '>
 					{/* Categories to select from, service will show 
 					after category has been chosen */}
-					<SelectCategory categories={categories} handleClick={handleClick} />
+					<SelectCategory categories={categories} />
 
 					{/* Service Menu shows after category is chosen */}
 					<SelectService
@@ -122,14 +108,10 @@ const CalendarComponent = ({
 					/>
 
 					{/* Calendar Available Times & Other Services */}
-					<CalAndTime
-						appointments={appointments}
-						services={services}
-						settings={settings}
-					/>
+					<CalAndTime appointments={appointments} services={services} />
 
 					{/* Form to enter customer name, email and phone number */}
-					<CustomerInfoForm selectedDate={calendarDate} />
+					<CustomerInfoForm />
 				</Container>
 			</Container>
 		</Section>

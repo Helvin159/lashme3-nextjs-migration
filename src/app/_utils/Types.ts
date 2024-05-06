@@ -106,6 +106,7 @@ export interface ButtonType {
 	variant: string;
 	onClick?: React.MouseEventHandler<HTMLButtonElement>;
 	className?: string;
+	url?: string;
 }
 
 export interface LinkButtonType {

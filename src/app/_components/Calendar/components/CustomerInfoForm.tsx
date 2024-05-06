@@ -4,16 +4,15 @@ import Button from '@/app/_components/Button';
 import Container from '@/app/_components/Container';
 import Heading from '@/app/_components/Heading';
 import ApiHandling from '@/app/_utils/ApiHandling';
-import { CustomerInfoFormType } from '@/app/_utils/Types';
 import { useCalendarCtx } from '@/app/_context/CalendarContext';
 import RowContainer from '@/app/_components/RowContainer';
 import { goBack } from '@/app/_utils/utils';
-import SelectService from './SelectService';
 
-const CustomerInfoForm = ({ selectedDate }: CustomerInfoFormType) => {
+const CustomerInfoForm = () => {
 	const apiHandling = new ApiHandling();
 
 	const {
+		calendarDate,
 		selCategory,
 		selService,
 		selTime,
@@ -22,7 +21,7 @@ const CustomerInfoForm = ({ selectedDate }: CustomerInfoFormType) => {
 		setIsSubmitted,
 	} = useCalendarCtx();
 
-	const date = new Date(selectedDate);
+	const date = new Date(calendarDate);
 	const year = date.getFullYear();
 	const month =
 		date.getMonth() < 10 ? `0${date.getMonth() + 1}` : date.getMonth() + 1;
@@ -49,8 +48,6 @@ const CustomerInfoForm = ({ selectedDate }: CustomerInfoFormType) => {
 			selService
 		);
 	};
-
-	console.log(selService);
 
 	return (
 		<Container

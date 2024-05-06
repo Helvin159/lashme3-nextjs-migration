@@ -15,6 +15,7 @@ const NavLink = ({ url, variant, children }: LinkButtonType) => {
 		light:
 			'transition ease-in delay-80 border-solid border-2 border-black px-8 py-2 rounded-lg mr-2 hover:bg-variant-one hover:border-variant-one hover:text-white',
 	};
+
 	return (
 		<Link
 			href={url}
@@ -22,7 +23,7 @@ const NavLink = ({ url, variant, children }: LinkButtonType) => {
 				variant
 					? variants[variant as keyof typeof variants]
 					: variants['light' as keyof typeof variants]
-			}`}>
+			} `}>
 			{children}
 		</Link>
 	);

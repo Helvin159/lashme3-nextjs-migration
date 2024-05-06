@@ -1,6 +1,6 @@
 'use server';
 import React from 'react';
-import { NextPage } from 'next';
+import { Metadata, NextPage } from 'next';
 import Container from '@/app/_components/Container';
 import ApiHandling from '@/app/_utils/ApiHandling';
 import CalendarComponent from '@/app/_components/Calendar/Calendar';
@@ -8,9 +8,22 @@ import Heading from '@/app/_components/Heading';
 import BookingTerms from '@/app/_components/BookingTerms';
 import Section from '../_components/Section';
 
-const Book: NextPage = async () => {
-	const apiHandling = new ApiHandling();
+const apiHandling = new ApiHandling();
 
+export const generateMetadata = async ({
+	params,
+}: {
+	params: { category: string };
+}): Promise<Metadata> => {
+	async () =>
+		await new Promise((resolve: any) => {
+			setTimeout(() => resolve(), 100);
+		});
+
+	return { title: { absolute: `Lash Me E. - Booking` } };
+};
+
+const Book: NextPage = async () => {
 	// Get Data
 	const { items: details } = await apiHandling.getContentfulEntries(
 		'businessDetails'
@@ -28,7 +41,7 @@ const Book: NextPage = async () => {
 		'unavailableDates'
 	);
 
-	console.log(appts[0].fields.relatedService, 'appointments');
+	// console.log(appts[0].fields.relatedService, 'appointments');
 	return (
 		<>
 			<Section>

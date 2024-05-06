@@ -1,4 +1,3 @@
-'use server';
 import React from 'react';
 import PopularTreatmentsCard from './components/PopularTreatmentsCard';
 import Section from '../Section';

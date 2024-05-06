@@ -1,9 +1,9 @@
 import React from 'react';
-import Section from './Section';
 
-import stopHand from '../_assets/svg/icon-hand.svg';
-import Button from './Button';
+import Section from '../Section';
+import stopHand from '../../_assets/svg/icon-hand.svg';
 import Image from 'next/image';
+import SignUpBtn from './components/SignUpBtn';
 
 const StopSignUpCTA = () => {
 	return (
@@ -27,11 +27,7 @@ const StopSignUpCTA = () => {
 							</p>
 						</div>
 					</div>
-					<div className='text-center px-2 pt-6 laptop:pt-0 shrink'>
-						<div className='inline-block align-middle tablet:py-2'>
-							<Button variant={'light'}>Sign up</Button>
-						</div>
-					</div>
+					<SignUpBtn />
 				</div>
 			</div>
 		</Section>

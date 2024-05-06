@@ -5,7 +5,7 @@ import HomeHero from './_components/HomeHero';
 import PopularTreatments from './_components/PopularBundles/PopularTreatments';
 import RecommendedProducts from './_components/RecommendedProducts/RecommendedProducts';
 import BookingWidget from './_components/BookingWidget/BookingWidget';
-import StopSignUpCTA from './_components/StopSignUpCTA';
+import StopSignUpCTA from './_components/StopSignUpCTA/StopSignUpCTA';
 
 import { mockData } from '@/app/_utils/mockData';
 

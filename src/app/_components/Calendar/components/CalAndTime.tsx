@@ -8,7 +8,7 @@ import Calendar from 'react-calendar';
 import OtherServices from './OtherServices';
 import Button from '@/app/_components/Button';
 
-const CalAndTime = ({ appointments, services, settings }: any) => {
+const CalAndTime = ({ appointments, services }: any) => {
 	const {
 		calendarDate,
 		setCalendarDate,
@@ -23,6 +23,14 @@ const CalAndTime = ({ appointments, services, settings }: any) => {
 		totalMins,
 		setTotalMins,
 	} = useCalendarCtx();
+
+	// Calendar Settings
+	const settings = {
+		defaultActiveStartDate: calendarDate,
+		minDate: new Date(),
+		maxDate: new Date(2025, 0, 1),
+		selectRange: false,
+	};
 
 	const dayOfWeek = calendarDate?.getDay() - 1;
 	const month = calendarDate?.getMonth();

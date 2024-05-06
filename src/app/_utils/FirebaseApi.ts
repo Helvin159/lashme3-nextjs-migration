@@ -14,6 +14,7 @@ import ApiHandling from './ApiHandling';
 
 class FirebaseApi {
 	firebaseConfig: object;
+	apiHandling;
 	firebaseApp;
 	googleProvider;
 	auth;
@@ -46,15 +47,35 @@ class FirebaseApi {
 		// User
 		this.signInWPopUpUser = null;
 		this.signInWRedirectUser = null;
+
+		// Contentful ApiHandling Class
+		this.apiHandling = new ApiHandling();
 	}
 
 	// Events
 
 	// Methods
 	signInWRedirect = async (setState: Dispatch<SetStateAction<any>>) => {
-		signInWithRedirect(this.auth, new GoogleAuthProvider());
+		const clients = await this.apiHandling.getContentfulEntries('clients');
 
-		this.signInWRedirectUser = await getRedirectResult(this.auth);
+		this.signInWRedirectUser = await signInWithRedirect(
+			this.auth,
+			new GoogleAuthProvider()
+		);
+
+		if (this.auth?.currentUser?.email) {
+			let f = clients.items.find(
+				(i: any) => i.fields.email === this.signInWPopUpUser.user.email
+			);
+
+			console.log(f, 'f');
+			if (f === undefined) {
+				this.apiHandling.createClientEntry(
+					this.signInWPopUpUser.user.displayName,
+					this.signInWPopUpUser.user.email
+				);
+			}
+		}
 
 		setState({
 			email: this.signInWPopUpUser.user.email,
@@ -67,8 +88,7 @@ class FirebaseApi {
 	};
 
 	signInWPopup = async (setState: Dispatch<SetStateAction<any>>) => {
-		const apiHandling = new ApiHandling();
-		const clients = await apiHandling.getContentfulEntries('clients');
+		const clients = await this.apiHandling.getContentfulEntries('clients');
 
 		this.signInWPopUpUser = await signInWithPopup(
 			this.auth,
@@ -82,7 +102,7 @@ class FirebaseApi {
 
 			console.log(f, 'f');
 			if (f === undefined) {
-				apiHandling.createClientEntry(
+				this.apiHandling.createClientEntry(
 					this.signInWPopUpUser.user.displayName,
 					this.signInWPopUpUser.user.email
 				);
