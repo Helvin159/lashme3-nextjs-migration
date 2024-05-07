@@ -109,6 +109,17 @@ class FirebaseApi {
 			}
 		}
 
+		let userObj = {
+			email: this.signInWPopUpUser.user.email,
+			fullName: this.signInWPopUpUser.user.displayName,
+			photoUrl: this.signInWPopUpUser.user.photoURL,
+			googleUserId: this.signInWPopUpUser.user.photoURL,
+			authToken: this.signInWPopUpUser.user.auth.authToken,
+			authObj: this.auth,
+		};
+
+		localStorage.setItem('lashMeEUserObject', JSON.stringify(userObj));
+
 		setState({
 			email: this.signInWPopUpUser.user.email,
 			fullName: this.signInWPopUpUser.user.displayName,
@@ -122,6 +133,7 @@ class FirebaseApi {
 	// Signout
 	signoutUser = async (setState: Dispatch<SetStateAction<any>>) => {
 		await signOut(this.auth);
+		localStorage.setItem('lashMeEUserObject', '');
 		setState(null);
 
 		window.scrollTo(0, 0);

@@ -44,7 +44,21 @@ export const UserProvider = ({ children }: { children: React.ReactNode }) => {
 				authObj: auth,
 			});
 		}
-	}, [auth]);
+
+		// Get userObject from LocalStorage
+		const userLcString: any = localStorage.getItem('lashMeEUserObject');
+
+		if (userLcString) {
+			const userObject: any = JSON.parse(userLcString);
+			console.log(user);
+			if (user === null) {
+				console.log('setting user');
+				if (userObject?.email) {
+					setUser(userObject);
+				}
+			}
+		}
+	}, [auth, user]);
 
 	const value = { user, setUser };
 

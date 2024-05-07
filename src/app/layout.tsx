@@ -1,7 +1,6 @@
 import type { Metadata } from 'next';
 import { Inter } from 'next/font/google';
 
-import { AppointmentsProvider } from '@/app/_context/AppointmentsContext';
 import { MenuProvider } from '@/app/_context/MenuContext';
 import { CalendarProvider } from '@/app/_context/CalendarContext';
 

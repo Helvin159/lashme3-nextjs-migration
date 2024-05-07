@@ -41,23 +41,44 @@ const CalAndTime = ({ appointments, services }: any) => {
 	// for use in the if() block returning the time options
 	let unavailableHours: any = [];
 	for (let i = 0; i < appointments.length; i++) {
+		// Get date of appointment Date Object
 		let date = new Date(appointments[i].fields.appointmentDate);
+
+		// Get the hour value
 		let hour: any =
 			date.getHours() < 10
 				? `0${date.getHours()}`
 				: date.getHours() > 12
 				? date.getHours() - 12
 				: date.getHours();
+
+		// Get the minutes value
 		let minutes =
 			date.getMinutes() <= 9 ? `0${date.getMinutes()}` : date.getMinutes();
 
+		// Get month & Day values
 		const month = date?.getMonth() + 1;
 		const day = date?.getDate();
 
+		// Push the scheduled time to unavailableHours array
 		unavailableHours.push({
 			date: `${month}/${day}`,
 			time: `${hour + 1}:${minutes}`,
 		});
+
+		// For each hour, add an extra unavaialble hour,
+		// should be the scheduled hour + (1 *  durationHours)
+		let unHrs = parseInt(hour) + 1 * appointments[i].fields.durationHours;
+		console.log(unHrs, 'unHrs');
+
+		for (let it = 1; it <= appointments[i].fields.durationHours; it++) {
+			unavailableHours.push({
+				date: `${month}/${day}`,
+				time: `${parseInt(hour) + (1 + i)}:${minutes}`,
+			});
+		}
+
+		console.log(unavailableHours);
 	}
 
 	// Rerender where necessary
@@ -147,6 +168,7 @@ const CalAndTime = ({ appointments, services }: any) => {
 								value={'Time'}>
 								Time
 							</option>
+
 							{daysOfWeek[dayOfWeek]?.availableTimeSlots.map((i, k) => {
 								let time = `${
 									parseInt(i.time.hour) > 12

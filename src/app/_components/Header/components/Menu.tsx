@@ -22,7 +22,7 @@ const Menu = ({ businessDetails }: any) => {
 	const loginBtn = async () => await firebaseApi.signInWPopup(setUser);
 	const logoutBtn = async () => await firebaseApi.signoutUser(setUser);
 
-	console.log(businessDetails);
+	// console.log(businessDetails);
 	return (
 		<div className='flex flex-col tablet:flex-row justify-between py-7 px-14'>
 			<div className='flex mx-auto tablet:mx-0'>
@@ -82,6 +82,7 @@ const Menu = ({ businessDetails }: any) => {
 				<Button
 					variant={'pink'}
 					className={`${user ? 'hidden' : 'block'}`}
+					url='/login'
 					onClick={loginBtn}>
 					Login
 				</Button>
