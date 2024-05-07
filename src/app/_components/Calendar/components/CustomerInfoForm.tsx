@@ -7,6 +7,7 @@ import ApiHandling from '@/app/_utils/ApiHandling';
 import { useCalendarCtx } from '@/app/_context/CalendarContext';
 import RowContainer from '@/app/_components/RowContainer';
 import { goBack } from '@/app/_utils/utils';
+import { useUserContext } from '@/app/_context/UserContext';
 
 const CustomerInfoForm = () => {
 	const apiHandling = new ApiHandling();
@@ -20,6 +21,7 @@ const CustomerInfoForm = () => {
 		isSubmitted,
 		setIsSubmitted,
 	} = useCalendarCtx();
+	const { user } = useUserContext();
 
 	const date = new Date(calendarDate);
 	const year = date.getFullYear();
@@ -76,6 +78,7 @@ const CustomerInfoForm = () => {
 							className='p-4 w-80 tablet:w-96 shadow-lg rounded'
 							id='customerFName'
 							name='customerFName'
+							defaultValue={user ? user?.name : ''}
 							required
 							placeholder='First Name'
 						/>
@@ -119,6 +122,7 @@ const CustomerInfoForm = () => {
 							id='customerEmail'
 							name='customerEmail'
 							required
+							defaultValue={user ? user.email : ''}
 							placeholder='Email'
 						/>
 					</div>

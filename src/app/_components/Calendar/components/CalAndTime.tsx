@@ -45,16 +45,20 @@ const CalAndTime = ({ appointments, services }: any) => {
 		let date = new Date(appointments[i].fields.appointmentDate);
 
 		// Get the hour value
-		let hour: any =
+		let hour: string =
 			date.getHours() < 10
 				? `0${date.getHours()}`
 				: date.getHours() > 12
-				? date.getHours() - 12
-				: date.getHours();
+				? `${
+						date.getHours() - 12 > 10
+							? date.getHours() - 12
+							: `0${date.getHours() - 12}`
+				  }`
+				: `${date.getHours()}`;
 
 		// Get the minutes value
-		let minutes =
-			date.getMinutes() <= 9 ? `0${date.getMinutes()}` : date.getMinutes();
+		let minutes: string =
+			date.getMinutes() <= 9 ? `0${date.getMinutes()}` : `${date.getMinutes()}`;
 
 		// Get month & Day values
 		const month = date?.getMonth() + 1;
@@ -68,8 +72,25 @@ const CalAndTime = ({ appointments, services }: any) => {
 
 		// For each hour, add an extra unavaialble hour,
 		// should be the scheduled hour + (1 *  durationHours)
-		let unHrs = parseInt(hour) + 1 * appointments[i].fields.durationHours;
-		console.log(unHrs, 'unHrs');
+		let unHrs = parseInt(hour) + appointments[i].fields.durationHours;
+		let unMins = parseInt(minutes) + appointments[i].fields.durationMinutes;
+		console.log(unHrs, unMins, 'unHrs');
+
+		// Check if more than 60 minutes,
+		if (unMins > 60) {
+			// if more than 60 mintues,
+			// subtract 60 minutes from unMins
+			// and add: Math.floor(mins) / 60
+			unHrs = unHrs + Math.floor(unMins / 60);
+
+			// Get minutes minutes hours, if more than 60 mintues,
+			// figure out how many hours, and multiply
+			// hours times 60 minutes in order to subtract
+			// hours from total minutes
+			unMins = Math.floor(unMins / 60) * 60;
+		}
+
+		console.log(unHrs, unMins, 'after if statement');
 
 		for (let it = 1; it <= appointments[i].fields.durationHours; it++) {
 			unavailableHours.push({

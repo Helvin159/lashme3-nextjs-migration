@@ -7,11 +7,12 @@ import RowContainer from '@/app/_components/RowContainer';
 import Section from '@/app/_components/Section';
 import { useUserContext } from '@/app/_context/UserContext';
 import FirebaseApi from '@/app/_utils/FirebaseApi';
+import { usePathname, useRouter } from 'next/navigation';
 import React from 'react';
 
 const Login = () => {
 	const firebaseApi = new FirebaseApi();
-	const { setUser } = useUserContext();
+	const { user, setUser } = useUserContext();
 
 	const signInWGooglePopup = async () =>
 		await firebaseApi.signInWPopup(setUser);
@@ -20,6 +21,15 @@ const Login = () => {
 		e.preventDefault();
 		console.log(e);
 	};
+
+	// Redirect if logged in
+	const pathname = usePathname();
+	const router = useRouter();
+	if (pathname === '/login' || pathname === '/register') {
+		if (!user || user === undefined) {
+			router.push('/');
+		}
+	}
 	return (
 		<Section>
 			<Container className='text-center'>

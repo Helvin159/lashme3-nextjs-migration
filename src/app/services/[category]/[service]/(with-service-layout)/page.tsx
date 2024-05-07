@@ -30,6 +30,10 @@ const Service = async ({ params }: Params) => {
 	const { items } = await apiHandling.getContentfulEntries('service');
 	const data = items?.find((i: any) => i.fields.slug === params.service);
 
+	if (!data) {
+		throw new Error("This product doesn't exist.");
+	}
+
 	return (
 		<Section>
 			<Container className='text-center'>

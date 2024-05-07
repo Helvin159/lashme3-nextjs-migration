@@ -7,7 +7,7 @@ import {
 	useContext,
 	useEffect,
 } from 'react';
-import FirebaseApi from '../_utils/FirebaseApi';
+import { usePathname, useRouter } from 'next/navigation';
 
 type UserType = {
 	email: string | null | undefined;
@@ -28,40 +28,10 @@ const UserContext = createContext<UserType | any | null>({
 });
 
 export const UserProvider = ({ children }: { children: React.ReactNode }) => {
-	const firebaseApi = new FirebaseApi();
-	const auth = firebaseApi.auth;
-
 	const [user, setUser] = useState<UserType | any | null>(null);
 
-	const setUserIfLc = () => {
-		// Get userObject from LocalStorage
-		const userLcString: any = localStorage.getItem('lashMeEUserObject');
-
-		if (user === null) {
-			console.log(user);
-			if (userLcString) {
-				const userObject: any = JSON.parse(userLcString);
-				console.log('setting user');
-				if (userObject?.email) {
-					setUser(userObject);
-				}
-			}
-		}
-	};
 	useEffect(() => {
-		if (auth?.currentUser?.email) {
-			setUser({
-				email: auth?.currentUser?.email,
-				fullName: auth?.currentUser?.displayName,
-				photoUrl: auth?.currentUser?.photoURL,
-				googleUserId: auth?.currentUser?.email,
-				// authToken: auth?.currentUser?.accessToken,
-				authObj: auth,
-			});
-		}
-
 		// Get userObject from LocalStorage
-
 		const userLcString: any = localStorage.getItem('lashMeEUserObject');
 		if (userLcString) {
 			const userObject: any = JSON.parse(userLcString);
@@ -73,7 +43,8 @@ export const UserProvider = ({ children }: { children: React.ReactNode }) => {
 				}
 			}
 		}
-	}, [auth]);
+		// eslint-disable-next-line no-use-before-define
+	}, [user]);
 
 	const value = { user, setUser };
 
