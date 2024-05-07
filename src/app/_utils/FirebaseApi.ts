@@ -101,7 +101,7 @@ class FirebaseApi {
 			);
 
 			console.log(f, 'f');
-			if (f === undefined) {
+			if (f === undefined || !f) {
 				this.apiHandling.createClientEntry(
 					this.signInWPopUpUser.user.displayName,
 					this.signInWPopUpUser.user.email

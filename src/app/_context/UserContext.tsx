@@ -33,6 +33,21 @@ export const UserProvider = ({ children }: { children: React.ReactNode }) => {
 
 	const [user, setUser] = useState<UserType | any | null>(null);
 
+	const setUserIfLc = () => {
+		// Get userObject from LocalStorage
+		const userLcString: any = localStorage.getItem('lashMeEUserObject');
+
+		if (user === null) {
+			console.log(user);
+			if (userLcString) {
+				const userObject: any = JSON.parse(userLcString);
+				console.log('setting user');
+				if (userObject?.email) {
+					setUser(userObject);
+				}
+			}
+		}
+	};
 	useEffect(() => {
 		if (auth?.currentUser?.email) {
 			setUser({
@@ -46,19 +61,19 @@ export const UserProvider = ({ children }: { children: React.ReactNode }) => {
 		}
 
 		// Get userObject from LocalStorage
-		const userLcString: any = localStorage.getItem('lashMeEUserObject');
 
+		const userLcString: any = localStorage.getItem('lashMeEUserObject');
 		if (userLcString) {
 			const userObject: any = JSON.parse(userLcString);
-			console.log(user);
+			console.log('setting user');
 			if (user === null) {
-				console.log('setting user');
+				console.log(user);
 				if (userObject?.email) {
 					setUser(userObject);
 				}
 			}
 		}
-	}, [auth, user]);
+	}, [auth]);
 
 	const value = { user, setUser };
 

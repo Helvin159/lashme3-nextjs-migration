@@ -58,7 +58,11 @@ class ApiHandling {
 					fullName: { 'en-US': name },
 					email: { 'en-US': email },
 					phoneNumber: { 'en-US': tel ? tel : 1231231234 },
-					slug: { 'en-US': name.replace(/\s/g, '-') },
+					slug: {
+						'en-US': `${name.replace(/\s/g, '-').toLowerCase()}-${email
+							.replace('.', '_DOT_')
+							.replace('@', '_AT_')}`,
+					},
 					// appointments: { 'en-US': name },
 				},
 			})
@@ -146,15 +150,21 @@ class ApiHandling {
 				})
 				.catch(console.error);
 		} else {
+			let e = email.replace('@', '-');
+
+			console.log(e, 'e');
 			// Create client entry, then create
 			// appointment entry with client.
+
 			this.cmaEnv
 				.createEntry('clients', {
 					fields: {
 						fullName: { 'en-US': name },
 						email: { 'en-US': email },
 						phoneNumber: { 'en-US': parseInt(tel) },
-						slug: { 'en-US': name.replace(/\s/g, '-').toLowerCase() },
+						slug: {
+							'en-US': `${name.replace(/\s/g, '-').toLowerCase()}-${e}`,
+						},
 						clientsPhysicalAddress: { 'en-US': `${name}, \n${tel} \n${email}` },
 					},
 				})
