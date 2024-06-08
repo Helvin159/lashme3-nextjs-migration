@@ -18,7 +18,7 @@ const FlexCol = ({ children, className, size }: FlexColType) => {
 	}
 
 	return (
-		<div className={`flex-1 ${className ? className : ''} ${colSizes[size as keyof typeof colSizes]}`}>
+		<div className={`${className ? className : ''} ${colSizes[size as keyof typeof colSizes]}`}>
 			{children}
 		</div>
 	);
