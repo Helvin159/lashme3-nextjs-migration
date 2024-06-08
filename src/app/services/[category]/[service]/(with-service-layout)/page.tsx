@@ -4,6 +4,7 @@ import Container from '@/app/_components/Container';
 import Section from '@/app/_components/Section';
 import ApiHandling from '@/app/_utils/ApiHandling';
 import { Metadata } from 'next';
+import ServicePresentation from '@/app/_components/ServicePresentation';
 
 const apiHandling = new ApiHandling();
 
@@ -42,6 +43,8 @@ const Service = async ({ params }: Params) => {
 				</h1>
 				<p>Service Page</p>
 			</Container>
+			<ServicePresentation services={data} />
+
 		</Section>
 	);
 };

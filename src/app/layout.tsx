@@ -3,6 +3,9 @@ import { Inter } from 'next/font/google';
 
 import { MenuProvider } from '@/app/_context/MenuContext';
 import { CalendarProvider } from '@/app/_context/CalendarContext';
+import { BookingProvider } from '@/app/_context/BookingWidgetCtx';
+import { BookingTermsProvider } from '@/app/_context/BookingTermsContext';
+import { UserProvider } from './_context/UserContext';
 
 import Header from '@/app/_components/Header/Header';
 import Footer from './_components/Footer';
@@ -10,10 +13,7 @@ import Footer from './_components/Footer';
 // Styles
 import 'react-calendar/dist/Calendar.css';
 import '../css/output.css';
-import '../css/style.css';
-import { BookingProvider } from '@/app/_context/BookingWidgetCtx';
-import { BookingTermsProvider } from '@/app/_context/BookingTermsContext';
-import { UserProvider } from './_context/UserContext';
+import '../css/style.css';;
 
 const inter = Inter({ subsets: ['latin'] });
 

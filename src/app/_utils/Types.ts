@@ -1,4 +1,4 @@
-import React, { Dispatch, SetStateAction } from 'react';
+import React, { Dispatch, Key, SetStateAction } from 'react';
 import { StaticImageData } from 'next/image';
 
 // ************
@@ -37,7 +37,23 @@ export type RowContainerType = {
 export type FlexColType = {
 	children?: React.ReactNode;
 	className?: string;
+	size?: number;
 };
+
+export type ColSizes = {
+	1: string,
+	2: string,
+	3: string,
+	4: string,
+	5: string,
+	6: string,
+	7: string,
+	8: string,
+	9: string,
+	10: string,
+	11: string,
+	12: string,
+}
 
 export type SectionType = {
 	children?: React.ReactNode;

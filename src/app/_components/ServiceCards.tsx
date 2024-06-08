@@ -8,9 +8,8 @@ import FlexCol from './FlexCol';
 const ServiceCards = async ({ service }: any) => {
 	const serviceUrl = `/services/${service.fields.category.fields.slug}/${service.fields.slug}`;
 	return (
-		<FlexCol key={service.sys.id} className='basis-4/12 max-w-72 '>
-			<Container className='shadow-lg rounded-xl'>
-				<Link href={`${serviceUrl}`}>
+		<FlexCol key={service.sys.id} size={4} className='max-w-72 min-h-full'>
+				<Link href={`${serviceUrl}`} className='block min-h-full shadow-lg rounded-xl'>
 					<Container className='w-72 h-64'>
 						{service.fields.samplePictures &&
 							service.fields.samplePictures.slice(0, 1).map((i: any) => {
@@ -21,7 +20,7 @@ const ServiceCards = async ({ service }: any) => {
 										width={i.fields.file.details.image.width}
 										height={i.fields.file.details.image.height}
 										alt={`${i.fields.title}`}
-										className='w-full h-full mx-auto rounded shadow-lg m-3 object-cover object-center'
+										className='w-full h-full mx-auto rounded-tr-xl rounded-tl-xl shadow-lg m-3 object-cover object-center'
 									/>
 								);
 							})}
@@ -32,7 +31,6 @@ const ServiceCards = async ({ service }: any) => {
 						</Heading>
 					</Container>
 				</Link>
-			</Container>
 		</FlexCol>
 	);
 };
