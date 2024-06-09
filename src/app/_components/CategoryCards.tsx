@@ -8,10 +8,10 @@ import FlexCol from './FlexCol';
 
 const CategoryCards = async ({ category }: any) => {
 	return (
-		<FlexCol key={category.sys.id} className='basis-4/12 max-w-72'>
-			<Container className='shadow-lg rounded-2xl overflow-hidden'>
+		<FlexCol key={category.sys.id} size={3} className='h-full'>
+			<Container className='shadow-lg rounded-2xl overflow-hidden h-full w-full max-w-72 mx-auto'>
 				<Link href={`/services/${category.fields.slug}`}>
-					<Container className='w-72 h-64 overflow-hidden'>
+					<Container className='w-full h-full max-h-64 overflow-hidden'>
 						{category.fields.categoryPicture && (
 							<Image
 								src={`https:${category.fields.categoryPicture.fields.file.url}`}

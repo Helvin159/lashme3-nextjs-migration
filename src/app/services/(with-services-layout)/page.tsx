@@ -22,13 +22,13 @@ const Services = async () => {
 
 	return (
 		<>
-			<Section>
-				<Container className='text-center mx-auto w-full py-5'>
-					<Heading level='1'>Our Services!</Heading>
+			<Section className='max-w-1250 mx-auto px-5'>
+				<Container className='text-left mx-auto w-full py-5'>
+					<Heading level='1' className='capitalize'>What we offer!</Heading>
 				</Container>
 			</Section>
 			<Section>
-				<RowContainer className='max-w-969 mx-auto'>
+				<RowContainer className='tablet:gap-x-0 '>
 					{categories?.map((i: any, k: any) => (
 						<CategoryCards category={i} key={k} />
 					))}

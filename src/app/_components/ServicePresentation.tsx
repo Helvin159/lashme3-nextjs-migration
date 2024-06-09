@@ -4,12 +4,15 @@ import Container from './Container';
 import FlexCol from './FlexCol';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import Image from 'next/image';
+import Button from './Button';
+import { documentToReactComponents } from '@contentful/rich-text-react-renderer';
 
 import 'swiper/css';
-import Button from './Button';
 
 const ServicePresentation = ({services}:any) => {
-const bookingPath = `/booking/${services.fields.slug}`
+
+  // const bookingPath = `/booking/${services.fields.category.fields.slug}/${services.fields.slug}`
+  const bookingPath = `/booking/${services.fields.category.fields.slug}`
 
   return (
     <Container className='max-w-full'>
@@ -18,19 +21,18 @@ const bookingPath = `/booking/${services.fields.slug}`
 
           {services.fields.samplePictures.length > 1 ?
             <Swiper
-              className='max-w-3xl max-h-96'
+              className='max-w-3xl h-full'
               slidesPerView={1.5}
               autoplay={true}
+              mousewheel={true}
               spaceBetween={15}
-              effect={'flip'}
-              loop={true}
               grabCursor={true}
-              speed={1000}
+              speed={300}
               >
                 {services.fields.samplePictures.map((i:any , k:number) => (
                   <SwiperSlide key={k}>
-                    <div className='w-full max-h-full rounded-2xl overflow-hidden'>
-                      <Image src={`https:${i?.fields?.file?.url}`} alt='' width={i?.fields?.file?.details.image.width} height={i?.fields?.file?.details.image.height} className='object-cover object-center w-full h-96 max-h-full mx-auto' />
+                    <div className='w-full h-full max-h-full rounded-2xl overflow-hidden'>
+                      <Image src={`https:${i?.fields?.file?.url}`} alt='' width={i?.fields?.file?.details.image.width} height={i?.fields?.file?.details.image.height} className='object-cover object-center w-full h-full mx-auto' />
                     </div>
                   </SwiperSlide>
                 ))}
@@ -43,7 +45,22 @@ const bookingPath = `/booking/${services.fields.slug}`
         </FlexCol>
         <FlexCol size={4}>
           <Container className='w-full max-w-3xl mx-auto py-6'>
-            <h2 className='text-3xl'>Service Details</h2>
+            <article>
+            <h2 className='text-3xl'>About {services.fields.serviceName}</h2>
+            <div className='my-6 rich-text pr-12'>
+              {
+                services.fields?.serviceDescription ?
+                documentToReactComponents(services.fields.serviceDescription)
+                : null
+              }
+            </div>
+            <p className='m-0'>
+              Time: {services.fields.hours ? `${services.fields.hours} ${services.fields.hours > 1 ? 'hours' : 'hour'}` : null}{' '}
+              {services.fields?.minutes ? `${services.fields?.minutes} & minutes` : null}
+              <br />
+              Price: ${services.fields.price}
+            </p>
+            </article>
           </Container>
           <Container className='w-full max-w-3xl mx-auto text-center py-6'>
             <Button variant='pink' url={bookingPath}>Book Now!</Button>

@@ -22,6 +22,12 @@ h6 {
   font-weight: 600;
   font-style: normal; }
 
+i {
+  font-style: italic; }
+
+.rich-text p {
+  margin-bottom: 1rem; }
+
 .react-calendar {
   border: none !important; }
 
