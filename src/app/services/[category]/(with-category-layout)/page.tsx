@@ -46,7 +46,7 @@ const Categories = async ({ params }: any) => {
 				</Container>
 			</Section>
 			<Section>
-				<RowContainer className='max-w-969 mx-auto'>
+				<RowContainer>
 					{services.map((i: any, k: any) => {
 						if (i.fields.category.fields.slug === params?.category)
 							return <ServiceCards service={i} key={k} />;

@@ -36,6 +36,7 @@ const config: Config = {
 			spacing: {
 				1250: '80rem',
 				969: '60.5625rem',
+				1024: '1024px',
 				'98%': '98%',
 				'19rem': '19rem',
 				'40rem': '40rem',

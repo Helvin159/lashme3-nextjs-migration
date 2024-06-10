@@ -28,7 +28,7 @@ const Services = async () => {
 				</Container>
 			</Section>
 			<Section>
-				<RowContainer className='tablet:gap-x-0 '>
+				<RowContainer>
 					{categories?.map((i: any, k: any) => (
 						<CategoryCards category={i} key={k} />
 					))}

@@ -8,12 +8,12 @@ const Footer = async () => {
 			<div className='container flex flex-col tablet:flex-row basis-1/2 justify-between mx-auto py-8'>
 				<div className='flex flex-col justify-between'>
 					<div className='container'>
-						<h4>LashBoutique</h4>
+						<h4>Lash Me E</h4>
 						<p>Your trusted brow and lash expert since 2019.</p>
 					</div>
 					<div className='container'>
 						<p>
-							LashBoutique <span>&#9400;</span>
+							Lash Me E <span>&#9400;</span>
 						</p>
 					</div>
 				</div>

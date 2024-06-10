@@ -33,7 +33,7 @@ const FlexCol = ({ children, className, size, sm, md, lg, xl }: FlexColType) => 
 	}
 
 	return (
-		<div className={`${ size ? `${basis[size as keyof typeof basis]} ` : ''}${ sm ? `sm:${basis[sm as keyof typeof basis]} sm:${width[sm as keyof typeof width]} ` : ''}${ md ? `md:${basis[md as keyof typeof basis]} md:${width[md as keyof typeof width]} ` : ''}${ lg ? `lg:${basis[lg as keyof typeof basis]} lg:${width[lg as keyof typeof width]} ` : ''}${ xl ? `xl:${basis[xl as keyof typeof basis]} xl:${width[xl as keyof typeof width]} ` : ''}${className ? `${className} ` : ''}p-3`}>
+		<div className={`${ size ? `${basis[size as keyof typeof basis]} ` : ''}${ sm ? `sm:${basis[sm as keyof typeof basis]} sm:${width[sm as keyof typeof width]} ` : ''}${ md ? `md:${basis[md as keyof typeof basis]} md:${width[md as keyof typeof width]} ` : ''}${ lg ? `lg:${basis[lg as keyof typeof basis]} lg:${width[lg as keyof typeof width]} ` : ''}${ xl ? `xl:${basis[xl as keyof typeof basis]} xl:${width[xl as keyof typeof width]} ` : ''}${className ? `${className} ` : ''} shrink grow p-3`}>
 			{children}
 		</div>
 	);

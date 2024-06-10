@@ -11,7 +11,7 @@ const SignUpBtn = () => {
 				<Button
 					variant={'light'}
 					onClick={() => {
-						router.push('/register');
+						router.push('/login');
 					}}>
 					Sign up
 				</Button>
