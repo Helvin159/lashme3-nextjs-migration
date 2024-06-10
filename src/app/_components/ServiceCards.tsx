@@ -8,22 +8,18 @@ import FlexCol from './FlexCol';
 const ServiceCards = async ({ service }: any) => {
 	const serviceUrl = `/services/${service.fields.category.fields.slug}/${service.fields.slug}`;
 	return (
-		<FlexCol key={service.sys.id} size={4} className='max-w-72 min-h-full'>
-				<Link href={`${serviceUrl}`} className='block min-h-full shadow-lg rounded-xl'>
-					<Container className='w-72 h-64'>
-						{service.fields.samplePictures &&
-							service.fields.samplePictures.slice(0, 1).map((i: any) => {
-								return (
-									<Image
-										src={`https:${i.fields.file.url}`}
-										key={i.sys.id}
-										width={i.fields.file.details.image.width}
-										height={i.fields.file.details.image.height}
-										alt={`${i.fields.title}`}
-										className='w-full h-full mx-auto rounded-tr-xl rounded-tl-xl shadow-lg m-3 object-cover object-center'
-									/>
-								);
-							})}
+		<FlexCol key={service.sys.id} size={12} sm={6} md={4} lg={3}>
+			<Container className='h-full w-full mx-auto overflow-hidden shadow-lg rounded-2xl'>
+				<Link href={`${serviceUrl}`}>
+					<Container className='w-full h-full max-h-32 sm:max-h-60 overflow-hidden'>
+						<Image
+							src={`https:${service.fields.samplePictures[0].fields.file.url}`}
+							key={service.fields.samplePictures[0].sys.id}
+							width={service.fields.samplePictures[0].fields.file.details.image.width}
+							height={service.fields.samplePictures[0].fields.file.details.image.height}
+							alt={`${service.fields.samplePictures[0].fields.title}`}
+							className='h-full max-h-72 w-full object-cover object-center'
+							/>
 					</Container>
 					<Container className='py-3 text-center'>
 						<Heading className='text-md' level='6'>
@@ -31,6 +27,7 @@ const ServiceCards = async ({ service }: any) => {
 						</Heading>
 					</Container>
 				</Link>
+			</Container>
 		</FlexCol>
 	);
 };

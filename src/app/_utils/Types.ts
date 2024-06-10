@@ -38,9 +38,13 @@ export type FlexColType = {
 	children?: React.ReactNode;
 	className?: string;
 	size?: number;
+	sm?: number;
+	md?: number;
+	lg?: number;
+	xl?: number;
 };
 
-export type ColSizes = {
+export type Basis = {
 	1: string,
 	2: string,
 	3: string,

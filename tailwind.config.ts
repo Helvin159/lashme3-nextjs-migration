@@ -12,6 +12,10 @@ const config: Config = {
 			tablet: '768px',
 			laptop: '992px',
 			desktop: '1250px',
+			sm: '575.5px',
+			md: '768px',
+			lg: '992px',
+			xl: '1250px',
 		},
 		colors: {
 			'variant-one': '#ea2178',

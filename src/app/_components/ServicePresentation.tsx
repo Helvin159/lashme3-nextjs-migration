@@ -17,7 +17,7 @@ const ServicePresentation = ({services}:any) => {
   return (
     <Container className='max-w-full'>
       <div className='flex flex-col-reverse desktop:flex-row flex-nowrap justify-center tablet:justify-start'>
-        <FlexCol size={8} className='shrink max-w-full'>
+        <FlexCol size={6} md={8} className='shrink max-w-full'>
 
           {services.fields.samplePictures.length > 1 ?
             <Swiper
@@ -43,7 +43,7 @@ const ServicePresentation = ({services}:any) => {
           </Container>
           }
         </FlexCol>
-        <FlexCol size={4}>
+        <FlexCol size={6} md={4}>
           <Container className='w-full max-w-3xl mx-auto py-6'>
             <article>
               <div className='w-full text-center tablet:text-left'>
