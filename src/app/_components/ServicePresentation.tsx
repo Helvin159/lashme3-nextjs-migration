@@ -30,8 +30,8 @@ const ServicePresentation = ({services}:any) => {
               speed={300}
               >
                 {services.fields.samplePictures.map((i:any , k:number) => (
-                  <SwiperSlide key={k}>
-                    <div className='w-full h-full max-h-full rounded-2xl overflow-hidden'>
+                  <SwiperSlide className='w-full h-full min-h-full' key={k}>
+                    <div className='w-full h-full rounded-2xl overflow-hidden'>
                       <Image src={`https:${i?.fields?.file?.url}`} alt='' width={i?.fields?.file?.details.image.width} height={i?.fields?.file?.details.image.height} className='object-cover object-center w-full h-full mx-auto' />
                     </div>
                   </SwiperSlide>
@@ -46,8 +46,10 @@ const ServicePresentation = ({services}:any) => {
         <FlexCol size={4}>
           <Container className='w-full max-w-3xl mx-auto py-6'>
             <article>
-            <h2 className='text-3xl'>About {services.fields.serviceName}</h2>
-            <div className='my-6 rich-text pr-12'>
+              <div className='w-full text-center tablet:text-left'>
+                <h2 className='text-2xl tablet:text-3xl'>About {services.fields.serviceName}</h2>
+              </div>
+            <div className='my-6 rich-text tablet:pr-12'>
               {
                 services.fields?.serviceDescription ?
                 documentToReactComponents(services.fields.serviceDescription)

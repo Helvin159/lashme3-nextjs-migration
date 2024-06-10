@@ -38,7 +38,7 @@ const Service = async ({ params }: Params) => {
 	return (
 		<Section>
 			<Container className='text-center pb-12'>
-				<h1 className='text-xl tablet:text-5xl'>
+				<h1 className='text-4xl tablet:text-5xl'>
 					{data?.fields?.serviceName}{' '}
 				</h1>
 			</Container>
